@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.75" name="NorthBay">
+  <DataContextMoniker Name="/NorthBayDataContext" />
+  <nestedChildShapes>
+    <classShape Id="d237a6c7-93b1-4fca-a0d4-5675ab9822c6" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/NorthBayDataContext/Career" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e9ac792-f870-4f56-8c3b-7f34acee1e07" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e8697b67-a3d3-42d0-9ebe-951b452f1222" absoluteBounds="0.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/NorthBayDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c6d5b37e-7d60-47fe-a416-de6cb833d951" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="108f1499-a81d-46ac-9aba-c27b429a1b3d" absoluteBounds="3.75, 5.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/NorthBayDataContext/NewBorn" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e456b4b-84ed-46ed-81d0-06998ce56a15" absoluteBounds="3.765, 6.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93b9b811-1193-4f70-8171-4c3468913f29" absoluteBounds="6.75, 5.75, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/NorthBayDataContext/News" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f784e445-d930-4841-927e-3fa7ac284bed" absoluteBounds="6.765, 6.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="756cbf48-c23b-45fc-af9e-ad7a7ec7e638" absoluteBounds="9.75, 0.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/NorthBayDataContext/Publication" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a6b90f72-de48-4408-8170-de421328250c" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="86a9eff7-33a2-4998-a840-e5d0eab0db3b" absoluteBounds="4.5, 1.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/NorthBayDataContext/Volunteering" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a3b111ac-23e4-4e14-a7c5-78fd2b875218" absoluteBounds="4.515, 2.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
