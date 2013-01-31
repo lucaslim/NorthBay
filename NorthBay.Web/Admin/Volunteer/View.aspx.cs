@@ -70,7 +70,7 @@ namespace NorthBay.Web.Admin.Volunteer
 
         protected void GridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            IOrderedDictionary newValues = e.NewValues;
+            var newValues = e.NewValues;
 
             int? id = TextHelper.ToInteger(GetRowId(e.RowIndex));
             //If no Id found return
