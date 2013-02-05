@@ -25,7 +25,7 @@ namespace NorthBay.Controls
         /// <summary>
         /// Set ValidationHelper Type
         /// </summary>
-        private ValidationType ValidType { get; set; }
+        public ValidationType ValidType { get; set; }
 
         protected override void OnLoad(EventArgs e)
         {
