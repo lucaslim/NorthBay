@@ -11,7 +11,8 @@
     <div>
         <asp:GridView runat="server" ID="gridView" OnRowDeleting="GridView_RowDeleting" OnRowUpdating="GridView_RowUpdating"
             OnRowEditing="GridView_RowEditing" OnRowCancelingEdit="GridView_RowCancelingEdit"
-            OnSorting="GridView_Sorting" OnPageIndexChanging="GridView_PageIndexChanging" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False">
+            OnSorting="GridView_Sorting" OnPageIndexChanging="GridView_PageIndexChanging"
+            AllowSorting="True" AutoGenerateColumns="False">
             <Columns>
                 <asp:TemplateField HeaderText="No.">
                     <ItemTemplate>
@@ -19,48 +20,48 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <%#                Container.DataItemIndex + 1 %>
-                        <asp:HiddenField runat="server" ID="hf_id" Value='<%#Bind("volunteering_id") %>' />
+                        <asp:HiddenField runat="server" ID="hf_id" Value='<%#Bind("VolunteeringId") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Title">
+                <asp:TemplateField HeaderText="Title" SortExpression="Title">
                     <ItemTemplate>
-                        <%#Eval("title") %>
+                        <%#Eval("Title") %>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <custom:TextBox runat="server" ID="txt_title" Text='<%#Bind("title") %>' />
+                        <custom:TextBox runat="server" ID="txt_title" Text='<%#Bind("Title") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Category">
+                <asp:TemplateField HeaderText="Category" SortExpression="Category">
                     <ItemTemplate>
-                        <%#Eval("category") %>
+                        <%#Eval("Category") %>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <custom:TextBox runat="server" ID="txt_category" Text='<%#Bind("category") %>' />
+                        <custom:TextBox runat="server" ID="txt_category" Text='<%#Bind("Category") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Description">
+                <asp:TemplateField HeaderText="Description" SortExpression="Description">
                     <ItemTemplate>
-                        <%#Eval("description") %>
+                        <%#Eval("Description")%>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <custom:TextBox runat="server" ID="txt_description" TextMode="MultiLine" Height="100px"
-                            Width="100px" Text='<%#Bind("description") %>' />
+                            Width="100px" Text='<%#Bind("Description") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Post Date">
+                <asp:TemplateField HeaderText="Post Date" SortExpression="PostDate">
                     <ItemTemplate>
-                        <%#                FormatDate(Eval("post_date")) %>
+                        <%#                FormatDate(Eval("PostDate")) %>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <custom:DateBox runat="server" ID="txt_postdate" Text='<%#Bind("post_date") %>' />
+                        <custom:DateBox runat="server" ID="txt_postdate" Text='<%#Bind("PostDate") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="End Date">
+                <asp:TemplateField HeaderText="End Date" SortExpression="EndDate">
                     <ItemTemplate>
-                        <%#                FormatDate(Eval("end_date")) %>
+                        <%#                FormatDate(Eval("EndDate")) %>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <custom:DateBox runat="server" ID="txt_enddate" Text='<%#Bind("end_date") %>' />
+                        <custom:DateBox runat="server" ID="txt_enddate" Text='<%#Bind("EndDate") %>' />
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
