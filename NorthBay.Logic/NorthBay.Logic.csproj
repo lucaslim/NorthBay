@@ -55,7 +55,9 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Gift\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NorthBay.Framework\NorthBay.Framework.csproj">
       <Project>{D3C249FE-7093-4A2B-83A3-FEBBF463BD6B}</Project>

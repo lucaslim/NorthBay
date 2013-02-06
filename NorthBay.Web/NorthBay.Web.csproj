@@ -129,6 +129,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Gift\" />
+    <Folder Include="Gift\" />
     <Folder Include="Sitemap\" />
   </ItemGroup>
   <ItemGroup>
