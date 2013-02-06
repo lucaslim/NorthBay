@@ -36,5 +36,14 @@ namespace NorthBay.Utility
         {
             return HttpContext.Current.Request.MapPath(url);
         }
+
+        /// <summary>
+        /// Redirect to page
+        /// </summary>
+        /// <param name="url"></param>
+        public static void Redirect(string url)
+        {
+            HttpContext.Current.Response.Redirect(url);
+        }
     }
 }

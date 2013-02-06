@@ -38,6 +38,8 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\UserCookie.cs" />
+    <Compile Include="Authentication\UserSession.cs" />
     <Compile Include="Enum\ExceptionType.cs" />
     <Compile Include="Enum\ValidationType.cs" />
     <Compile Include="Database\DbHelper.cs" />
@@ -68,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Database\app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Database\NorthBay.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>NorthBay.designer.cs</LastGenOutput>
@@ -84,10 +85,7 @@
       <DependentUpon>NorthBay.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Authentication\" />
-    <Folder Include="Utility\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NorthBay.Utility\NorthBay.Utility.csproj">
       <Project>{F156EDB3-256C-4522-B6F8-F39F62DE4B97}</Project>

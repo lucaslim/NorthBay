@@ -44,6 +44,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="User\UserClass.cs" />
     <Compile Include="Volunteer\VolunteeringClass.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\NorthBay.Framework\NorthBay.Framework.csproj">
       <Project>{D3C249FE-7093-4A2B-83A3-FEBBF463BD6B}</Project>
       <Name>NorthBay.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NorthBay.Utility\NorthBay.Utility.csproj">
+      <Project>{F156EDB3-256C-4522-B6F8-F39F62DE4B97}</Project>
+      <Name>NorthBay.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,7 +15,7 @@ namespace NorthBay.Framework.Database
         /// <returns></returns>
         public NorthBayDataContext DataContext()
         {
-            return new NorthBayDataContext();
+            return new NorthBayDataContext(Properties.Settings.Default.northbayConnectionString);
         }
 
         /// <summary>
