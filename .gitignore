@@ -17,8 +17,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-*.config
-[Bb]in
+app.config
 [Dd]ebug*/
 *.lib
 *.sbr
