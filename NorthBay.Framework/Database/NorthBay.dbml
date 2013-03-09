@@ -78,4 +78,30 @@
       <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="fantastic.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_ProductCategoryTable" Member="ProductCategoryTables" ThisKey="ProductId" OtherKey="ProductId" Type="ProductCategoryTable" />
+    </Type>
+  </Table>
+  <Table Name="fantastic.ProductCategory" Member="ProductCategories">
+    <Type Name="ProductCategory">
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="ProductCategory_ProductCategoryTable" Member="ProductCategoryTables" ThisKey="ProductCategoryId" OtherKey="ProductCategoryId" Type="ProductCategoryTable" />
+    </Type>
+  </Table>
+  <Table Name="fantastic.ProductCategoryTable" Member="ProductCategoryTables">
+    <Type Name="ProductCategoryTable">
+      <Column Name="ProductCategoryTableId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_ProductCategoryTable" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+      <Association Name="ProductCategory_ProductCategoryTable" Member="ProductCategory" ThisKey="ProductCategoryId" OtherKey="ProductCategoryId" Type="ProductCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
 </Database>

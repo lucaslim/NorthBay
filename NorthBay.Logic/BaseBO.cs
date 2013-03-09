@@ -47,7 +47,18 @@ namespace NorthBay.Logic
         /// <returns></returns>
         public bool Insert(TEntity t)
         {
-            return Db.Insert(t);
+            int id;
+            return Db.Insert(t, out id);
+        }
+
+        /// <summary>
+        /// Insert new object
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool Insert(TEntity t, out int id)
+        {
+            return Db.Insert(t, out id);
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.75" name="NorthBay">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 11.625" name="NorthBay">
   <DataContextMoniker Name="/NorthBayDataContext" />
   <nestedChildShapes>
     <classShape Id="d237a6c7-93b1-4fca-a0d4-5675ab9822c6" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
@@ -44,5 +44,37 @@
         <elementListCompartment Id="1eace0bf-242d-4947-8143-32bfc7443858" absoluteBounds="2.765, 3.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="62d047fb-a418-45ed-9769-8c6e22c4014c" absoluteBounds="0.75, 6.625, 2, 1.7708968098958335">
+      <DataClassMoniker Name="/NorthBayDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f78e657-4825-4135-b1c6-d9319e5774bc" absoluteBounds="0.765, 7.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c7cf2e56-ee1b-45cb-bf9c-e5437ccf66a3" absoluteBounds="0.75, 9.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/NorthBayDataContext/ProductCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dbb46d6-e6e1-49e9-9b0d-55b952121b71" absoluteBounds="0.765, 10.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa0174eb-3759-4427-a5bd-954d4548075f" absoluteBounds="6.125, 10, 2, 1.3862939453125">
+      <DataClassMoniker Name="/NorthBayDataContext/ProductCategoryTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33369cac-ef73-44ed-b745-061a6a2dbce8" absoluteBounds="6.14, 10.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 8.39589680989583); (3.125 : 8.77089680989583); (3.125 : 10.6931469726562); (6.125 : 10.6931469726562)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NorthBayDataContext/Product/Product_ProductCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="62d047fb-a418-45ed-9769-8c6e22c4014c" />
+        <classShapeMoniker Id="aa0174eb-3759-4427-a5bd-954d4548075f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 10.2840734863281); (3.04166666666667 : 10.2840734863281 : JumpStart); (3.20833333333333 : 10.2840734863281 : JumpEnd); (6.125 : 10.2840734863281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NorthBayDataContext/ProductCategory/ProductCategory_ProductCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="c7cf2e56-ee1b-45cb-bf9c-e5437ccf66a3" />
+        <classShapeMoniker Id="aa0174eb-3759-4427-a5bd-954d4548075f" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Linq;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Web.UI.WebControls;
 using NorthBay.Framework.Querying;
 
@@ -151,12 +153,30 @@ namespace NorthBay.Framework.Database
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="t"></param>
-        public bool Insert<TEntity>(TEntity t) where TEntity : class
+        public bool Insert<TEntity>(TEntity t, out int id) where TEntity : class
         {
             using (var context = DataContext())
             {
+                id = 0;
+                
                 context.GetTable<TEntity>().InsertOnSubmit(t);
                 context.SubmitChanges();
+
+                foreach (PropertyInfo propertyInfo in from propertyInfo 
+                                                          in t.GetType().GetProperties() //get list of properties
+                                                      where propertyInfo.Name.Contains("Id") //find properties containing Id
+                                                      from attr 
+                                                          in propertyInfo.GetCustomAttributes(false) //get list of attributes
+                                                      where attr.GetType().GetProperty("IsPrimaryKey") != null //make sure IsPrimaryKey attribute Exist
+                                                      where (attr.GetType().GetProperty("IsPrimaryKey").GetValue(attr, null)) is bool //make sure attribute is a boolean 
+                                                      let isPrimaryKey = ((bool)attr.GetType().GetProperty("IsPrimaryKey").GetValue(attr, null)) //assign attribute to boolean variable if its true
+                                                      where isPrimaryKey where (propertyInfo.GetValue(t, null)) is int //make sure property is an integer 
+                                                      select propertyInfo) //select property
+                {
+                    //convert value to int and assign to id
+                    id = (int)propertyInfo.GetValue(t, null); 
+                    return true;
+                }
 
                 return true;
             }
