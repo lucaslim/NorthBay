@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Web.UI.WebControls;
-using NorthBay.Framework.Database;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
-namespace NorthBay.Web.Admin.Volunteer
+namespace NorthBay.Web.Admin.Volunteering
 {
-    public partial class View : Basepage
+    public partial class Default : Basepage
     {
-        private readonly VolunteeringClass _objVolunteering = new VolunteeringClass();
+        private readonly VolunteerClass _objVolunteer = new VolunteerClass();
 
         /// <summary>
         /// Using viewstate to store the sort direction
@@ -47,7 +46,7 @@ namespace NorthBay.Web.Admin.Volunteer
 
         private void GridView_DataBind()
         {
-            gridView.DataSource = _objVolunteering.SelectAll();
+            gridView.DataSource = _objVolunteer.SelectAll();
             gridView.DataBind();
         }
 
@@ -60,7 +59,7 @@ namespace NorthBay.Web.Admin.Volunteer
             if (id == null)
                 return;
 
-            if (!_objVolunteering.Delete((int)id))
+            if (!_objVolunteer.Delete((int)id))
                 //Show error message
                 return;
 
@@ -78,18 +77,18 @@ namespace NorthBay.Web.Admin.Volunteer
                 return;
 
             //Set new values to object
-            var volunteering = new Volunteering
-                                   {
-                                       VolunteeringId = (int)id,
-                                       Category = TextHelper.ToString(newValues["category"]),
-                                       Title = TextHelper.ToString(newValues["title"]),
-                                       Description = TextHelper.ToString(newValues["description"]),
-                                       PostDate = (DateTime)TextHelper.ToDateTime(newValues["post_date"]),
-                                       EndDate = (DateTime)TextHelper.ToDateTime(newValues["end_date"])
-                                   };
+            var volunteering = new Framework.Database.Volunteer
+            {
+                VolunteerId = (int)id,
+                VolunteerCategoryId = 0,
+                Title = TextHelper.ToString(newValues["title"]),
+                Description = TextHelper.ToString(newValues["description"]),
+                PostDate = (DateTime)TextHelper.ToDateTime(newValues["post_date"]),
+                EndDate = (DateTime)TextHelper.ToDateTime(newValues["end_date"])
+            };
 
             //Update object
-            if (!_objVolunteering.Update(volunteering))
+            if (!_objVolunteer.Update(volunteering))
                 //Show error message
                 return;
 
@@ -140,7 +139,7 @@ namespace NorthBay.Web.Admin.Volunteer
             }
 
             //Calling Sort All Function
-            gridView.DataSource = _objVolunteering.SortAll(SortExpression, SortDirection);
+            gridView.DataSource = _objVolunteer.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
         }
 
@@ -166,7 +165,7 @@ namespace NorthBay.Web.Admin.Volunteer
         {
             var pageIndex = e.NewPageIndex;
 
-            gridView.DataSource = _objVolunteering.Paging(pageIndex);
+            gridView.DataSource = _objVolunteer.Paging(pageIndex);
         }
     }
 }

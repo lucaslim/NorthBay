@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Principal;
-using System.Web;
 using System.Web.Security;
 using NorthBay.Framework.Authentication;
 using NorthBay.Framework.Security;
@@ -16,7 +14,7 @@ namespace NorthBay.Logic.User
             using (var context = Db.DataContext())
             {
                 //Authenticate User, hashing password with MD5
-                var query = context.Users.Where(x => x.EmailId.Equals(email) && x.Password.Equals(SecurityHelper.Hash(password)));
+                var query = context.Users.Where(x => x.Email.Equals(email) && x.Password.Equals(SecurityHelper.Hash(password)));
 
                 if (query.Count() != 1)
                     return; //login fail
@@ -58,7 +56,7 @@ namespace NorthBay.Logic.User
             var user = Db.Select<Framework.Database.User>(id);
 
             //return
-            return user.RoleId;
+            return user.UserRoleId;
         }
 
         public bool Logout()

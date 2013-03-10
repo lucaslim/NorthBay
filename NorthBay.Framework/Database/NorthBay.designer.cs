@@ -22,7 +22,7 @@ namespace NorthBay.Framework.Database
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="northbay")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="northbayhosp")]
 	public partial class NorthBayDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,22 +30,34 @@ namespace NorthBay.Framework.Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertVolunteering(Volunteering instance);
-    partial void UpdateVolunteering(Volunteering instance);
-    partial void DeleteVolunteering(Volunteering instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertVolunteerCategory(VolunteerCategory instance);
+    partial void UpdateVolunteerCategory(VolunteerCategory instance);
+    partial void DeleteVolunteerCategory(VolunteerCategory instance);
     partial void InsertProductCategory(ProductCategory instance);
     partial void UpdateProductCategory(ProductCategory instance);
     partial void DeleteProductCategory(ProductCategory instance);
     partial void InsertProductCategoryTable(ProductCategoryTable instance);
     partial void UpdateProductCategoryTable(ProductCategoryTable instance);
     partial void DeleteProductCategoryTable(ProductCategoryTable instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertUserRole(UserRole instance);
+    partial void UpdateUserRole(UserRole instance);
+    partial void DeleteUserRole(UserRole instance);
+    partial void InsertVolunteer(Volunteer instance);
+    partial void UpdateVolunteer(Volunteer instance);
+    partial void DeleteVolunteer(Volunteer instance);
     #endregion
+		
+		public NorthBayDataContext() : 
+				base(global::NorthBay.Framework.Properties.Settings.Default.northbayhospConnectionString1, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public NorthBayDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -71,67 +83,19 @@ namespace NorthBay.Framework.Database
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Career> Careers
-		{
-			get
-			{
-				return this.GetTable<Career>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Role> Roles
-		{
-			get
-			{
-				return this.GetTable<Role>();
-			}
-		}
-		
-		public System.Data.Linq.Table<NewBorn> NewBorns
-		{
-			get
-			{
-				return this.GetTable<NewBorn>();
-			}
-		}
-		
-		public System.Data.Linq.Table<News> News
-		{
-			get
-			{
-				return this.GetTable<News>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Publication> Publications
-		{
-			get
-			{
-				return this.GetTable<Publication>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Volunteering> Volunteerings
-		{
-			get
-			{
-				return this.GetTable<Volunteering>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
 			{
 				return this.GetTable<Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VolunteerCategory> VolunteerCategories
+		{
+			get
+			{
+				return this.GetTable<VolunteerCategory>();
 			}
 		}
 		
@@ -150,1132 +114,41 @@ namespace NorthBay.Framework.Database
 				return this.GetTable<ProductCategoryTable>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.Career")]
-	public partial class Career
-	{
 		
-		private int _CareerId;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private string _Category;
-		
-		private System.DateTime _PostDate;
-		
-		private System.DateTime _EndDate;
-		
-		private bool _Active;
-		
-		public Career()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CareerId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int CareerId
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this._CareerId;
-			}
-			set
-			{
-				if ((this._CareerId != value))
-				{
-					this._CareerId = value;
-				}
+				return this.GetTable<User>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
+		public System.Data.Linq.Table<UserRole> UserRoles
 		{
 			get
 			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this._Title = value;
-				}
+				return this.GetTable<UserRole>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
+		public System.Data.Linq.Table<Volunteer> Volunteers
 		{
 			get
 			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
+				return this.GetTable<Volunteer>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Category
+		public System.Data.Linq.Table<VolunteerView> VolunteerViews
 		{
 			get
 			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this._Category = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="Date NOT NULL")]
-		public System.DateTime PostDate
-		{
-			get
-			{
-				return this._PostDate;
-			}
-			set
-			{
-				if ((this._PostDate != value))
-				{
-					this._PostDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date NOT NULL")]
-		public System.DateTime EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this._EndDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this._Active = value;
-				}
+				return this.GetTable<VolunteerView>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.Role")]
-	public partial class Role
-	{
-		
-		private int _RoleId;
-		
-		private string _RoleName;
-		
-		private bool _Active;
-		
-		public Role()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int RoleId
-		{
-			get
-			{
-				return this._RoleId;
-			}
-			set
-			{
-				if ((this._RoleId != value))
-				{
-					this._RoleId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this._RoleName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this._Active = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.NewBorn")]
-	public partial class NewBorn
-	{
-		
-		private int _ChildId;
-		
-		private string _ChildName;
-		
-		private string _Gender;
-		
-		private System.DateTime _BirthDate;
-		
-		private System.TimeSpan _BirthTime;
-		
-		private System.Data.Linq.Binary _ChildImage;
-		
-		private string _ParentName;
-		
-		private int _Weight;
-		
-		private int _RoomNo;
-		
-		private bool _Active;
-		
-		public NewBorn()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChildId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int ChildId
-		{
-			get
-			{
-				return this._ChildId;
-			}
-			set
-			{
-				if ((this._ChildId != value))
-				{
-					this._ChildId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChildName", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string ChildName
-		{
-			get
-			{
-				return this._ChildName;
-			}
-			set
-			{
-				if ((this._ChildName != value))
-				{
-					this._ChildName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this._Gender = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthDate", DbType="Date NOT NULL")]
-		public System.DateTime BirthDate
-		{
-			get
-			{
-				return this._BirthDate;
-			}
-			set
-			{
-				if ((this._BirthDate != value))
-				{
-					this._BirthDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BirthTime", DbType="Time NOT NULL")]
-		public System.TimeSpan BirthTime
-		{
-			get
-			{
-				return this._BirthTime;
-			}
-			set
-			{
-				if ((this._BirthTime != value))
-				{
-					this._BirthTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChildImage", DbType="Image NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary ChildImage
-		{
-			get
-			{
-				return this._ChildImage;
-			}
-			set
-			{
-				if ((this._ChildImage != value))
-				{
-					this._ChildImage = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentName", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string ParentName
-		{
-			get
-			{
-				return this._ParentName;
-			}
-			set
-			{
-				if ((this._ParentName != value))
-				{
-					this._ParentName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Int NOT NULL")]
-		public int Weight
-		{
-			get
-			{
-				return this._Weight;
-			}
-			set
-			{
-				if ((this._Weight != value))
-				{
-					this._Weight = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomNo", DbType="Int NOT NULL")]
-		public int RoomNo
-		{
-			get
-			{
-				return this._RoomNo;
-			}
-			set
-			{
-				if ((this._RoomNo != value))
-				{
-					this._RoomNo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this._Active = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.News")]
-	public partial class News
-	{
-		
-		private int _NewsId;
-		
-		private string _Title;
-		
-		private string _Author;
-		
-		private string _Description;
-		
-		private string _Category;
-		
-		private System.DateTime _NewsDate;
-		
-		private System.DateTime _EndDate;
-		
-		private string _Source;
-		
-		private bool _Active;
-		
-		public News()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewsId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int NewsId
-		{
-			get
-			{
-				return this._NewsId;
-			}
-			set
-			{
-				if ((this._NewsId != value))
-				{
-					this._NewsId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this._Title = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this._Author = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this._Category = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NewsDate", DbType="Date NOT NULL")]
-		public System.DateTime NewsDate
-		{
-			get
-			{
-				return this._NewsDate;
-			}
-			set
-			{
-				if ((this._NewsDate != value))
-				{
-					this._NewsDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date NOT NULL")]
-		public System.DateTime EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this._EndDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this._Source = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this._Active = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.Publication")]
-	public partial class Publication
-	{
-		
-		private int _PublicationId;
-		
-		private string _Title;
-		
-		private string _Author;
-		
-		private string _Description;
-		
-		private string _Category;
-		
-		private System.DateTime _PublicationDate;
-		
-		private string _Reference;
-		
-		private bool _Active;
-		
-		public Publication()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicationId", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int PublicationId
-		{
-			get
-			{
-				return this._PublicationId;
-			}
-			set
-			{
-				if ((this._PublicationId != value))
-				{
-					this._PublicationId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this._Title = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this._Author = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this._Category = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicationDate", DbType="Date NOT NULL")]
-		public System.DateTime PublicationDate
-		{
-			get
-			{
-				return this._PublicationDate;
-			}
-			set
-			{
-				if ((this._PublicationDate != value))
-				{
-					this._PublicationDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reference", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Reference
-		{
-			get
-			{
-				return this._Reference;
-			}
-			set
-			{
-				if ((this._Reference != value))
-				{
-					this._Reference = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this._Active = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.Volunteering")]
-	public partial class Volunteering : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _VolunteeringId;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private string _Category;
-		
-		private System.DateTime _PostDate;
-		
-		private System.DateTime _EndDate;
-		
-		private bool _Active;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnVolunteeringIdChanging(int value);
-    partial void OnVolunteeringIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnCategoryChanging(string value);
-    partial void OnCategoryChanged();
-    partial void OnPostDateChanging(System.DateTime value);
-    partial void OnPostDateChanged();
-    partial void OnEndDateChanging(System.DateTime value);
-    partial void OnEndDateChanged();
-    partial void OnActiveChanging(bool value);
-    partial void OnActiveChanged();
-    #endregion
-		
-		public Volunteering()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteeringId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int VolunteeringId
-		{
-			get
-			{
-				return this._VolunteeringId;
-			}
-			set
-			{
-				if ((this._VolunteeringId != value))
-				{
-					this.OnVolunteeringIdChanging(value);
-					this.SendPropertyChanging();
-					this._VolunteeringId = value;
-					this.SendPropertyChanged("VolunteeringId");
-					this.OnVolunteeringIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this.OnCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._Category = value;
-					this.SendPropertyChanged("Category");
-					this.OnCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="Date NOT NULL")]
-		public System.DateTime PostDate
-		{
-			get
-			{
-				return this._PostDate;
-			}
-			set
-			{
-				if ((this._PostDate != value))
-				{
-					this.OnPostDateChanging(value);
-					this.SendPropertyChanging();
-					this._PostDate = value;
-					this.SendPropertyChanged("PostDate");
-					this.OnPostDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date NOT NULL")]
-		public System.DateTime EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this.OnActiveChanging(value);
-					this.SendPropertyChanging();
-					this._Active = value;
-					this.SendPropertyChanged("Active");
-					this.OnActiveChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserId;
-		
-		private string _Name;
-		
-		private string _Password;
-		
-		private string _Phone;
-		
-		private string _EmailId;
-		
-		private int _RoleId;
-		
-		private bool _Active;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    partial void OnEmailIdChanging(string value);
-    partial void OnEmailIdChanged();
-    partial void OnRoleIdChanging(int value);
-    partial void OnRoleIdChanged();
-    partial void OnActiveChanging(bool value);
-    partial void OnActiveChanged();
-    #endregion
-		
-		public User()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailId", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string EmailId
-		{
-			get
-			{
-				return this._EmailId;
-			}
-			set
-			{
-				if ((this._EmailId != value))
-				{
-					this.OnEmailIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmailId = value;
-					this.SendPropertyChanged("EmailId");
-					this.OnEmailIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
-		public int RoleId
-		{
-			get
-			{
-				return this._RoleId;
-			}
-			set
-			{
-				if ((this._RoleId != value))
-				{
-					this.OnRoleIdChanging(value);
-					this.SendPropertyChanging();
-					this._RoleId = value;
-					this.SendPropertyChanged("RoleId");
-					this.OnRoleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
-		public bool Active
-		{
-			get
-			{
-				return this._Active;
-			}
-			set
-			{
-				if ((this._Active != value))
-				{
-					this.OnActiveChanging(value);
-					this.SendPropertyChanging();
-					this._Active = value;
-					this.SendPropertyChanged("Active");
-					this.OnActiveChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.Product")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Product")]
 	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1355,7 +228,7 @@ namespace NorthBay.Framework.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
 		public string Description
 		{
 			get
@@ -1461,7 +334,121 @@ namespace NorthBay.Framework.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.ProductCategory")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VolunteerCategory")]
+	public partial class VolunteerCategory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _VolunteerCategoryId;
+		
+		private string _Name;
+		
+		private EntitySet<Volunteer> _Volunteers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVolunteerCategoryIdChanging(int value);
+    partial void OnVolunteerCategoryIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public VolunteerCategory()
+		{
+			this._Volunteers = new EntitySet<Volunteer>(new Action<Volunteer>(this.attach_Volunteers), new Action<Volunteer>(this.detach_Volunteers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerCategoryId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int VolunteerCategoryId
+		{
+			get
+			{
+				return this._VolunteerCategoryId;
+			}
+			set
+			{
+				if ((this._VolunteerCategoryId != value))
+				{
+					this.OnVolunteerCategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._VolunteerCategoryId = value;
+					this.SendPropertyChanged("VolunteerCategoryId");
+					this.OnVolunteerCategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VolunteerCategory_Volunteer", Storage="_Volunteers", ThisKey="VolunteerCategoryId", OtherKey="VolunteerCategoryId")]
+		public EntitySet<Volunteer> Volunteers
+		{
+			get
+			{
+				return this._Volunteers;
+			}
+			set
+			{
+				this._Volunteers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Volunteers(Volunteer entity)
+		{
+			this.SendPropertyChanging();
+			entity.VolunteerCategory = this;
+		}
+		
+		private void detach_Volunteers(Volunteer entity)
+		{
+			this.SendPropertyChanging();
+			entity.VolunteerCategory = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductCategory")]
 	public partial class ProductCategory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1575,7 +562,7 @@ namespace NorthBay.Framework.Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="fantastic.ProductCategoryTable")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductCategoryTable")]
 	public partial class ProductCategoryTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1763,6 +750,791 @@ namespace NorthBay.Framework.Database
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private string _Name;
+		
+		private string _Password;
+		
+		private string _Phone;
+		
+		private string _Email;
+		
+		private int _UserRoleId;
+		
+		private bool _Active;
+		
+		private EntityRef<UserRole> _UserRole;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnUserRoleIdChanging(int value);
+    partial void OnUserRoleIdChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    #endregion
+		
+		public User()
+		{
+			this._UserRole = default(EntityRef<UserRole>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRoleId", DbType="Int NOT NULL")]
+		public int UserRoleId
+		{
+			get
+			{
+				return this._UserRoleId;
+			}
+			set
+			{
+				if ((this._UserRoleId != value))
+				{
+					if (this._UserRole.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserRoleId = value;
+					this.SendPropertyChanged("UserRoleId");
+					this.OnUserRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRole_User", Storage="_UserRole", ThisKey="UserRoleId", OtherKey="UserRoleId", IsForeignKey=true)]
+		public UserRole UserRole
+		{
+			get
+			{
+				return this._UserRole.Entity;
+			}
+			set
+			{
+				UserRole previousValue = this._UserRole.Entity;
+				if (((previousValue != value) 
+							|| (this._UserRole.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserRole.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._UserRole.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._UserRoleId = value.UserRoleId;
+					}
+					else
+					{
+						this._UserRoleId = default(int);
+					}
+					this.SendPropertyChanged("UserRole");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRole")]
+	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserRoleId;
+		
+		private string _Name;
+		
+		private bool _Active;
+		
+		private EntitySet<User> _Users;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserRoleIdChanging(int value);
+    partial void OnUserRoleIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    #endregion
+		
+		public UserRole()
+		{
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserRoleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserRoleId
+		{
+			get
+			{
+				return this._UserRoleId;
+			}
+			set
+			{
+				if ((this._UserRoleId != value))
+				{
+					this.OnUserRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserRoleId = value;
+					this.SendPropertyChanged("UserRoleId");
+					this.OnUserRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRole_User", Storage="_Users", ThisKey="UserRoleId", OtherKey="UserRoleId")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserRole = this;
+		}
+		
+		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserRole = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Volunteer")]
+	public partial class Volunteer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _VolunteerId;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private int _VolunteerCategoryId;
+		
+		private System.DateTime _PostDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private bool _Active;
+		
+		private EntityRef<VolunteerCategory> _VolunteerCategory;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVolunteerIdChanging(int value);
+    partial void OnVolunteerIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnVolunteerCategoryIdChanging(int value);
+    partial void OnVolunteerCategoryIdChanged();
+    partial void OnPostDateChanging(System.DateTime value);
+    partial void OnPostDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    #endregion
+		
+		public Volunteer()
+		{
+			this._VolunteerCategory = default(EntityRef<VolunteerCategory>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int VolunteerId
+		{
+			get
+			{
+				return this._VolunteerId;
+			}
+			set
+			{
+				if ((this._VolunteerId != value))
+				{
+					this.OnVolunteerIdChanging(value);
+					this.SendPropertyChanging();
+					this._VolunteerId = value;
+					this.SendPropertyChanged("VolunteerId");
+					this.OnVolunteerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerCategoryId", DbType="Int NOT NULL")]
+		public int VolunteerCategoryId
+		{
+			get
+			{
+				return this._VolunteerCategoryId;
+			}
+			set
+			{
+				if ((this._VolunteerCategoryId != value))
+				{
+					if (this._VolunteerCategory.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVolunteerCategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._VolunteerCategoryId = value;
+					this.SendPropertyChanged("VolunteerCategoryId");
+					this.OnVolunteerCategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="Date NOT NULL")]
+		public System.DateTime PostDate
+		{
+			get
+			{
+				return this._PostDate;
+			}
+			set
+			{
+				if ((this._PostDate != value))
+				{
+					this.OnPostDateChanging(value);
+					this.SendPropertyChanging();
+					this._PostDate = value;
+					this.SendPropertyChanged("PostDate");
+					this.OnPostDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VolunteerCategory_Volunteer", Storage="_VolunteerCategory", ThisKey="VolunteerCategoryId", OtherKey="VolunteerCategoryId", IsForeignKey=true)]
+		public VolunteerCategory VolunteerCategory
+		{
+			get
+			{
+				return this._VolunteerCategory.Entity;
+			}
+			set
+			{
+				VolunteerCategory previousValue = this._VolunteerCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._VolunteerCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VolunteerCategory.Entity = null;
+						previousValue.Volunteers.Remove(this);
+					}
+					this._VolunteerCategory.Entity = value;
+					if ((value != null))
+					{
+						value.Volunteers.Add(this);
+						this._VolunteerCategoryId = value.VolunteerCategoryId;
+					}
+					else
+					{
+						this._VolunteerCategoryId = default(int);
+					}
+					this.SendPropertyChanged("VolunteerCategory");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VolunteerView")]
+	public partial class VolunteerView
+	{
+		
+		private int _VolunteerId;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private int _VolunteerCategoryId;
+		
+		private string _VolunteerCategoryName;
+		
+		private System.DateTime _PostDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private bool _Active;
+		
+		public VolunteerView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerId", DbType="Int NOT NULL")]
+		public int VolunteerId
+		{
+			get
+			{
+				return this._VolunteerId;
+			}
+			set
+			{
+				if ((this._VolunteerId != value))
+				{
+					this._VolunteerId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerCategoryId", DbType="Int NOT NULL")]
+		public int VolunteerCategoryId
+		{
+			get
+			{
+				return this._VolunteerCategoryId;
+			}
+			set
+			{
+				if ((this._VolunteerCategoryId != value))
+				{
+					this._VolunteerCategoryId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolunteerCategoryName", DbType="NVarChar(100)")]
+		public string VolunteerCategoryName
+		{
+			get
+			{
+				return this._VolunteerCategoryName;
+			}
+			set
+			{
+				if ((this._VolunteerCategoryName != value))
+				{
+					this._VolunteerCategoryName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="Date NOT NULL")]
+		public System.DateTime PostDate
+		{
+			get
+			{
+				return this._PostDate;
+			}
+			set
+			{
+				if ((this._PostDate != value))
+				{
+					this._PostDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this._Active = value;
+				}
 			}
 		}
 	}

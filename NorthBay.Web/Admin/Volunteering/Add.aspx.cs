@@ -1,9 +1,8 @@
 ﻿using System;
-using NorthBay.Framework.Database;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
-namespace NorthBay.Web.Admin.Volunteer
+namespace NorthBay.Web.Admin.Volunteering
 {
     public partial class Add : Basepage
     {
@@ -12,13 +11,26 @@ namespace NorthBay.Web.Admin.Volunteer
             //Load javascript just for this page
             JScript.AddScript("");
 
-
             //Load css just for this page
             Css.AddCss("");
 
             //Check if page postback
             if (Page.IsPostBack)
                 return;
+
+            SetVolunteerCateogryData();
+        }
+
+
+        private void SetVolunteerCateogryData()
+        {
+            var objVolunteerCategory = new VolunteerCategoryClass();
+
+            ddl_category.DataSource = objVolunteerCategory.SelectAll();
+            ddl_category.DataTextField = "Name";
+            ddl_category.DataValueField = "VolunteerCategoryId";
+            ddl_category.DataBind();
+
         }
 
         /// <summary>
@@ -29,10 +41,10 @@ namespace NorthBay.Web.Admin.Volunteer
         protected void ButtonClick(object sender, EventArgs e)
         {
             //create volunteering model and assign values to it
-            var volunteering = new Volunteering
+            var volunteer = new Framework.Database.Volunteer
                                    {
                                        Title = txt_title.Text,
-                                       Category = ddl_category.SelectedValue,
+                                       VolunteerCategoryId = (int)TextHelper.ToInteger(ddl_category.SelectedValue),
                                        Description = txt_description.Text,
                                        PostDate = (DateTime)TextHelper.ToDateTime(txt_postdate.Text),
                                        EndDate = (DateTime)TextHelper.ToDateTime(txt_enddate.Text),
@@ -40,9 +52,9 @@ namespace NorthBay.Web.Admin.Volunteer
                                    };
 
             //Create new Volunteering Object
-            var objVolunteer = new VolunteeringClass();
+            var objVolunteer = new VolunteerClass();
 
-            if (!objVolunteer.Insert(volunteering))
+            if (!objVolunteer.Insert(volunteer))
             {
                 //show error message
             }

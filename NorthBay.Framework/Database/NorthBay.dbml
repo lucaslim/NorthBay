@@ -1,107 +1,80 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="northbay" Class="NorthBayDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="fantastic.Career" Member="Careers">
-    <Type Name="Career">
-      <Column Name="CareerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="PostDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.Role" Member="Roles">
-    <Type Name="Role">
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoleName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.NewBorn" Member="NewBorns">
-    <Type Name="NewBorn">
-      <Column Name="ChildId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ChildName" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="BirthTime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
-      <Column Name="ChildImage" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="ParentName" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Weight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RoomNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.News" Member="News">
-    <Type Name="News">
-      <Column Name="NewsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Author" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="NewsDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Source" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.Publication" Member="Publications">
-    <Type Name="Publication">
-      <Column Name="PublicationId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Author" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="PublicationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Reference" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.Volunteering" Member="Volunteerings">
-    <Type Name="Volunteering">
-      <Column Name="VolunteeringId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="PostDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="EmailId" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="fantastic.Product" Member="Products">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="northbayhosp" Class="NorthBayDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayhosp;Persist Security Info=True;User ID=northbayhosp" SettingsObjectName="NorthBay.Framework.Properties.Settings" SettingsPropertyName="northbayhospConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="Image" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Product_ProductCategoryTable" Member="ProductCategoryTables" ThisKey="ProductId" OtherKey="ProductId" Type="ProductCategoryTable" />
     </Type>
   </Table>
-  <Table Name="fantastic.ProductCategory" Member="ProductCategories">
+  <Table Name="dbo.VolunteerCategory" Member="VolunteerCategories">
+    <Type Name="VolunteerCategory">
+      <Column Name="VolunteerCategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="VolunteerCategory_Volunteer" Member="Volunteers" ThisKey="VolunteerCategoryId" OtherKey="VolunteerCategoryId" Type="Volunteer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductCategory" Member="ProductCategories">
     <Type Name="ProductCategory">
       <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="ProductCategory_ProductCategoryTable" Member="ProductCategoryTables" ThisKey="ProductCategoryId" OtherKey="ProductCategoryId" Type="ProductCategoryTable" />
     </Type>
   </Table>
-  <Table Name="fantastic.ProductCategoryTable" Member="ProductCategoryTables">
+  <Table Name="dbo.ProductCategoryTable" Member="ProductCategoryTables">
     <Type Name="ProductCategoryTable">
       <Column Name="ProductCategoryTableId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductCategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Product_ProductCategoryTable" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
       <Association Name="ProductCategory_ProductCategoryTable" Member="ProductCategory" ThisKey="ProductCategoryId" OtherKey="ProductCategoryId" Type="ProductCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="UserRole_User" Member="UserRole" ThisKey="UserRoleId" OtherKey="UserRoleId" Type="UserRole" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRole" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="UserRole_User" Member="Users" ThisKey="UserRoleId" OtherKey="UserRoleId" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Volunteer" Member="Volunteers">
+    <Type Name="Volunteer">
+      <Column Name="VolunteerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VolunteerCategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PostDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="VolunteerCategory_Volunteer" Member="VolunteerCategory" ThisKey="VolunteerCategoryId" OtherKey="VolunteerCategoryId" Type="VolunteerCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VolunteerView" Member="VolunteerViews">
+    <Type Name="VolunteerView">
+      <Column Name="VolunteerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VolunteerCategoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VolunteerCategoryName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PostDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

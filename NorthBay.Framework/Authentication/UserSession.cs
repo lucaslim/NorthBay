@@ -27,7 +27,7 @@ namespace NorthBay.Framework.Authentication
 
             if (string.IsNullOrEmpty(redirectUrl))
             {
-                switch (model.RoleId)
+                switch (model.UserRoleId)
                 {
                         //Administrator
                     case 1:

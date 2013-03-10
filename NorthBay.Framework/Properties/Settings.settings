@@ -1,17 +1,26 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="NorthBay.Framework.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NorthBay.Framework.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
+    <Setting Name="northbayhospConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayhosp;User ID=northbayhosp;Password=N0rthb@y&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayhosp;User ID=northbayhosp;Password=N0rthb@y</Value>
+    </Setting>
     <Setting Name="codeopolisConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">
-        &lt;?xml version="1.0" encoding="utf-16"?&gt;
-        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-        &lt;ConnectionString&gt;Data Source=codeopolis.db.10251325.hostedresource.com;Initial Catalog=codeopolis;Persist Security Info=True;User ID=codeopolis;Password=Lt822243135!!&lt;/ConnectionString&gt;
-        &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-        &lt;/SerializableConnectionString&gt;
-      </DesignTimeValue>
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;
+        &amp;lt;?xml version="1.0" encoding="utf-16"?&amp;gt;
+        &amp;lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&amp;gt;
+        &amp;lt;ConnectionString&amp;gt;Data Source=codeopolis.db.10251325.hostedresource.com;Initial Catalog=codeopolis;Persist Security Info=True;User ID=codeopolis;Password=Lt822243135!!&amp;lt;/ConnectionString&amp;gt;
+        &amp;lt;ProviderName&amp;gt;System.Data.SqlClient&amp;lt;/ProviderName&amp;gt;
+        &amp;lt;/SerializableConnectionString&amp;gt;
+      &lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">
         &lt;?xml version="1.0" encoding="utf-16"?&gt;
         &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
@@ -21,16 +30,31 @@
       </Value>
     </Setting>
     <Setting Name="northbayConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;
+        &amp;lt;?xml version="1.0" encoding="utf-16"?&amp;gt;
+        &amp;lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&amp;gt;
+        &amp;lt;ConnectionString&amp;gt;Data Source=aven.arvixe.com;Initial Catalog=northbay;User ID=fantastic;Password=fantastic&amp;lt;/ConnectionString&amp;gt;
+        &amp;lt;ProviderName&amp;gt;System.Data.SqlClient&amp;lt;/ProviderName&amp;gt;
+        &amp;lt;/SerializableConnectionString&amp;gt;
+      &lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">
         &lt;?xml version="1.0" encoding="utf-16"?&gt;
         &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
         &lt;ConnectionString&gt;Data Source=aven.arvixe.com;Initial Catalog=northbay;User ID=fantastic;Password=fantastic&lt;/ConnectionString&gt;
         &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
         &lt;/SerializableConnectionString&gt;
-      </DesignTimeValue>
-      <Value Profile="(Default)">
-        Data Source=aven.arvixe.com;Initial Catalog=northbay;User ID=fantastic;Password=fantastic
       </Value>
+    </Setting>
+    <Setting Name="northbayhospConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayhosp;Persist Security Info=True;User ID=northbayhosp;Password=N0rthb@y&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayhosp;Persist Security Info=True;User ID=northbayhosp;Password=N0rthb@y</Value>
     </Setting>
   </Settings>
 </SettingsFile>

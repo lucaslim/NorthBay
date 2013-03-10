@@ -40,14 +40,14 @@
   <ItemGroup>
     <Compile Include="Authentication\UserCookie.cs" />
     <Compile Include="Authentication\UserSession.cs" />
-    <Compile Include="Enum\ExceptionType.cs" />
-    <Compile Include="Enum\ValidationType.cs" />
-    <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Database\NorthBay.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NorthBay.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Enum\ExceptionType.cs" />
+    <Compile Include="Enum\ValidationType.cs" />
+    <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +69,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Database\app.config" />
     <None Include="Database\NorthBay.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -85,7 +86,6 @@
       <DependentUpon>NorthBay.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NorthBay.Utility\NorthBay.Utility.csproj">
       <Project>{F156EDB3-256C-4522-B6F8-F39F62DE4B97}</Project>

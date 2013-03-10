@@ -46,8 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Default.aspx" />
-    <Content Include="Admin\Volunteer\Add.aspx" />
-    <Content Include="Admin\Volunteer\View.aspx" />
+    <Content Include="Admin\Volunteering\Add.aspx" />
+    <Content Include="Admin\Volunteering\Default.aspx" />
+    <Content Include="Admin\web.config" />
     <Content Include="App_Themes\Main\Images\14x14_error.png" />
     <Content Include="App_Themes\Main\Images\20x20_calendar.gif" />
     <Content Include="App_Themes\Main\Images\about.jpg" />
@@ -65,6 +66,7 @@
     <Content Include="App_Themes\Main\style.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="Error.aspx" />
+    <Content Include="Gift\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
@@ -89,19 +91,19 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Volunteer\Add.aspx.cs">
+    <Compile Include="Admin\Volunteering\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Volunteer\Add.aspx.designer.cs">
+    <Compile Include="Admin\Volunteering\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Volunteer\View.aspx.cs">
-      <DependentUpon>View.aspx</DependentUpon>
+    <Compile Include="Admin\Volunteering\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Volunteer\View.aspx.designer.cs">
-      <DependentUpon>View.aspx</DependentUpon>
+    <Compile Include="Admin\Volunteering\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Basepage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -112,6 +114,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gift\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gift\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -151,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Gift\" />
-    <Folder Include="Gift\" />
     <Folder Include="Sitemap\" />
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masterpage\Main.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Admin\web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

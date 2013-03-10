@@ -3,7 +3,7 @@ using NorthBay.Framework.Database;
 
 namespace NorthBay.Logic.Volunteer
 {
-    public class VolunteeringClass : BaseBo<Volunteering>
+    public class VolunteerClass : BaseBo<Framework.Database.Volunteer>
     {
         public void AdditionalFunction(string input)
         {
@@ -11,8 +11,9 @@ namespace NorthBay.Logic.Volunteer
             using(var context = Db.DataContext())
             {
                //Do your normal Linq stuff.
-               IQueryable objQuery = context.Volunteerings.Select(x => x.VolunteeringId == 1);
+               IQueryable objQuery = context.Volunteers.Select(x => x.VolunteerId == 1);
             }
         }
+
     }
 }

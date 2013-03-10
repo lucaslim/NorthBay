@@ -26,6 +26,17 @@ namespace NorthBay.Framework.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayh" +
+            "osp;User ID=northbayhosp;Password=N0rthb@y")]
+        public string northbayhospConnectionString {
+            get {
+                return ((string)(this["northbayhospConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute(@"
         <?xml version=""1.0"" encoding=""utf-16""?>
         <SerializableConnectionString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
@@ -42,11 +53,27 @@ namespace NorthBay.Framework.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=aven.arvixe.com;Initial Catalog=northbay;User ID=fantastic;Password=f" +
-            "antastic")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+        <?xml version=""1.0"" encoding=""utf-16""?>
+        <SerializableConnectionString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+        <ConnectionString>Data Source=aven.arvixe.com;Initial Catalog=northbay;User ID=fantastic;Password=fantastic</ConnectionString>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+        </SerializableConnectionString>
+      ")]
         public string northbayConnectionString {
             get {
                 return ((string)(this["northbayConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=northbayhosp.db.10638631.hostedresource.com;Initial Catalog=northbayh" +
+            "osp;Persist Security Info=True;User ID=northbayhosp;Password=N0rthb@y")]
+        public string northbayhospConnectionString1 {
+            get {
+                return ((string)(this["northbayhospConnectionString1"]));
             }
         }
     }

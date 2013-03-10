@@ -59,7 +59,6 @@ body { margin: 0 auto; }
 #content {
     background-color: #fff;
     border: 1px dashed #f00;
-    height: 500px;
     margin: 0 auto;
     width: 1000px;
 }

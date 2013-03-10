@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Linq;
-using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -17,7 +16,7 @@ namespace NorthBay.Framework.Database
         /// <returns></returns>
         public NorthBayDataContext DataContext()
         {
-            return new NorthBayDataContext(Properties.Settings.Default.northbayConnectionString);
+            return new NorthBayDataContext();
         }
 
         /// <summary>

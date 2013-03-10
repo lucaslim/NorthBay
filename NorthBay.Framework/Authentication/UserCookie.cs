@@ -18,7 +18,7 @@ namespace NorthBay.Framework.Authentication
             //Assign Cookie
             cookie["id"] = TextHelper.ToString(model.UserId);
             cookie["name"] = model.Name;
-            cookie["roleId"] = TextHelper.ToString(model.RoleId);
+            cookie["roleId"] = TextHelper.ToString(model.UserRoleId);
             cookie.Expires = DateTime.Now.AddDays(30);
 
             //Add Cookie
