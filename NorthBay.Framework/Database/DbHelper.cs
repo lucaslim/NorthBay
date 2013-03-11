@@ -197,13 +197,5 @@ namespace NorthBay.Framework.Database
                 return true;
             }
         }
-
-        //public List<TEntity> Paging<TEntity>(int pageIndex) where TEntity : class
-        //{
-        //    using (var context = DataContext())
-        //    {
-
-        //    }
-        //}
     }
 }

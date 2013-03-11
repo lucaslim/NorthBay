@@ -37,24 +37,6 @@ namespace NorthBay.Web
             return TextHelper.FormatDate(date);
         }
 
-        internal static bool IsValidButtonCommandName(object sender, out string commandName)
-        {
-            commandName = string.Empty;
-
-            //Check if sender is button
-            if (!(sender is Button))
-                return false;
-
-            //Get button control
-            var button = sender as Button;
-
-            //Set command name
-            commandName = button.CommandName;
-
-            //check if command name is empty
-            return !string.IsNullOrEmpty(commandName);
-        }
-
         internal static void Redirect(string url)
         {
             HttpContext.Current.Response.Redirect(url);

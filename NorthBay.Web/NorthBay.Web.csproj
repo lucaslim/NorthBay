@@ -48,6 +48,7 @@
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Volunteer\Add.aspx" />
     <Content Include="Admin\Volunteer\Default.aspx" />
+    <Content Include="Admin\Volunteer\Edit.aspx" />
     <Content Include="Admin\web.config" />
     <Content Include="App_Themes\Main\Images\14x14_error.png" />
     <Content Include="App_Themes\Main\Images\20x20_calendar.gif" />
@@ -72,6 +73,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Script\jquery.js" />
     <Content Include="Script\jqueryui.js" />
+    <Content Include="Script\volunteer.js" />
     <Content Include="Volunteer\Default.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -104,6 +106,13 @@
     </Compile>
     <Compile Include="Admin\Volunteer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Volunteer\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Volunteer\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Basepage.cs">
       <SubType>ASPXCodeBehind</SubType>

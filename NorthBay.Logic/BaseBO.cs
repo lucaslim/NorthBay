@@ -75,10 +75,5 @@ namespace NorthBay.Logic
         {
             return Db.SortAll<TEntity>(sortExpression, sortDirection);
         }
-
-        public List<TEntity> Paging(int pageIndex)
-        {
-            return null;// Db.Paging<TEntity>(pageIndex);
-        }
     }
 }

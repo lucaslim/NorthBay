@@ -10,25 +10,25 @@
 namespace NorthBay.Web.Admin.Volunteer {
     
     
-    public partial class Add {
+    public partial class Edit {
         
         /// <summary>
-        /// form1 control.
+        /// ValidationGroupPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::NorthBay.Controls.ValidationGroupPanel ValidationGroupPanel1;
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
         /// txt_title control.
@@ -85,12 +85,12 @@ namespace NorthBay.Web.Admin.Volunteer {
         protected global::NorthBay.Controls.DropDownList ddl_active;
         
         /// <summary>
-        /// btn_update control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_update;
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

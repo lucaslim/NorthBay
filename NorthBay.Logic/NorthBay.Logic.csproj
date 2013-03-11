@@ -50,6 +50,7 @@
     <Compile Include="User\UserClass.cs" />
     <Compile Include="Volunteer\VolunteerCategoryClass.cs" />
     <Compile Include="Volunteer\VolunteerClass.cs" />
+    <Compile Include="Volunteer\VolunteerViewClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">

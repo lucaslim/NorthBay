@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Web.UI.WebControls;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
@@ -8,8 +7,8 @@ namespace NorthBay.Web.Admin.Volunteer
 {
     public partial class Default : Basepage
     {
+        private readonly VolunteerViewClass _objVolunteerView = new VolunteerViewClass();
         private readonly VolunteerClass _objVolunteer = new VolunteerClass();
-        private readonly VolunteerCategoryClass _objVolunteerCategory = new VolunteerCategoryClass();
 
         /// <summary>
         /// Using viewstate to store the sort direction
@@ -31,13 +30,19 @@ namespace NorthBay.Web.Admin.Volunteer
         /// </summary>
         private string SortExpression
         {
-            get { return ViewState["SortExpression"] as string ?? string.Empty; }
+            get
+            {
+                return ViewState["SortExpression"] as string ?? "VolunteerCategoryName";
+            }
             set { ViewState["SortExpression"] = value; }
         }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Load javascript just for this page
+            JScript.AddScript("volunteer.js");
+
             //If page is postback, stop executing
             if (Page.IsPostBack)
                 return;
@@ -47,75 +52,8 @@ namespace NorthBay.Web.Admin.Volunteer
 
         private void GridView_DataBind()
         {
-            gridView.DataSource = _objVolunteer.SelectView();
+            gridView.DataSource = _objVolunteerView.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
-        }
-
-        protected void GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            //Get row id
-            int? id = GetRowId(e.RowIndex);
-
-            //check if integer is null
-            if (id == null)
-                return;
-
-            if (!_objVolunteer.Delete((int)id))
-                //Show error message
-                return;
-
-            //Rebind
-            GridView_DataBind();
-        }
-
-        protected void GridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            var newValues = e.NewValues;
-
-            int? id = TextHelper.ToInteger(GetRowId(e.RowIndex));
-            //If no Id found return
-            if (id == null)
-                return;
-
-            //Set new values to object
-            var volunteering = new Framework.Database.Volunteer
-            {
-                VolunteerId = (int)id,
-                VolunteerCategoryId = 0,
-                Title = TextHelper.ToString(newValues["title"]),
-                Description = TextHelper.ToString(newValues["description"]),
-                PostDate = (DateTime)TextHelper.ToDateTime(newValues["post_date"]),
-                EndDate = (DateTime)TextHelper.ToDateTime(newValues["end_date"])
-            };
-
-            //Update object
-            if (!_objVolunteer.Update(volunteering))
-                //Show error message
-                return;
-
-            //return to normal
-            gridView.EditIndex = -1;
-
-            //rebind
-            GridView_DataBind();
-        }
-
-        protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            //Set edit index to new edit index
-            gridView.EditIndex = e.NewEditIndex;
-
-            //Rebind
-            GridView_DataBind();
-        }
-
-        protected void GridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            //Set edit index to -1 to cancel
-            gridView.EditIndex = -1;
-
-            //Rebind
-            GridView_DataBind();
         }
 
         protected void GridView_Sorting(object sender, GridViewSortEventArgs e)
@@ -140,50 +78,51 @@ namespace NorthBay.Web.Admin.Volunteer
             }
 
             //Calling Sort All Function
-            gridView.DataSource = _objVolunteer.SortAll(SortExpression, SortDirection);
+            gridView.DataSource = _objVolunteerView.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
         }
 
-        private int? GetRowId(int rowIndex)
-        {
-            DataKey key = gridView.DataKeys[rowIndex];
-
-            //check if key is null
-            if (key == null)
-                return null;
-
-            IOrderedDictionary keyValues = key.Values;
-
-            //check if key values are null
-            if (keyValues == null)
-                return null;
-
-            //Convert key value to integer
-            return TextHelper.ToInteger(keyValues["volunteering_id"]);
-        }
 
         protected void GridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            var pageIndex = e.NewPageIndex;
+            gridView.PageIndex = e.NewPageIndex;
 
-            gridView.DataSource = _objVolunteer.Paging(pageIndex);
+            GridView_DataBind();
         }
 
-        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void Button_Click(object sender, EventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            foreach (GridViewRow row in gridView.Rows)
             {
-                var objControl = e.Row.FindControl("ddl_category");
+                var objControl = row.FindControl("cb_select");
 
-                if (objControl is Controls.DropDownList)
-                {
-                    Controls.DropDownList control = objControl as Controls.DropDownList;
-                    control.DataSource = _objVolunteerCategory.SelectAll();
-                    control.DataTextField = "Name";
-                    control.DataValueField = "VolunteerCategoryId";
-                    control.DataBind();
-                }
+                if (!(objControl is CheckBox))
+                    continue;
+
+                var checkbox = objControl as CheckBox;
+                // If checkbox is not check, move on
+                if (!checkbox.Checked)
+                    continue;
+
+                //look for hidden field
+                objControl = row.FindControl("hf_id");
+
+                if (!(objControl is HiddenField))
+                    continue;
+
+                var hiddenField = objControl as HiddenField;
+
+                //Get id
+                var id = TextHelper.ToInteger(hiddenField.Value) ?? -1;
+
+                if (id == -1) continue;
+
+                //Delete data by Id
+                _objVolunteer.Delete(id);
             }
+
+            //Rebind
+            GridView_DataBind();
         }
     }
 }

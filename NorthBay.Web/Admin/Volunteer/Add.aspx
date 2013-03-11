@@ -30,7 +30,7 @@
                 <asp:TableRow>
                     <asp:TableCell>Description</asp:TableCell>
                     <asp:TableCell>
-                        <custom:TextBox runat="server" ID="txt_description" Required="True" TextMode="MultiLine"
+                        <custom:TextBox runat="server" ID="txt_description" Required="False" TextMode="MultiLine"
                             Height="100px" Width="100px" />
                     </asp:TableCell>
                 </asp:TableRow>
@@ -43,7 +43,7 @@
                 <asp:TableRow>
                     <asp:TableCell>End Date</asp:TableCell>
                     <asp:TableCell>
-                        <custom:DateBox runat="server" ID="txt_enddate" Required="True" />
+                        <custom:DateBox runat="server" ID="txt_enddate" Required="False" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -60,7 +60,7 @@
                 <asp:TableRow>
                     <asp:TableCell></asp:TableCell>
                     <asp:TableCell>
-                        <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="ButtonClick" /></asp:TableCell>
+                        <asp:Button runat="server" ID="btn_update" Text="Update" OnClick="ButtonClick" /></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
         </custom:ValidationGroupPanel>
