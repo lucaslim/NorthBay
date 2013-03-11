@@ -4,11 +4,12 @@ using System.Web.UI.WebControls;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
-namespace NorthBay.Web.Admin.Volunteering
+namespace NorthBay.Web.Admin.Volunteer
 {
     public partial class Default : Basepage
     {
         private readonly VolunteerClass _objVolunteer = new VolunteerClass();
+        private readonly VolunteerCategoryClass _objVolunteerCategory = new VolunteerCategoryClass();
 
         /// <summary>
         /// Using viewstate to store the sort direction
@@ -46,7 +47,7 @@ namespace NorthBay.Web.Admin.Volunteering
 
         private void GridView_DataBind()
         {
-            gridView.DataSource = _objVolunteer.SelectAll();
+            gridView.DataSource = _objVolunteer.SelectView();
             gridView.DataBind();
         }
 
@@ -166,6 +167,23 @@ namespace NorthBay.Web.Admin.Volunteering
             var pageIndex = e.NewPageIndex;
 
             gridView.DataSource = _objVolunteer.Paging(pageIndex);
+        }
+
+        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var objControl = e.Row.FindControl("ddl_category");
+
+                if (objControl is Controls.DropDownList)
+                {
+                    Controls.DropDownList control = objControl as Controls.DropDownList;
+                    control.DataSource = _objVolunteerCategory.SelectAll();
+                    control.DataTextField = "Name";
+                    control.DataValueField = "VolunteerCategoryId";
+                    control.DataBind();
+                }
+            }
         }
     }
 }

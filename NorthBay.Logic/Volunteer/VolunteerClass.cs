@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NorthBay.Framework.Database;
 
 namespace NorthBay.Logic.Volunteer
@@ -15,5 +16,12 @@ namespace NorthBay.Logic.Volunteer
             }
         }
 
+        public List<VolunteerView> SelectView()
+        {
+            using(var context = Db.DataContext())
+            {
+                return context.VolunteerViews.ToList();
+            }
+        } 
     }
 }

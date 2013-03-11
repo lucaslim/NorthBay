@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="NorthBay.Web.Admin.Volunteering.Add" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Add.aspx.cs" Inherits="NorthBay.Web.Admin.Volunteer.Add" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,8 +51,8 @@
                     <asp:TableCell>
                         <custom:DropDownList runat="server" ID="ddl_active" Required="True">
                             <items>
-                                <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="No" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Yes" Value="True"></asp:ListItem>
+                                <asp:ListItem Text="No" Value="False"></asp:ListItem>
                             </items>
                         </custom:DropDownList>
                     </asp:TableCell>

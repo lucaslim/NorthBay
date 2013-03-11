@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NorthBay.Web.Admin.Volunteering {
+namespace NorthBay.Web.Admin.Volunteer {
     
     
     public partial class Add {

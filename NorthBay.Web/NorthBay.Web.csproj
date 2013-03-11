@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Default.aspx" />
-    <Content Include="Admin\Volunteering\Add.aspx" />
-    <Content Include="Admin\Volunteering\Default.aspx" />
+    <Content Include="Admin\Volunteer\Add.aspx" />
+    <Content Include="Admin\Volunteer\Default.aspx" />
     <Content Include="Admin\web.config" />
     <Content Include="App_Themes\Main\Images\14x14_error.png" />
     <Content Include="App_Themes\Main\Images\20x20_calendar.gif" />
@@ -91,18 +91,18 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Volunteering\Add.aspx.cs">
+    <Compile Include="Admin\Volunteer\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Volunteering\Add.aspx.designer.cs">
+    <Compile Include="Admin\Volunteer\Add.aspx.designer.cs">
       <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Volunteering\Default.aspx.cs">
+    <Compile Include="Admin\Volunteer\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Volunteering\Default.aspx.designer.cs">
+    <Compile Include="Admin\Volunteer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Basepage.cs">

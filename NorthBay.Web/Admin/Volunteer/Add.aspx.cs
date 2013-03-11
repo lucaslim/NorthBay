@@ -2,7 +2,7 @@
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
-namespace NorthBay.Web.Admin.Volunteering
+namespace NorthBay.Web.Admin.Volunteer
 {
     public partial class Add : Basepage
     {
@@ -41,15 +41,13 @@ namespace NorthBay.Web.Admin.Volunteering
         protected void ButtonClick(object sender, EventArgs e)
         {
             //create volunteering model and assign values to it
-            var volunteer = new Framework.Database.Volunteer
-                                   {
-                                       Title = txt_title.Text,
-                                       VolunteerCategoryId = (int)TextHelper.ToInteger(ddl_category.SelectedValue),
-                                       Description = txt_description.Text,
-                                       PostDate = (DateTime)TextHelper.ToDateTime(txt_postdate.Text),
-                                       EndDate = (DateTime)TextHelper.ToDateTime(txt_enddate.Text),
-                                       Active = (bool)TextHelper.ToBool(ddl_active.SelectedValue)
-                                   };
+            var volunteer = new Framework.Database.Volunteer();
+            volunteer.Title = txt_title.Text;
+            volunteer.VolunteerCategoryId = (int)TextHelper.ToInteger(ddl_category.SelectedValue);
+            volunteer.Description = txt_description.Text;
+            volunteer.PostDate = (DateTime)TextHelper.ToDateTime(txt_postdate.Text);
+            volunteer.EndDate = (DateTime)TextHelper.ToDateTime(txt_enddate.Text);
+            volunteer.Active = (bool)TextHelper.ToBool(ddl_active.SelectedValue);
 
             //Create new Volunteering Object
             var objVolunteer = new VolunteerClass();
@@ -60,7 +58,7 @@ namespace NorthBay.Web.Admin.Volunteering
             }
             else
             {
-                Redirect("View.aspx");
+                Redirect("~/Admin/Volunteer/");
             }
         }
     }
