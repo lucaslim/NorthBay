@@ -51,6 +51,12 @@ namespace NorthBay.Framework.Database
     partial void InsertVolunteer(Volunteer instance);
     partial void UpdateVolunteer(Volunteer instance);
     partial void DeleteVolunteer(Volunteer instance);
+    partial void InsertUserBillingAddress(UserBillingAddress instance);
+    partial void UpdateUserBillingAddress(UserBillingAddress instance);
+    partial void DeleteUserBillingAddress(UserBillingAddress instance);
+    partial void InsertCountry(Country instance);
+    partial void UpdateCountry(Country instance);
+    partial void DeleteCountry(Country instance);
     #endregion
 		
 		public NorthBayDataContext() : 
@@ -144,6 +150,22 @@ namespace NorthBay.Framework.Database
 			get
 			{
 				return this.GetTable<VolunteerView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserBillingAddress> UserBillingAddresses
+		{
+			get
+			{
+				return this.GetTable<UserBillingAddress>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Country> Countries
+		{
+			get
+			{
+				return this.GetTable<Country>();
 			}
 		}
 	}
@@ -774,6 +796,8 @@ namespace NorthBay.Framework.Database
 		
 		private bool _Active;
 		
+		private EntitySet<UserBillingAddress> _UserBillingAddresses;
+		
 		private EntityRef<UserRole> _UserRole;
 		
     #region Extensibility Method Definitions
@@ -798,6 +822,7 @@ namespace NorthBay.Framework.Database
 		
 		public User()
 		{
+			this._UserBillingAddresses = new EntitySet<UserBillingAddress>(new Action<UserBillingAddress>(this.attach_UserBillingAddresses), new Action<UserBillingAddress>(this.detach_UserBillingAddresses));
 			this._UserRole = default(EntityRef<UserRole>);
 			OnCreated();
 		}
@@ -946,6 +971,19 @@ namespace NorthBay.Framework.Database
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserBillingAddress", Storage="_UserBillingAddresses", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<UserBillingAddress> UserBillingAddresses
+		{
+			get
+			{
+				return this._UserBillingAddresses;
+			}
+			set
+			{
+				this._UserBillingAddresses.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRole_User", Storage="_UserRole", ThisKey="UserRoleId", OtherKey="UserRoleId", IsForeignKey=true)]
 		public UserRole UserRole
 		{
@@ -998,6 +1036,18 @@ namespace NorthBay.Framework.Database
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_UserBillingAddresses(UserBillingAddress entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserBillingAddresses(UserBillingAddress entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 	
@@ -1536,6 +1586,576 @@ namespace NorthBay.Framework.Database
 					this._Active = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserBillingAddress")]
+	public partial class UserBillingAddress : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserBillingAddressId;
+		
+		private string _FullName;
+		
+		private string _AddressLine1;
+		
+		private string _AddressLine2;
+		
+		private string _City;
+		
+		private string _State;
+		
+		private System.Nullable<int> _CountryId;
+		
+		private string _PostalCode;
+		
+		private string _PhoneNumber;
+		
+		private int _UserId;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<Country> _Country;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserBillingAddressIdChanging(int value);
+    partial void OnUserBillingAddressIdChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    partial void OnAddressLine1Changing(string value);
+    partial void OnAddressLine1Changed();
+    partial void OnAddressLine2Changing(string value);
+    partial void OnAddressLine2Changed();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateChanging(string value);
+    partial void OnStateChanged();
+    partial void OnCountryIdChanging(System.Nullable<int> value);
+    partial void OnCountryIdChanged();
+    partial void OnPostalCodeChanging(string value);
+    partial void OnPostalCodeChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    #endregion
+		
+		public UserBillingAddress()
+		{
+			this._User = default(EntityRef<User>);
+			this._Country = default(EntityRef<Country>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserBillingAddressId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserBillingAddressId
+		{
+			get
+			{
+				return this._UserBillingAddressId;
+			}
+			set
+			{
+				if ((this._UserBillingAddressId != value))
+				{
+					this.OnUserBillingAddressIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserBillingAddressId = value;
+					this.SendPropertyChanged("UserBillingAddressId");
+					this.OnUserBillingAddressIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(MAX)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressLine1", DbType="NVarChar(MAX)")]
+		public string AddressLine1
+		{
+			get
+			{
+				return this._AddressLine1;
+			}
+			set
+			{
+				if ((this._AddressLine1 != value))
+				{
+					this.OnAddressLine1Changing(value);
+					this.SendPropertyChanging();
+					this._AddressLine1 = value;
+					this.SendPropertyChanged("AddressLine1");
+					this.OnAddressLine1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressLine2", DbType="NVarChar(MAX)")]
+		public string AddressLine2
+		{
+			get
+			{
+				return this._AddressLine2;
+			}
+			set
+			{
+				if ((this._AddressLine2 != value))
+				{
+					this.OnAddressLine2Changing(value);
+					this.SendPropertyChanging();
+					this._AddressLine2 = value;
+					this.SendPropertyChanged("AddressLine2");
+					this.OnAddressLine2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(50)")]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="NVarChar(50)")]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryId", DbType="Int")]
+		public System.Nullable<int> CountryId
+		{
+			get
+			{
+				return this._CountryId;
+			}
+			set
+			{
+				if ((this._CountryId != value))
+				{
+					if (this._Country.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCountryIdChanging(value);
+					this.SendPropertyChanging();
+					this._CountryId = value;
+					this.SendPropertyChanged("CountryId");
+					this.OnCountryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostalCode", DbType="NVarChar(20)")]
+		public string PostalCode
+		{
+			get
+			{
+				return this._PostalCode;
+			}
+			set
+			{
+				if ((this._PostalCode != value))
+				{
+					this.OnPostalCodeChanging(value);
+					this.SendPropertyChanging();
+					this._PostalCode = value;
+					this.SendPropertyChanged("PostalCode");
+					this.OnPostalCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(50)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserBillingAddress", Storage="_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.UserBillingAddresses.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.UserBillingAddresses.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Country_UserBillingAddress", Storage="_Country", ThisKey="CountryId", OtherKey="CountryId", IsForeignKey=true)]
+		public Country Country
+		{
+			get
+			{
+				return this._Country.Entity;
+			}
+			set
+			{
+				Country previousValue = this._Country.Entity;
+				if (((previousValue != value) 
+							|| (this._Country.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Country.Entity = null;
+						previousValue.UserBillingAddresses.Remove(this);
+					}
+					this._Country.Entity = value;
+					if ((value != null))
+					{
+						value.UserBillingAddresses.Add(this);
+						this._CountryId = value.CountryId;
+					}
+					else
+					{
+						this._CountryId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Country");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Country")]
+	public partial class Country : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CountryId;
+		
+		private string _Code2;
+		
+		private string _Name;
+		
+		private string _PrintableName;
+		
+		private string _Code3;
+		
+		private System.Nullable<short> _NumberCode;
+		
+		private EntitySet<UserBillingAddress> _UserBillingAddresses;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCountryIdChanging(int value);
+    partial void OnCountryIdChanged();
+    partial void OnCode2Changing(string value);
+    partial void OnCode2Changed();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnPrintableNameChanging(string value);
+    partial void OnPrintableNameChanged();
+    partial void OnCode3Changing(string value);
+    partial void OnCode3Changed();
+    partial void OnNumberCodeChanging(System.Nullable<short> value);
+    partial void OnNumberCodeChanged();
+    #endregion
+		
+		public Country()
+		{
+			this._UserBillingAddresses = new EntitySet<UserBillingAddress>(new Action<UserBillingAddress>(this.attach_UserBillingAddresses), new Action<UserBillingAddress>(this.detach_UserBillingAddresses));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CountryId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CountryId
+		{
+			get
+			{
+				return this._CountryId;
+			}
+			set
+			{
+				if ((this._CountryId != value))
+				{
+					this.OnCountryIdChanging(value);
+					this.SendPropertyChanging();
+					this._CountryId = value;
+					this.SendPropertyChanged("CountryId");
+					this.OnCountryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code2", DbType="NChar(2)")]
+		public string Code2
+		{
+			get
+			{
+				return this._Code2;
+			}
+			set
+			{
+				if ((this._Code2 != value))
+				{
+					this.OnCode2Changing(value);
+					this.SendPropertyChanging();
+					this._Code2 = value;
+					this.SendPropertyChanged("Code2");
+					this.OnCode2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrintableName", DbType="VarChar(100)")]
+		public string PrintableName
+		{
+			get
+			{
+				return this._PrintableName;
+			}
+			set
+			{
+				if ((this._PrintableName != value))
+				{
+					this.OnPrintableNameChanging(value);
+					this.SendPropertyChanging();
+					this._PrintableName = value;
+					this.SendPropertyChanged("PrintableName");
+					this.OnPrintableNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code3", DbType="NChar(3)")]
+		public string Code3
+		{
+			get
+			{
+				return this._Code3;
+			}
+			set
+			{
+				if ((this._Code3 != value))
+				{
+					this.OnCode3Changing(value);
+					this.SendPropertyChanging();
+					this._Code3 = value;
+					this.SendPropertyChanged("Code3");
+					this.OnCode3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberCode", DbType="SmallInt")]
+		public System.Nullable<short> NumberCode
+		{
+			get
+			{
+				return this._NumberCode;
+			}
+			set
+			{
+				if ((this._NumberCode != value))
+				{
+					this.OnNumberCodeChanging(value);
+					this.SendPropertyChanging();
+					this._NumberCode = value;
+					this.SendPropertyChanged("NumberCode");
+					this.OnNumberCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Country_UserBillingAddress", Storage="_UserBillingAddresses", ThisKey="CountryId", OtherKey="CountryId")]
+		public EntitySet<UserBillingAddress> UserBillingAddresses
+		{
+			get
+			{
+				return this._UserBillingAddresses;
+			}
+			set
+			{
+				this._UserBillingAddresses.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserBillingAddresses(UserBillingAddress entity)
+		{
+			this.SendPropertyChanging();
+			entity.Country = this;
+		}
+		
+		private void detach_UserBillingAddresses(UserBillingAddress entity)
+		{
+			this.SendPropertyChanging();
+			entity.Country = null;
 		}
 	}
 }
