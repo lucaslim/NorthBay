@@ -57,6 +57,8 @@ namespace NorthBay.Controls
         {
             base.OnPreRender(e);
 
+            if (base.Items.Count == 0)
+                return;
 
             //Add default if no default was set
             if (!base.Items[0].Value.Equals("-1"))
