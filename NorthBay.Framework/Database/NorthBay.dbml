@@ -8,6 +8,7 @@
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="Image" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Product_ProductCategoryTable" Member="ProductCategoryTables" ThisKey="ProductId" OtherKey="ProductId" Type="ProductCategoryTable" />
+      <Association Name="Product_OrderItem" Member="OrderItems" ThisKey="ProductId" OtherKey="ProductId" Type="OrderItem" />
     </Type>
   </Table>
   <Table Name="dbo.VolunteerCategory" Member="VolunteerCategories">
@@ -43,6 +44,7 @@
       <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="User_UserBillingAddress" Member="UserBillingAddresses" ThisKey="UserId" OtherKey="UserId" Type="UserBillingAddress" />
+      <Association Name="User_Order" Member="Orders" ThisKey="UserId" OtherKey="UserId" Type="Order" />
       <Association Name="UserRole_User" Member="UserRole" ThisKey="UserRoleId" OtherKey="UserRoleId" Type="UserRole" IsForeignKey="true" />
     </Type>
   </Table>
@@ -90,6 +92,7 @@
       <Column Name="PostalCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UserBillingAddress_Order" Member="Orders" ThisKey="UserBillingAddressId" OtherKey="UserBillingAddressId" Type="Order" />
       <Association Name="User_UserBillingAddress" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
       <Association Name="Country_UserBillingAddress" Member="Country" ThisKey="CountryId" OtherKey="CountryId" Type="Country" IsForeignKey="true" />
     </Type>
@@ -103,6 +106,47 @@
       <Column Name="Code3" Type="System.String" DbType="NChar(3)" CanBeNull="true" />
       <Column Name="NumberCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Association Name="Country_UserBillingAddress" Member="UserBillingAddresses" ThisKey="CountryId" OtherKey="CountryId" Type="UserBillingAddress" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserBillingAddressView" Member="UserBillingAddressViews">
+    <Type Name="UserBillingAddressView">
+      <Column Name="UserBillingAddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PostalCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderItem" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_OrderItem" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderId" OtherKey="OrderId" Type="Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserBillingAddressId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CardNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SecurityNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpirationMonth" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpirationYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NameOnCard" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderId" OtherKey="OrderId" Type="OrderItem" />
+      <Association Name="User_Order" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="UserBillingAddress_Order" Member="UserBillingAddress" ThisKey="UserBillingAddressId" OtherKey="UserBillingAddressId" Type="UserBillingAddress" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

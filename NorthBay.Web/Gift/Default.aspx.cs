@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using NorthBay.Framework.Database;
 using NorthBay.Logic.Gift;
 using NorthBay.Utility;
 
@@ -10,164 +9,41 @@ namespace NorthBay.Web.Gift
 {
     public partial class Default : System.Web.UI.Page
     {
-        public List<GiftItem> ShoppingCart
+        readonly ProductClass _objProduct = new ProductClass();
+        readonly ShoppingCart _shoppingCart = new ShoppingCart();
+
+        private Cart ShoppingCart
         {
             get
             {
                 if (Session["Cart"] == null)
-                    Session["Cart"] = new List<GiftItem>();
+                    Session["Cart"] = new Cart();
 
-                return (List<GiftItem>)Session["Cart"];
+                //Add to object
+                _shoppingCart.Cart = (Cart) Session["Cart"];
+
+                return _shoppingCart.Cart;
             }
         }
 
-        List<Product> list = new List<Product>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SetData();
+            //SetData();
 
             if (Page.IsPostBack)
                 return;
 
-            gridView.DataSource = list;
-            gridView.DataBind();
+            GridView_DataBind();
 
         }
 
-        private void SetData()
+        private void GridView_DataBind()
         {
-            ProductClass productClass = new ProductClass();
-            ProductCategoryTableClass productCategoryTableClass = new ProductCategoryTableClass();
-
-            Product item = new Product();
-            ProductCategoryTable table = new ProductCategoryTable();
-
-            item.Title = "Apple iPhone 5";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = (decimal)660.99;
-            item.Image = @"http://cdn.iphonehacks.com/wp-content/uploads/2012/09/iphone5-front-back.jpg";
-
-            int id;
-
-            productClass.Insert(item, out id);
-
-            table.ProductCategoryId = 1;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
-
-
-
-            item = new Product();
-
-            item.Title = "Acer";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = 698;
-            item.Image = @"http://media.bestofmicro.com/comparatif-tout-en-un,V-2-313454-3.jpg";
-
-            productClass.Insert(item, out id);
-            table = new ProductCategoryTable();
-            table.ProductCategoryId = 1;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
-
-            item = new Product();
-
-            item.Title = "Apple iPad";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = 300;
-            item.Image = @"http://www.jjmehta.com/images/tablet/apple_ipad2_wifi_1.jpg";
-
-            productClass.Insert(item, out id);
-            table = new ProductCategoryTable();
-            table.ProductCategoryId = 1;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
-
-            item = new Product();
-
-            item.Title = "Flower #3";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = 500;
-            item.Image = @"http://www.marketflowers.com/images/gallery/51_734.jpg";
-
-            productClass.Insert(item, out id);
-            table = new ProductCategoryTable();
-            table.ProductCategoryId = 2;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
-
-
-            item = new Product();
-
-            item.Title = "Flower #2";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = 200;
-            item.Image = @"http://alicjamann.files.wordpress.com/2012/06/pink_oleander_flowers_410x400.jpg?w=450";
-
-            productClass.Insert(item, out id);
-            table = new ProductCategoryTable();
-            table.ProductCategoryId = 2;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
-
-
-            item = new Product();
-            item.Title = "Flower #1";
-            item.Description = "Donec dictum accumsan lectus, eget sagittis metus interdum eu. Maecenas eget erat nisl, quis tristique odio. Sed tristique tristique rutrum. Phasellus laoreet fermentum diam pretium tristique. In bibendum faucibus felis nec convallis. Vestibulum fermentum pulvinar vestibulum. Phasellus condimentum, risus vel viverra egestas, libero nibh aliquet sapien, nec sagittis purus nibh at eros. Praesent aliquet accumsan velit. Vivamus suscipit pretium enim sagittis egestas. Aliquam ante libero, rutrum vitae varius vel, rutrum eu turpis. Nunc hendrerit risus ac mi posuere egestas dapibus orci ullamcorper. Cras commodo, ligula quis suscipit consectetur, dui erat pellentesque orci, non convallis elit leo sit amet nunc.";
-            item.Price = 700;
-            item.Image = @"http://www.freewebs.com/lnichollsphotography/Flowers%20and%20Plants/Flowers%20and%20Flying%20Bee.jpg";
-
-            productClass.Insert(item, out id);
-            table = new ProductCategoryTable();
-            table.ProductCategoryId = 2;
-            table.ProductId = id;
-
-            productCategoryTableClass.Insert(table);
-
-            list.Add(item);
+            gridView.DataSource = _objProduct.SelectAll();
+            gridView.DataBind();
         }
 
-        //protected void listView_ItemCommand(object sender, ListViewCommandEventArgs e)
-        //{
-        //    var commandName = e.CommandName;
-
-        //    //If no command Name found
-        //    if (string.IsNullOrEmpty(commandName))
-        //        return;
-
-        //    switch (commandName.ToLower())
-        //    {
-        //        //Add to Cart
-        //        case "add":
-
-        //            GiftItem giftItem = new GiftItem();
-        //            giftItem.Id = (int)TextHelper.ToInteger(listView.DataKeys[e.Item.DataItemIndex].Values["Id"]);
-        //            giftItem.Title = ((Label)e.Item.FindControl("lbl_title")).Text;
-        //            giftItem.Price = (Double)TextHelper.ToDouble(((Label)e.Item.FindControl("lbl_price")).Text);
-        //            giftItem.Quantity = 1;
-
-        //            ShoppingCart.Add(giftItem);
-
-
-        //            break;
-        //    }
-        //}
         protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             var commandName = e.CommandName;
@@ -194,9 +70,9 @@ namespace NorthBay.Web.Gift
                     var cell = button.Parent as DataControlFieldCell;
 
                     //Declare variables;
-                    int id;
                     string title = string.Empty;
-                    double price = 0;
+                    string image = string.Empty;
+                    decimal price = 0;
 
                     //Get Id from GridViewRow
                     object control = cell.FindControl("hf_Id");
@@ -212,12 +88,12 @@ namespace NorthBay.Web.Gift
                         return;
 
                     //Set id
-                    id = (int)objId;
+                    var id = (int)objId;
 
                     var isExist = false;
 
                     //Check if current item exist in the array
-                    foreach (var item in ShoppingCart.Where(item => item.Id == id))
+                    foreach (var item in ShoppingCart.Where(item => item.ProductId == id))
                     {
                         //If item exist, add quantity
                         item.Quantity += 1;
@@ -239,52 +115,49 @@ namespace NorthBay.Web.Gift
                         control = cell.FindControl("lbl_price");
                         if (control is Label)
                         {
-                            object objPrice = TextHelper.ToDouble(((Label)control).Text);
+                            object objPrice = TextHelper.ToDecimal(((Label)control).Text);
 
                             if (objPrice != null)
-                                price = (double)objPrice;
+                                price = (decimal)objPrice;
+                        }
+
+                        //Get Image
+                        control = cell.FindControl("img_item");
+                        if(control is HtmlImage)
+                        {
+                            image = ((HtmlImage)control).Src;
                         }
 
 
-                        var giftItem = new GiftItem
+                        var product = new CartProduct
                                            {
-                                               Id = id,
+                                               ProductId = id,
                                                Title = title,
                                                Price = price,
+                                               Image = image,
                                                Quantity = 1
                                            };
 
-                        ShoppingCart.Add(giftItem);
+                        ShoppingCart.Add(product);
                     }
 
                     string output = string.Empty;
-                    double total = 0;
 
                     foreach (var item in ShoppingCart)
                     {
                         output += "Title: " + item.Title + "<br />";
                         output += "Price: " + item.Price + "<br />";
-                        output += "Quantity: " + item.Quantity + "<br /><br />";
-
-                        total += item.Price * item.Quantity;
+                        output += "Quantity: " + item.Quantity  + "<br /><br />";
                     }
 
-                    output += "Total Price: " + total;
+                    output += "Sub-Total: " + _shoppingCart.GetStringTotalPrice() + "<br />";
+                    output += "Tax: " + _shoppingCart.GetStringTax() + "<br />";
+                    output += "Total: " + _shoppingCart.GetStringTotalPriceWithTax() + "<br />";
 
                     lit_output.Text = output;
 
                     break;
             }
         }
-    }
-
-    public class GiftItem
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Image { get; set; }
-        public double Price { get; set; }
-        public string Description { get; set; }
-        public int Quantity { get; set; }
     }
 }

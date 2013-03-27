@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.375" name="NorthBay">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.25, 15.75" name="NorthBay">
   <DataContextMoniker Name="/NorthBayDataContext" />
   <nestedChildShapes>
     <classShape Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" absoluteBounds="0.75, 4.125, 2, 1.7708968098958327">
@@ -58,7 +58,7 @@
         <classShapeMoniker Id="1e69d393-ba33-41a9-8b1d-836e4b2952c4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 9.06814697265625); (3.5 : 9.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 9.06814697265625); (3.04166666666667 : 9.06814697265625 : JumpStart); (3.20833333333333 : 9.06814697265625 : JumpEnd); (3.5 : 9.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/UserRole/UserRole_User" />
       <nodes>
         <classShapeMoniker Id="f292b36f-fd4c-4252-9835-9b161a9f46e4" />
@@ -84,7 +84,7 @@
         <elementListCompartment Id="4730b9a6-3bd6-407e-87cd-b8ed4af67c9e" absoluteBounds="2.515, 11.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4 : 10.0304996744792); (4 : 11.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4 : 10.0304996744792); (4 : 11.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/User/User_UserBillingAddress" />
       <nodes>
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
@@ -97,11 +97,57 @@
         <elementListCompartment Id="0719df9d-68ed-481e-b41a-9974abd90025" absoluteBounds="6.14, 10.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.125 : 11.7940991210937); (4.5 : 11.7940991210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.125 : 11.7940991210937); (4.5 : 11.7940991210937)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/Country/Country_UserBillingAddress" />
       <nodes>
         <classShapeMoniker Id="3b6be6e9-e2ab-4061-bf2b-dbdb04e81e72" />
         <classShapeMoniker Id="f0936405-fb71-4ee3-9ef3-0d84ab57dab4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d9a78cbd-8f9f-4d1f-b5f1-8d3cd0234675" absoluteBounds="0.5, 12.625, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/NorthBayDataContext/UserBillingAddressView" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa1ed9fe-c922-4340-8c44-201c2b230ad0" absoluteBounds="0.515, 13.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f0a1666e-b681-4589-9bcf-a14b72df6fb2" absoluteBounds="10, 5.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/NorthBayDataContext/OrderItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33440b01-10fc-44ce-a5eb-1de203c641b1" absoluteBounds="10.015, 6.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 5.89589680989583); (1.75 : 6.45274983723958); (10 : 6.45274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/NorthBayDataContext/Product/Product_OrderItem" />
+      <nodes>
+        <classShapeMoniker Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" />
+        <classShapeMoniker Id="f0a1666e-b681-4589-9bcf-a14b72df6fb2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="eb82ba86-d749-4789-8d23-f3b68b88ce7f" absoluteBounds="5.875, 7.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/NorthBayDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4cc59907-1e4e-4163-9d2c-198f8c54bbea" absoluteBounds="5.89, 8.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.875 : 8.79890055338542); (11 : 8.79890055338542); (11 : 7.52089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NorthBayDataContext/Order/Order_OrderItem" />
+      <nodes>
+        <classShapeMoniker Id="eb82ba86-d749-4789-8d23-f3b68b88ce7f" />
+        <classShapeMoniker Id="f0a1666e-b681-4589-9bcf-a14b72df6fb2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.92390055338542); (5.875 : 8.92390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NorthBayDataContext/User/User_Order" />
+      <nodes>
+        <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
+        <classShapeMoniker Id="eb82ba86-d749-4789-8d23-f3b68b88ce7f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.125 : 11.375); (3.125 : 7.71875); (5.875 : 7.71875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NorthBayDataContext/UserBillingAddress/UserBillingAddress_Order" />
+      <nodes>
+        <classShapeMoniker Id="f0936405-fb71-4ee3-9ef3-0d84ab57dab4" />
+        <classShapeMoniker Id="eb82ba86-d749-4789-8d23-f3b68b88ce7f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

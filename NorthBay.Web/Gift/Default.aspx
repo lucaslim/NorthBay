@@ -33,7 +33,7 @@
             <asp:TemplateField ItemStyle-Width="10%">
                 <ItemTemplate>
                     <div>
-                        <img src='<%#Eval("Image") %>' height="120" width="120" />
+                        <img runat="server" id="img_item" src='<%#Eval("Image") %>' height="120" width="120" alt=""/>
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -42,7 +42,7 @@
                     <div>
                         <b>
                             <asp:Label runat="server" ID="lbl_title" Text='<%# Eval("Title") %>' />
-                            <asp:HiddenField runat="server" ID="hf_id" Value='<%# Eval("Id") %>' />
+                            <asp:HiddenField runat="server" ID="hf_id" Value='<%# Eval("ProductId") %>' />
                         </b>
                     </div>
                     <div>

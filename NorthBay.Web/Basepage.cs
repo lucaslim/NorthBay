@@ -31,6 +31,11 @@ namespace NorthBay.Web
             if (!Css.LoadCss())
                 throw new HttpUnhandledException("Unable to load css stylesheets.");
         }
+        
+        protected bool IsAuthenticated()
+        {
+            return User.Identity.IsAuthenticated;
+        }
 
         protected static string FormatDate(object date)
         {

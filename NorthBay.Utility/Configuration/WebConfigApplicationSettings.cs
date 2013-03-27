@@ -19,5 +19,17 @@ namespace NorthBay.Utility.Configuration
         {
             get { return ConfigurationManager.AppSettings["TimeFormat"]; }
         }
+
+        public static decimal Tax
+        {
+            get
+            {
+                var objTax = TextHelper.ToDecimal(ConfigurationManager.AppSettings["Tax"]);
+
+                if (objTax == null)
+                    return 0;
+                return (decimal)objTax;
+            }
+        }
     }
 }
