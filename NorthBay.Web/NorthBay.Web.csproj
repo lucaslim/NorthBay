@@ -13,6 +13,7 @@
     <RootNamespace>NorthBay.Web</RootNamespace>
     <AssemblyName>NorthBay.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Gift\Add.aspx" />
+    <Content Include="Admin\Gift\Default.aspx" />
+    <Content Include="Admin\Gift\Edit.aspx" />
     <Content Include="Admin\Volunteer\Add.aspx" />
     <Content Include="Admin\Volunteer\Default.aspx" />
     <Content Include="Admin\Volunteer\Edit.aspx" />
@@ -77,7 +81,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Script\jquery.js" />
     <Content Include="Script\jqueryui.js" />
-    <Content Include="Script\volunteer.js" />
+    <Content Include="Script\global.js" />
     <Content Include="Volunteer\Default.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -96,6 +100,27 @@
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Gift\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Gift\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Gift\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Gift\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Gift\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Gift\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Volunteer\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
@@ -120,6 +145,9 @@
     </Compile>
     <Compile Include="Basepage.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -166,9 +194,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Masterpage\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,7 +211,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\Gift\" />
     <Folder Include="Sitemap\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,21 @@ namespace NorthBay.Web
         internal CssHelper Css;
         internal JScriptHelper JScript;
 
+        protected int LoggedInUserId
+        {
+            get
+            {
+                if (IsAuthenticated())
+                {
+                    var id = TextHelper.ToInteger(User.Identity.Name);
+
+                    if (id != null)
+                        return (int) id;
+                }
+                return 0;
+            }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             // Load Javascript
@@ -32,16 +47,29 @@ namespace NorthBay.Web
                 throw new HttpUnhandledException("Unable to load css stylesheets.");
         }
         
+        /// <summary>
+        /// Check if user is logged in
+        /// </summary>
+        /// <returns></returns>
         protected bool IsAuthenticated()
         {
             return User.Identity.IsAuthenticated;
         }
 
+        /// <summary>
+        /// Format Date based on the standard format
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         protected static string FormatDate(object date)
         {
             return TextHelper.FormatDate(date);
         }
 
+        /// <summary>
+        /// Redirect Page
+        /// </summary>
+        /// <param name="url"></param>
         internal static void Redirect(string url)
         {
             HttpContext.Current.Response.Redirect(url);

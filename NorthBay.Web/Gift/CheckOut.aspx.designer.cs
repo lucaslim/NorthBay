@@ -121,6 +121,15 @@ namespace NorthBay.Web.Gift {
         protected global::NorthBay.Controls.TextBox txt_phone;
         
         /// <summary>
+        /// btn_nextShip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_nextShip;
+        
+        /// <summary>
         /// gv_cart control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace NorthBay.Web.Gift {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gv_cart;
+        
+        /// <summary>
+        /// txt_nextCheckOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button txt_nextCheckOut;
         
         /// <summary>
         /// txt_cardNumber control.
@@ -173,5 +191,14 @@ namespace NorthBay.Web.Gift {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::NorthBay.Controls.DropDownList ddl_year;
+        
+        /// <summary>
+        /// btn_payment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_payment;
     }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Web.UI.WebControls;
+using NorthBay.Logic.Gift;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
-namespace NorthBay.Web.Admin.Volunteer
+namespace NorthBay.Web.Admin.Gift
 {
     public partial class Default : Basepage
     {
-        private readonly VolunteerViewClass _objVolunteerView = new VolunteerViewClass();
-        private readonly VolunteerClass _objVolunteer = new VolunteerClass();
+        private readonly ProductClass _objProduct = new ProductClass();
 
         /// <summary>
         /// Using viewstate to store the sort direction
@@ -32,7 +32,7 @@ namespace NorthBay.Web.Admin.Volunteer
         {
             get
             {
-                return ViewState["SortExpression"] as string ?? "VolunteerCategoryName";
+                return ViewState["SortExpression"] as string ?? "ProductId";
             }
             set { ViewState["SortExpression"] = value; }
         }
@@ -52,7 +52,7 @@ namespace NorthBay.Web.Admin.Volunteer
 
         private void GridView_DataBind()
         {
-            gridView.DataSource = _objVolunteerView.SortAll(SortExpression, SortDirection);
+            gridView.DataSource = _objProduct.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
         }
 
@@ -78,7 +78,7 @@ namespace NorthBay.Web.Admin.Volunteer
             }
 
             //Calling Sort All Function
-            gridView.DataSource = _objVolunteerView.SortAll(SortExpression, SortDirection);
+            gridView.DataSource = _objProduct.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
         }
 
@@ -118,7 +118,7 @@ namespace NorthBay.Web.Admin.Volunteer
                 if (id == -1) continue;
 
                 //Delete data by Id
-                _objVolunteer.Delete(id);
+                _objProduct.Delete(id);
             }
 
             //Rebind

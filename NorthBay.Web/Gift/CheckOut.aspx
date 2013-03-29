@@ -5,7 +5,7 @@
     <asp:Wizard runat="server" ID="wiz_cart" BackColor="#E6E2D8" BorderColor="#999999"
         BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em"
         DisplaySideBar="False" ActiveStepIndex="0" OnFinishButtonClick="WizCart_FinishButtonClick"
-        OnActiveStepChanged="WizCart_ActiveStepChanged" OnNextButtonClick="WizCart_NextButtonClick">
+        OnActiveStepChanged="WizCart_ActiveStepChanged" OnPreviousButtonClick="WizCart_PreviousButtonClick">
         <HeaderStyle BackColor="#666666" BorderStyle="Solid" Font-Bold="True" Font-Size="0.9em"
             ForeColor="White" HorizontalAlign="Center" BorderColor="#E6E2D8" BorderWidth="2px" />
         <NavigationButtonStyle BackColor="White" BorderColor="#C5BBAF" BorderStyle="Solid"
@@ -54,7 +54,7 @@
                             <tr>
                                 <td>
                                     <asp:Button runat="server" ID="btn_ship" Text="Ship to this Address" CommandName="Ship"
-                                        CommandArgument='<%# Eval("UserBillingAddressId") %>' OnClick="BtnShip_Click"
+                                        CommandArgument='<%# Eval("UserBillingAddressId") %>' OnClick="Button_Click"
                                         CausesValidation="False" />
                                 </td>
                             </tr>
@@ -110,7 +110,7 @@
                         <asp:TableRow>
                             <asp:TableCell>
                                 Postal Code:<br />
-                                <custom:TextBox runat="server" ID="txt_postalcode" Required="True" ValidType="PostalCode"></custom:TextBox>
+                                <custom:TextBox runat="server" ID="txt_postalcode" Required="True"></custom:TextBox>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
@@ -119,10 +119,18 @@
                                 <custom:TextBox runat="server" ID="txt_phone" Required="True"></custom:TextBox>
                             </asp:TableCell>
                         </asp:TableRow>
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:Button runat="server" ID="btn_nextShip" Text="Ship to this address" CommandName="NextShip"
+                                    OnClick="Button_Click" />
+                            </asp:TableCell>
+                        </asp:TableRow>
                     </asp:Table>
                 </custom:ValidationGroupPanel>
             </asp:WizardStep>
             <asp:WizardStep runat="server" Title="Items">
+                <h1>
+                    Summary</h1>
                 <asp:GridView runat="server" ID="gv_cart" AutoGenerateColumns="False" ShowFooter="True"
                     OnRowDataBound="GvCart_RowDataBound">
                     <Columns>
@@ -134,7 +142,15 @@
                                 </div>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <b>Sub Total: </b>
+                                <div>
+                                    <b>Sub Total: </b>
+                                </div>
+                                <div>
+                                    <b>Tax: </b>
+                                </div>
+                                <div>
+                                    <b>Total: </b>
+                                </div>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-VerticalAlign="Top">
@@ -157,7 +173,9 @@
                                 </div>
                             </ItemTemplate>
                             <FooterTemplate>
-                                $<asp:Label runat="server" ID="lbl_subtotal" Text='<%# Eval("Price") %>' />
+                                $<asp:Label runat="server" ID="lbl_subtotal" /><br />
+                                <asp:Label runat="server" ID="lbl_tax" /><br />
+                                $<asp:Label runat="server" ID="lbl_total" />
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Quantity">
@@ -169,6 +187,10 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <div>
+                    <asp:Button runat="server" ID="txt_nextCheckOut" Text="Make Payment" CommandName="NextPayment"
+                        OnClick="Button_Click" />
+                </div>
             </asp:WizardStep>
             <asp:WizardStep runat="server" StepType="Finish" Title="Payment">
                 <custom:ValidationGroupPanel runat="server" ValidationGroup="creditcard">
@@ -194,27 +216,25 @@
                         <asp:TableRow>
                             <asp:TableCell>
                                 Expiration Number:<br />
-                                <custom:DropDownList ID="ddl_month" runat="server" Required="True"/>
+                                <custom:DropDownList ID="ddl_month" runat="server" Required="True" />
                                 &nbsp;
-                                <custom:DropDownList ID="ddl_year" runat="server" Required="True"/>
+                                <custom:DropDownList ID="ddl_year" runat="server" Required="True" />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
                 </custom:ValidationGroupPanel>
+                <asp:Button runat="server" ID="btn_payment" Text="Make Payment" OnClick="Button_Click"
+                    CommandName="MakePayment" />
             </asp:WizardStep>
             <asp:WizardStep runat="server" Title="Place Order" AllowReturn="False" StepType="Complete">
                 Thank you for placing an order with us. Your order will be processed and delivered.
             </asp:WizardStep>
         </WizardSteps>
         <StartNavigationTemplate>
-            <asp:Button ID="StartNextButton" runat="server" CommandName="MoveNext" Text="Ship to this address"
-                CausesValidation="True" ValidationGroup="billing"></asp:Button>
         </StartNavigationTemplate>
         <StepNavigationTemplate>
-            <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next">
-            </asp:Button>
-            <asp:Button ID="StepPreviousButton" runat="server" CausesValidation="False" CommandName="MovePrevious"
-                Text="Previous"></asp:Button>
         </StepNavigationTemplate>
+        <FinishNavigationTemplate>
+        </FinishNavigationTemplate>
     </asp:Wizard>
 </asp:Content>

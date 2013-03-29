@@ -7,7 +7,7 @@ using NorthBay.Utility;
 
 namespace NorthBay.Web.Gift
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : Basepage
     {
         readonly ProductClass _objProduct = new ProductClass();
         readonly ShoppingCart _shoppingCart = new ShoppingCart();

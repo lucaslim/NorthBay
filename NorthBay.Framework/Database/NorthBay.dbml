@@ -139,7 +139,7 @@
       <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserBillingAddressId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CardNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CardNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SecurityNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ExpirationMonth" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ExpirationYear" Type="System.Int32" DbType="Int" CanBeNull="true" />

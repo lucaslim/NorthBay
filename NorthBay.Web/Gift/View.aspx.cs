@@ -117,13 +117,23 @@ namespace NorthBay.Web.Gift
                     tableCells.Remove(cell);
                 }
 
-                Label label = e.Row.FindControl("lbl_subtotal") as Label;
+                var lblSubTotal = e.Row.FindControl("lbl_subtotal") as Label;
 
-                if (label == null)
-                    return;
+                //Set sub total price
+                if (lblSubTotal != null)
+                    lblSubTotal.Text = _objShoppingCart.GetStringTotalPrice();
 
-                //Set total price
-                label.Text = _objShoppingCart.GetStringTotalPrice();
+                var lblTax = e.Row.FindControl("lbl_tax") as Label;
+
+                //Set sub total price
+                if (lblTax != null)
+                    lblTax.Text = _objShoppingCart.GetStringTax();
+
+                var lblTotal = e.Row.FindControl("lbl_total") as Label;
+
+                //Set sub total price
+                if (lblTotal != null)
+                    lblTotal.Text = _objShoppingCart.GetStringTotalPriceWithTax();
             }
         }
 
@@ -137,6 +147,12 @@ namespace NorthBay.Web.Gift
 
                 GvCart_DataBind();
             }
+        }
+
+        protected void test(object sender, GridViewRowEventArgs e)
+        {
+
+
         }
     }
 }

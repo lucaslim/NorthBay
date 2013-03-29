@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>
         Shopping Cart</h1>
-    <asp:GridView runat="server" ID="gv_cart" AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="GvCart_RowDataBound" OnRowUpdating="GvCart_RowUpdating">
+    <asp:GridView runat="server" ID="gv_cart" AutoGenerateColumns="False" ShowFooter="True"
+        OnRowDataBound="GvCart_RowDataBound" OnRowUpdating="GvCart_RowUpdating" OnRowCreated="test">
         <Columns>
             <asp:TemplateField HeaderText="Items" ItemStyle-Width="10%" FooterStyle-HorizontalAlign="Right">
                 <ItemTemplate>
@@ -14,7 +15,15 @@
                     </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <b>Sub Total: </b>
+                    <div>
+                        <b>Sub Total: </b>
+                    </div>
+                    <div>
+                        <b>Tax: </b>
+                    </div>
+                    <div>
+                        <b>Total: </b>
+                    </div>
                 </FooterTemplate>
             </asp:TemplateField>
             <asp:TemplateField ItemStyle-VerticalAlign="Top">
@@ -33,11 +42,13 @@
             <asp:TemplateField HeaderText="Price">
                 <ItemTemplate>
                     <div>
-                    $<asp:Label runat="server" ID="lbl_price" Text='<%# Eval("Price") %>' />
+                        $<asp:Label runat="server" ID="lbl_price" Text='<%# Eval("Price") %>' />
                     </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                    $<asp:Label runat="server" ID="lbl_subtotal" Text='<%# Eval("Price") %>' />
+                    $<asp:Label runat="server" ID="lbl_subtotal" /><br />
+                    <asp:Label runat="server" ID="lbl_tax" /><br />
+                    $<asp:Label runat="server" ID="lbl_total" />
                 </FooterTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Quantity">
@@ -46,15 +57,13 @@
                         <asp:TextBox runat="server" ID="txt_quantity" Text='<%# Bind("Quantity") %>'></asp:TextBox>
                     </div>
                     <div>
-                        <asp:Button runat="server" ID="btn_update" Text="Update" CommandName="update" CommandArgument='<%# Eval("ProductId") %>'/>
+                        <asp:Button runat="server" ID="btn_update" Text="Update" CommandName="update" CommandArgument='<%# Eval("ProductId") %>' />
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
-
         </Columns>
     </asp:GridView>
     <div>
-        <asp:Button runat="server" Text="Check Out" PostBackUrl="CheckOut.aspx"/>
+        <asp:Button runat="server" Text="Check Out" PostBackUrl="CheckOut.aspx" />
     </div>
-    
 </asp:Content>

@@ -16,5 +16,10 @@ namespace NorthBay.Utility.Configuration
         /// Set path to image folder
         /// </summary>
         public const string IMAGE_PATH = "~/App_Themes/Main/Images/";
+
+        /// <summary>
+        /// Set Path to product image folder
+        /// </summary>
+        public const string PRODUCT_IMAGE_PATH = "~/Images/Products/";
     }
 }

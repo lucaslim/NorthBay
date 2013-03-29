@@ -2,6 +2,7 @@
 using System.Data.Linq;
 using System.Linq;
 using System.Transactions;
+using System.Web;
 using System.Web.UI.WebControls;
 using NorthBay.Framework.Database;
 using NorthBay.Logic.Country;
@@ -35,14 +36,17 @@ namespace NorthBay.Web.Gift
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Check if user is logged in
-            //if (!IsAuthenticated())
-            //    return;
-
             //Load Shopping Cart
             ShoppingCart = LoadShoppingCartObject();
 
-
+            //return if shopping cart is empty
+            if (ShoppingCart == null || ShoppingCart.Count <= 0)
+                return;
+        
+            //Check if user is logged in
+            if (!IsAuthenticated())
+                Response.Redirect("~/Login.aspx?ReturnUrl=" + HttpContext.Current.Request.Url.AbsoluteUri);
+        
             if (Page.IsPostBack)
                 return;
 
@@ -54,6 +58,8 @@ namespace NorthBay.Web.Gift
 
             //Set Credit Card Expiry Month and Year
             SetCreditCardExpiry();
+
+            wiz_cart.ActiveStepIndex = 0;
         }
 
         private void SetCreditCardExpiry()
@@ -108,41 +114,6 @@ namespace NorthBay.Web.Gift
             dl_address.DataBind();
         }
 
-        protected void WizCart_FinishButtonClick(object sender, WizardNavigationEventArgs e)
-        {
-            //Check if shopping cart is empty
-            if (ShoppingCart == null || ShoppingCart.Count == 0)
-                return;
-
-            //Check if address is selected
-            if (SelectedAddressId == 0)
-                return;
-
-            //Use transaction to make sure all queries run without error
-            using (var ts = new TransactionScope())
-            {
-                var order = new Order
-                                {
-                                    CardNumber = TextHelper.ToInteger(txt_cardNumber.Text),
-                                    SecurityNumber = TextHelper.ToInteger(txt_securityNumber),
-                                    NameOnCard = txt_nameOnCard.Text,
-                                    ExpirationMonth = TextHelper.ToInteger(ddl_month.SelectedValue),
-                                    ExpirationYear = TextHelper.ToInteger(ddl_year.SelectedValue),
-                                    UserBillingAddressId = SelectedAddressId,
-                                    UserId = 5, //get from session
-                                    OrderItems = GetOrderItems()
-                                };
-
-                int orderNumber;
-                if(_orderClass.Insert(order, out orderNumber))
-                {
-                    Session["Order"] = orderNumber;
-
-                    ts.Complete();
-                }
-            }
-        }
-
         private EntitySet<OrderItem> GetOrderItems()
         {
             var items = new EntitySet<OrderItem>();
@@ -158,75 +129,6 @@ namespace NorthBay.Web.Gift
             }
 
             return items;
-        }
-
-        protected void WizCart_ActiveStepChanged(object sender, EventArgs e)
-        {
-            //Set header template
-            var dataList = wiz_cart.FindControl("HeaderContainer").FindControl("dl_header") as DataList;
-
-            if (dataList == null)
-                return;
-
-            dataList.DataSource = wiz_cart.WizardSteps;
-            dataList.DataBind();
-        }
-
-        protected void WizCart_NextButtonClick(object sender, WizardNavigationEventArgs e)
-        {
-            //Address Book
-            if (e.CurrentStepIndex != 0 || SelectedAddressId != 0)
-                return;
-
-            var userBillingAddress = new UserBillingAddress
-                                         {
-                                             FullName = txt_fullname.Text,
-                                             AddressLine1 = txt_address1.Text,
-                                             AddressLine2 = txt_address2.Text,
-                                             City = txt_city.Text,
-                                             State = txt_state.Text,
-                                             CountryId = TextHelper.ToInteger(ddl_country.SelectedValue),
-                                             PostalCode = txt_postalcode.Text,
-                                             PhoneNumber = txt_phone.Text,
-                                             UserId = 5 //Get from session
-                                         };
-
-            int returnId;
-
-            if (!_userBillingAddress.Insert(userBillingAddress, out returnId))
-                return;
-
-            SelectedAddressId = returnId; //Set selectedAddressId so that system won't re-add the data again
-
-            //Bind Cart
-            GvCart_DataBind();
-        }
-
-        protected void BtnShip_Click(object sender, EventArgs e)
-        {
-            var button = sender as Button;
-
-            if (button == null)
-                return;
-
-            var commandName = button.CommandName;
-
-            if (string.IsNullOrEmpty(commandName) && !commandName.ToLower().Equals("ship"))
-                return;
-
-            var id = TextHelper.ToInteger(button.CommandArgument);
-
-            if (id == null)
-                return;
-
-            //Set Selected Address Id
-            SelectedAddressId = (int)id;
-
-            //Go to next index
-            wiz_cart.MoveTo(wiz_cart.WizardSteps[1]);
-
-            //Bind Cart
-            GvCart_DataBind();
         }
 
         protected void GvCart_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -246,14 +148,168 @@ namespace NorthBay.Web.Gift
                     tableCells.Remove(cell);
                 }
 
-                Label label = e.Row.FindControl("lbl_subtotal") as Label;
+                var lblSubTotal = e.Row.FindControl("lbl_subtotal") as Label;
 
-                if (label == null)
-                    return;
+                //Set sub total price
+                if (lblSubTotal != null)
+                    lblSubTotal.Text = _objShoppingCart.GetStringTotalPrice();
 
-                //Set total price
-                label.Text = _objShoppingCart.GetStringTotalPrice();
+                var lblTax = e.Row.FindControl("lbl_tax") as Label;
+
+                //Set sub total price
+                if (lblTax != null)
+                    lblTax.Text = _objShoppingCart.GetStringTax();
+
+                var lblTotal = e.Row.FindControl("lbl_total") as Label;
+
+                //Set sub total price
+                if (lblTotal != null)
+                    lblTotal.Text = _objShoppingCart.GetStringTotalPriceWithTax();
             }
+        }
+
+        protected void WizCart_FinishButtonClick(object sender, WizardNavigationEventArgs e)
+        {
+
+        }
+
+        protected void WizCart_ActiveStepChanged(object sender, EventArgs e)
+        {
+            //Set header template
+            var dataList = wiz_cart.FindControl("HeaderContainer").FindControl("dl_header") as DataList;
+
+            if (dataList == null)
+
+                return;
+
+            dataList.DataSource = wiz_cart.WizardSteps;
+            dataList.DataBind();
+        }
+
+        protected void WizCart_PreviousButtonClick(object sender, WizardNavigationEventArgs e)
+        {
+            DlAddress_DataBind();
+        }
+
+        protected void Button_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+
+            if (button == null)
+                return;
+
+            var commandName = button.CommandName;
+
+            if (string.IsNullOrEmpty(commandName))
+                return;
+
+            switch (commandName.ToLower())
+            {
+                case "ship":
+                    {
+                        var id = TextHelper.ToInteger(button.CommandArgument);
+
+                        if (id == null)
+                            return;
+
+                        //Set Selected Address Id
+                        SelectedAddressId = (int)id;
+
+                        //Go to next index
+                        wiz_cart.MoveTo(wiz_cart.WizardSteps[1]);
+
+                        //Bind Cart
+                        GvCart_DataBind();
+                    }
+                    break;
+
+                case "nextship":
+                    {
+                        var userBillingAddress = new UserBillingAddress
+                        {
+                            FullName = txt_fullname.Text,
+                            AddressLine1 = txt_address1.Text,
+                            AddressLine2 = txt_address2.Text,
+                            City = txt_city.Text,
+                            State = txt_state.Text,
+                            CountryId = TextHelper.ToInteger(ddl_country.SelectedValue),
+                            PostalCode = txt_postalcode.Text,
+                            PhoneNumber = txt_phone.Text,
+                            UserId = LoggedInUserId //Get from session
+                        };
+
+                        int returnId;
+
+                        if (!_userBillingAddress.Insert(userBillingAddress, out returnId))
+                            return;
+
+                        SelectedAddressId = returnId; //Set selectedAddressId so that system won't re-add the data again
+
+                        //Bind Cart
+                        GvCart_DataBind();
+
+                        //Clear all fields
+                        txt_fullname.Text = string.Empty;
+                        txt_address1.Text = string.Empty;
+                        txt_address2.Text = string.Empty;
+                        txt_city.Text = string.Empty;
+                        txt_state.Text = string.Empty;
+                        txt_phone.Text = string.Empty;
+                        ddl_country.SelectedIndex = 0;
+
+                        //Move to next step
+                        MoveToNextStep(1);
+                    }
+                    break;
+
+                case "nextpayment":
+                    {
+                        MoveToNextStep(2);
+                    }
+                    break;
+                case "makepayment":
+                    {
+                        //Check if shopping cart is empty
+                        if (ShoppingCart == null || ShoppingCart.Count == 0)
+                            return;
+
+                        //Check if address is selected
+                        if (SelectedAddressId == 0)
+                            return;
+
+                        //Use transaction to make sure all queries run without error
+                        using (var ts = new TransactionScope())
+                        {
+                            var order = new Order
+                            {
+                                CardNumber = txt_cardNumber.Text,
+                                SecurityNumber = TextHelper.ToInteger(txt_securityNumber.Text),
+                                NameOnCard = txt_nameOnCard.Text,
+                                ExpirationMonth = TextHelper.ToInteger(ddl_month.SelectedValue),
+                                ExpirationYear = TextHelper.ToInteger(ddl_year.SelectedValue),
+                                UserBillingAddressId = SelectedAddressId,
+                                UserId = LoggedInUserId, //get from session
+                                OrderItems = GetOrderItems()
+                            };
+
+                            int orderNumber;
+                            if (_orderClass.Insert(order, out orderNumber))
+                            {
+                                Session["Order"] = orderNumber;
+
+                                ts.Complete();
+                            }
+                        }
+
+                        MoveToNextStep(3);
+                    }
+                    break;
+            }
+        }
+
+        private void MoveToNextStep(int index)
+        {
+            wiz_cart.MoveTo(wiz_cart.WizardSteps[index]);
         }
     }
 }
