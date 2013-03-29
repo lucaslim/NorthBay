@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data.Linq;
-using System.IO;
 using System.Linq;
 using System.Transactions;
 using System.Web.UI.WebControls;
@@ -25,12 +23,6 @@ namespace NorthBay.Web.Admin.Gift
             if (!CheckId())
                 Redirect("~/Admin/Gift/");
 
-            //Load javascript just for this page
-            JScript.AddScript("");
-
-            //Load css just for this page
-            Css.AddCss("");
-
             //Check if page postback
             if (Page.IsPostBack)
                 return;
@@ -40,19 +32,6 @@ namespace NorthBay.Web.Admin.Gift
 
             //Fill controls with data
             SetProductData();
-        }
-
-        private void SetProductData()
-        {
-            var product = _objProduct.Select(Id);
-
-            if (product == null)
-                return;
-
-            txt_title.Text = product.Title;
-            txt_description.Text = product.Description;
-            txt_price.Text = TextHelper.ToString(product.Price);
-            img_productImage.ImageUrl = product.Image;
         }
 
         /// <summary>
@@ -79,6 +58,18 @@ namespace NorthBay.Web.Admin.Gift
             return true;
         }
 
+        private void SetProductData()
+        {
+            var product = _objProduct.Select(Id);
+
+            if (product == null)
+                return;
+
+            txt_title.Text = product.Title;
+            txt_description.Text = product.Description;
+            txt_price.Text = TextHelper.ToString(product.Price);
+            img_productImage.ImageUrl = product.Image;
+        }
 
         private void SetProductCateogryData()
         {
@@ -108,6 +99,25 @@ namespace NorthBay.Web.Admin.Gift
             }
         }
 
+        private string UploadFile()
+        {
+            //If no file return empty
+            if (string.IsNullOrEmpty(fu_productImage.FileName))
+                return string.Empty;
+
+            //Set file name and directory that is set in config
+            var filename = string.Format("{0}{1}{2}", Config.PRODUCT_IMAGE_PATH, Id, System.IO.Path.GetExtension(fu_productImage.FileName));
+
+            //Create Directory
+            FileHelper.CreateDirectory(filename);
+
+            //Save image
+            fu_productImage.SaveAs(Server.MapPath(filename));
+
+            //Check if file is saved in server
+            return fu_productImage.PostedFile != null ? filename : string.Empty;
+        }
+
         /// <summary>
         /// Button Click Event
         /// </summary>
@@ -125,13 +135,13 @@ namespace NorthBay.Web.Admin.Gift
             using (var ts = new TransactionScope())
             {
                 var volunteer = new Product
-                    {
-                        ProductId = Id,
-                        Title = txt_title.Text,
-                        Description = txt_description.Text,
-                        Price = (decimal)TextHelper.ToDecimal(txt_price.Text),
-                        Image = fileUrl,
-                    };
+                {
+                    ProductId = Id,
+                    Title = txt_title.Text,
+                    Description = txt_description.Text,
+                    Price = (decimal)TextHelper.ToDecimal(txt_price.Text),
+                    Image = fileUrl,
+                };
 
                 //Update
                 if (!_objProduct.Update(volunteer))
@@ -145,10 +155,10 @@ namespace NorthBay.Web.Admin.Gift
                                                          in cbl_category.Items
                                                      where item.Selected
                                                      select new ProductCategoryTable
-                                                                               {
-                                                                                   ProductId = Id,
-                                                                                   ProductCategoryId = (int)TextHelper.ToInteger(item.Value)
-                                                                               })
+                                                     {
+                                                         ProductId = Id,
+                                                         ProductCategoryId = (int)TextHelper.ToInteger(item.Value)
+                                                     })
                 {
                     _objProductCategoryTable.Insert(productCategoryTable);
                 }
@@ -158,61 +168,6 @@ namespace NorthBay.Web.Admin.Gift
 
                 Redirect("~/Admin/Gift/");
             }
-        }
-
-        private string UploadFile()
-        {
-            //If no file return empty
-            if (string.IsNullOrEmpty(fu_productImage.FileName))
-                return string.Empty;
-
-            //Set file name and directory that is set in config
-            var filename = string.Format("{0}{1}{2}", Config.PRODUCT_IMAGE_PATH, Id, System.IO.Path.GetExtension(fu_productImage.FileName));
-
-            //Save image
-            SaveImageFile(filename);
-
-            //Check if file is saved in server
-            return fu_productImage.PostedFile != null ? filename : string.Empty;
-        }
-
-        private void SaveImageFile(string filename)
-        {
-            var mappedFileName = Server.MapPath(filename);
-
-            FileInfo file = new FileInfo(mappedFileName);
-
-            if (file.DirectoryName != null)
-            {
-                Directory.CreateDirectory(file.DirectoryName);
-
-                fu_productImage.SaveAs(mappedFileName);
-            }
-        }
-
-
-        /// <summary>
-        /// MUST FIX THIS
-        /// </summary>
-        /// <returns></returns>
-        private EntitySet<ProductCategoryTable> GetProductCategory()
-        {
-            var list = new EntitySet<ProductCategoryTable>();
-
-            //Add product to the table if is checked
-            foreach (var productCategoryTable in from ListItem item
-                                                     in cbl_category.Items
-                                                 where item.Selected
-                                                 select new ProductCategoryTable
-                                                                           {
-                                                                               ProductCategoryId = (int)TextHelper.ToInteger(item.Value),
-                                                                               ProductId = Id
-                                                                           })
-            {
-                list.Add(productCategoryTable);
-            }
-
-            return list;
         }
     }
 }

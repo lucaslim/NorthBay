@@ -13,13 +13,13 @@ namespace NorthBay.Web.Admin.Gift {
     public partial class Edit {
         
         /// <summary>
-        /// ValidationGroupPanel1 control.
+        /// vgp_gift control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::NorthBay.Controls.ValidationGroupPanel ValidationGroupPanel1;
+        protected global::NorthBay.Controls.ValidationGroupPanel vgp_gift;
         
         /// <summary>
         /// Table1 control.

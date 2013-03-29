@@ -2,7 +2,7 @@
     CodeBehind="Edit.aspx.cs" Inherits="NorthBay.Web.Admin.Gift.Edit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <custom:ValidationGroupPanel ID="ValidationGroupPanel1" runat="server" ValidationGroup="AddVolunteer">
+    <custom:ValidationGroupPanel ID="vgp_gift" runat="server" ValidationGroup="gift">
         <asp:Table ID="Table1" runat="server">
             <asp:TableRow>
                 <asp:TableCell>

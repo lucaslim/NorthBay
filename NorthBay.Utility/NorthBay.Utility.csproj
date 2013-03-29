@@ -40,6 +40,7 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />
     <Compile Include="CssHelper.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="JScriptHelper.cs" />
     <Compile Include="PageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

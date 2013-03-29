@@ -13,22 +13,22 @@ namespace NorthBay.Web.Admin.Gift {
     public partial class Add {
         
         /// <summary>
-        /// form1 control.
+        /// vgp_gift control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::NorthBay.Controls.ValidationGroupPanel vgp_gift;
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
         /// txt_title control.
@@ -40,15 +40,6 @@ namespace NorthBay.Web.Admin.Gift {
         protected global::NorthBay.Controls.TextBox txt_title;
         
         /// <summary>
-        /// ddl_category control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::NorthBay.Controls.DropDownList ddl_category;
-        
-        /// <summary>
         /// txt_description control.
         /// </summary>
         /// <remarks>
@@ -58,39 +49,39 @@ namespace NorthBay.Web.Admin.Gift {
         protected global::NorthBay.Controls.TextBox txt_description;
         
         /// <summary>
-        /// txt_postdate control.
+        /// txt_price control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::NorthBay.Controls.DateBox txt_postdate;
+        protected global::NorthBay.Controls.TextBox txt_price;
         
         /// <summary>
-        /// txt_enddate control.
+        /// fu_productImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::NorthBay.Controls.DateBox txt_enddate;
+        protected global::System.Web.UI.WebControls.FileUpload fu_productImage;
         
         /// <summary>
-        /// ddl_active control.
+        /// cbl_category control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::NorthBay.Controls.DropDownList ddl_active;
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_category;
         
         /// <summary>
-        /// btn_update control.
+        /// btnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_update;
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
     }
 }
