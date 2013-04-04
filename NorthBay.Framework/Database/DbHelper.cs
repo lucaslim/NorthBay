@@ -157,23 +157,24 @@ namespace NorthBay.Framework.Database
             using (var context = DataContext())
             {
                 id = 0;
-                
+
                 context.GetTable<TEntity>().InsertOnSubmit(t);
                 context.SubmitChanges();
 
-                foreach (PropertyInfo propertyInfo in from propertyInfo 
+                foreach (PropertyInfo propertyInfo in from propertyInfo
                                                           in t.GetType().GetProperties() //get list of properties
                                                       where propertyInfo.Name.Contains("Id") //find properties containing Id
-                                                      from attr 
+                                                      from attr
                                                           in propertyInfo.GetCustomAttributes(false) //get list of attributes
                                                       where attr.GetType().GetProperty("IsPrimaryKey") != null //make sure IsPrimaryKey attribute Exist
                                                       where (attr.GetType().GetProperty("IsPrimaryKey").GetValue(attr, null)) is bool //make sure attribute is a boolean 
                                                       let isPrimaryKey = ((bool)attr.GetType().GetProperty("IsPrimaryKey").GetValue(attr, null)) //assign attribute to boolean variable if its true
-                                                      where isPrimaryKey where (propertyInfo.GetValue(t, null)) is int //make sure property is an integer 
+                                                      where isPrimaryKey
+                                                      where (propertyInfo.GetValue(t, null)) is int //make sure property is an integer 
                                                       select propertyInfo) //select property
                 {
                     //convert value to int and assign to id
-                    id = (int)propertyInfo.GetValue(t, null); 
+                    id = (int)propertyInfo.GetValue(t, null);
                     return true;
                 }
 
@@ -196,6 +197,28 @@ namespace NorthBay.Framework.Database
 
                 return true;
             }
+        }
+
+        public TEntity Detach<TEntity>(TEntity t) where TEntity : class, new()
+        {
+            //return if entity is null
+            if (t == null)
+                return null;
+
+            object entity = new TEntity();
+            using (var context = DataContext())
+            {
+                foreach (var metaDataMember in context.Mapping.GetMetaType(typeof(TEntity)).DataMembers)
+                {
+                    //check if member is association or deferred
+                    if (metaDataMember.IsAssociation || metaDataMember.IsDeferred)
+                        continue;
+
+                    metaDataMember.StorageAccessor.SetBoxedValue(ref entity, metaDataMember.StorageAccessor.GetBoxedValue(t));
+                }
+            }
+            
+            return entity as TEntity;
         }
     }
 }

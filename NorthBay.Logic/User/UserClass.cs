@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
 using System.Web.Security;
 using NorthBay.Framework.Authentication;
@@ -62,6 +63,14 @@ namespace NorthBay.Logic.User
         public bool Logout()
         {
             return UserCookie.Remove();
+        }
+
+        public List<Framework.Database.User> SelectAllPatients()
+        {
+            using(var context = Db.DataContext())
+            {
+                return context.Users.Where(x => x.UserRole.UserRoleId == 3).ToList();
+            }
         }
     }
 }

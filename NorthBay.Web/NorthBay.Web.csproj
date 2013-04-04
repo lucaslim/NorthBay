@@ -52,6 +52,8 @@
     <Content Include="Admin\Gift\Add.aspx" />
     <Content Include="Admin\Gift\Default.aspx" />
     <Content Include="Admin\Gift\Edit.aspx" />
+    <Content Include="Admin\Room\Assign.aspx" />
+    <Content Include="Admin\Room\Default.aspx" />
     <Content Include="Admin\Volunteer\Add.aspx" />
     <Content Include="Admin\Volunteer\Default.aspx" />
     <Content Include="Admin\Volunteer\Edit.aspx" />
@@ -121,6 +123,20 @@
     </Compile>
     <Compile Include="Admin\Gift\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Room\Assign.aspx.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Room\Assign.aspx.designer.cs">
+      <DependentUpon>Assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Room\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Room\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Volunteer\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>

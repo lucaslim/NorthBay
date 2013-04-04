@@ -45,6 +45,7 @@
       <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="User_UserBillingAddress" Member="UserBillingAddresses" ThisKey="UserId" OtherKey="UserId" Type="UserBillingAddress" />
       <Association Name="User_Order" Member="Orders" ThisKey="UserId" OtherKey="UserId" Type="Order" />
+      <Association Name="User_RoomBilling" Member="RoomBillings" ThisKey="UserId" OtherKey="UserId" Type="RoomBilling" />
       <Association Name="UserRole_User" Member="UserRole" ThisKey="UserRoleId" OtherKey="UserRoleId" Type="UserRole" IsForeignKey="true" />
     </Type>
   </Table>
@@ -147,6 +148,53 @@
       <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderId" OtherKey="OrderId" Type="OrderItem" />
       <Association Name="User_Order" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
       <Association Name="UserBillingAddress_Order" Member="UserBillingAddress" ThisKey="UserBillingAddressId" OtherKey="UserBillingAddressId" Type="UserBillingAddress" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomStatus" Member="RoomStatus">
+    <Type Name="RoomStatus">
+      <Column Name="RoomStatusId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="RoomStatus_Room" Member="Rooms" ThisKey="RoomStatusId" OtherKey="RoomStatusId" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Equipment" Member="Equipments">
+    <Type Name="Equipment">
+      <Column Name="EquipmentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Equipment_RoomBillingEquipment" Member="RoomBillingEquipments" ThisKey="EquipmentId" OtherKey="EquipmentId" Type="RoomBillingEquipment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="RoomId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Building" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoomStatusId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Room_RoomBilling" Member="RoomBillings" ThisKey="RoomId" OtherKey="RoomId" Type="RoomBilling" />
+      <Association Name="RoomStatus_Room" Member="RoomStatus" ThisKey="RoomStatusId" OtherKey="RoomStatusId" Type="RoomStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomBilling" Member="RoomBillings">
+    <Type Name="RoomBilling">
+      <Column Name="RoomBillingId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RoomBilling_RoomBillingEquipment" Member="RoomBillingEquipments" ThisKey="RoomBillingId" OtherKey="RoomBillingId" Type="RoomBillingEquipment" />
+      <Association Name="Room_RoomBilling" Member="Room" ThisKey="RoomId" OtherKey="RoomId" Type="Room" IsForeignKey="true" />
+      <Association Name="User_RoomBilling" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomBillingEquipment" Member="RoomBillingEquipments">
+    <Type Name="RoomBillingEquipment">
+      <Column Name="RoomBillingEquipmentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomBillingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EquipmentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Equipment_RoomBillingEquipment" Member="Equipment" ThisKey="EquipmentId" OtherKey="EquipmentId" Type="Equipment" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="RoomBilling_RoomBillingEquipment" Member="RoomBilling" ThisKey="RoomBillingId" OtherKey="RoomBillingId" Type="RoomBilling" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

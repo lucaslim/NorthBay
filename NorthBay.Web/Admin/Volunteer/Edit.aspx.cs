@@ -1,4 +1,6 @@
 ﻿using System;
+using NorthBay.Framework.Database;
+using NorthBay.Logic.Room;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
@@ -7,6 +9,7 @@ namespace NorthBay.Web.Admin.Volunteer
     public partial class Edit : Basepage
     {
         private readonly VolunteerClass _objVolunteer = new VolunteerClass();
+        private readonly RoomBillingClass _objRoomBilling = new RoomBillingClass();
 
         private int Id { get; set; }
 
@@ -32,6 +35,8 @@ namespace NorthBay.Web.Admin.Volunteer
             //Fill controls with data
             SetVolunteerData();
         }
+
+        
 
         private void SetVolunteerData()
         {
