@@ -10,15 +10,15 @@
 namespace NorthBay.Web.Volunteer {
     
     
-    public partial class Default {
+    public partial class Opportunities {
         
         /// <summary>
-        /// hl_view control.
+        /// dl_opportunities control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hl_view;
+        protected global::System.Web.UI.WebControls.DataList dl_opportunities;
     }
 }

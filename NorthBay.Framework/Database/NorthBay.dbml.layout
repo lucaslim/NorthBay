@@ -44,7 +44,7 @@
         <elementListCompartment Id="127f7784-c81a-452a-a5f2-4716e70030f9" absoluteBounds="6.515, 4.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 5.76369466145833); (3.59375 : 5.76369466145833); (3.59375 : 2.2612939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 5.76369466145833); (3.59375 : 5.76369466145833); (3.59375 : 2.2612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NorthBayDataContext/Product/Product_ProductCategoryTable" />
       <nodes>
         <classShapeMoniker Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" />
@@ -65,7 +65,7 @@
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 5.25889322916667); (5.94791666666667 : 5.25889322916667 : JumpStart); (6.11458333333333 : 5.25889322916667 : JumpEnd); (6.5 : 5.25889322916667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.75 : 5.25889322916667); (5.94791666666667 : 5.25889322916667 : JumpStart); (6.11458333333333 : 5.25889322916667 : JumpEnd); (6.5 : 5.25889322916667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/VolunteerCategory/VolunteerCategory_Volunteer" />
       <nodes>
         <classShapeMoniker Id="763a678e-ac77-41f8-96f6-a08838af460d" />
@@ -116,7 +116,7 @@
         <elementListCompartment Id="33440b01-10fc-44ce-a5eb-1de203c641b1" absoluteBounds="10.015, 6.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.75 : 5.89589680989583); (1.75 : 6.52428524902344); (3.55729166666667 : 6.52428524902344 : JumpStart); (3.72395833333333 : 6.52428524902344 : JumpEnd); (5.94791666666667 : 6.52428524902344 : JumpStart); (6.11458333333333 : 6.52428524902344 : JumpEnd); (10 : 6.52428524902344)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 5.89589680989583); (1.75 : 6.52428524902344); (3.55729166666667 : 6.52428524902344 : JumpStart); (3.72395833333333 : 6.52428524902344 : JumpEnd); (5.94791666666667 : 6.52428524902344 : JumpStart); (6.11458333333333 : 6.52428524902344 : JumpEnd); (10 : 6.52428524902344)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NorthBayDataContext/Product/Product_OrderItem" />
       <nodes>
         <classShapeMoniker Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" />
@@ -194,14 +194,14 @@
         <classShapeMoniker Id="00beea21-db04-45d5-ad28-353ed1317ad6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.21875); (17.875 : 8.21875); (17.875 : 9.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 8.21875); (8.76041666666667 : 8.21875 : JumpStart); (8.92708333333333 : 8.21875 : JumpEnd); (17.875 : 8.21875); (17.875 : 9.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/User/User_RoomBilling" />
       <nodes>
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
         <classShapeMoniker Id="00beea21-db04-45d5-ad28-353ed1317ad6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.03125 : 4.8862939453125); (6.03125 : 7.69794840494792); (8.76041666666667 : 7.69794840494792 : JumpStart); (8.92708333333333 : 7.69794840494792 : JumpEnd); (18.3229191666667 : 7.69794840494792 : JumpStart); (18.4895858333333 : 7.69794840494792 : JumpEnd); (19.625 : 7.69794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.03125 : 4.8862939453125); (6.03125 : 7.69794840494792); (8.76041666666667 : 7.69794840494792 : JumpStart); (8.92708333333333 : 7.69794840494792 : JumpEnd); (18.3229191666667 : 7.69794840494792 : JumpStart); (18.4895858333333 : 7.69794840494792 : JumpEnd); (19.625 : 7.69794840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/Equipment/Equipment_RoomBillingEquipment" />
       <nodes>
         <classShapeMoniker Id="8c91b440-7c5f-4ab5-963c-40278b35127c" />
@@ -226,6 +226,19 @@
       <nodes>
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
         <classShapeMoniker Id="c22aa837-d02f-4762-a8f6-1991d0517325" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b23ff064-2c20-4245-9d81-540ce67a1b60" absoluteBounds="1.125, 3.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/NorthBayDataContext/Menu" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87b7a028-e35a-42a3-b264-751c95fba28c" absoluteBounds="1.1400000000000001, 3.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.83423076923077 : 5.28049967447917); (1.83423076923077 : 5.53049967447917); (2.42961538461538 : 5.53049967447917); (2.42961538461538 : 5.28049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/NorthBayDataContext/Menu/Menu_Menu" />
+      <nodes>
+        <classShapeMoniker Id="b23ff064-2c20-4245-9d81-540ce67a1b60" />
+        <classShapeMoniker Id="b23ff064-2c20-4245-9d81-540ce67a1b60" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

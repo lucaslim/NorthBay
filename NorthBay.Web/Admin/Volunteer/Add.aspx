@@ -22,7 +22,6 @@
                 <asp:TableRow>
                     <asp:TableCell>Category</asp:TableCell>
                     <asp:TableCell>
-                        <%--<custom:TextBox runat="server" ID="txt_category" Required="True"></custom:TextBox>--%>
                         <custom:DropDownList runat="server" ID="ddl_category" Required="True" Title="Category">
                         </custom:DropDownList>
                     </asp:TableCell>

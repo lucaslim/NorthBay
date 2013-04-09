@@ -10,7 +10,7 @@ namespace NorthBay.Logic.User
 {
     public class UserClass : BaseBo<Framework.Database.User>
     {
-        public void AuthenticateUser(string email, string password)
+        public bool AuthenticateUser(string email, string password)
         {
             using (var context = Db.DataContext())
             {
@@ -18,13 +18,15 @@ namespace NorthBay.Logic.User
                 var query = context.Users.Where(x => x.Email.Equals(email) && x.Password.Equals(SecurityHelper.Hash(password)));
 
                 if (query.Count() != 1)
-                    return; //login fail
+                    return false; //login fail
 
                 //Get User Object
                 var user = query.ToList()[0];
 
                 //Create User Session
                 UserSession.Create(user);
+
+                return true;
             }
         }
 

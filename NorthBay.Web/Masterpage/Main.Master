@@ -1,125 +1,138 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="NorthBay.Web.Masterpage.Main" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="NorthBay.Web.Masterpage.Main" Codebehind="Main.master.cs" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<head id="Head1" runat="server">
+    <title>North Bay</title>
+    
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <%--HEADER--%>
-    <div id="header">
-        <div id="header-wrapper">
-            <div id="top-links" class="float-right">
-                <asp:HyperLink ID="link_home" runat="server" ImageUrl="~/App_Themes/Main/Images/home.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="toplinks" />
-                <asp:HyperLink ID="link_about" runat="server" ImageUrl="~/App_Themes/Main/Images/about.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="toplinks" />
-                <asp:HyperLink ID="link_contact" runat="server" ImageUrl="~/App_Themes/Main/Images/contact.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="toplinks" />
-                <asp:HyperLink ID="link_careers" runat="server" ImageUrl="~/App_Themes/Main/Images/careers.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="toplinks" />
-                <br />
-                <asp:HyperLink ID="link_fr" runat="server" ImageUrl="~/App_Themes/Main/Images/fr.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="lang" />
-                <asp:HyperLink ID="link_en" runat="server" ImageUrl="~/App_Themes/Main/Images/en.jpg"
-                    NavigateUrl="~/Default.aspx" CssClass="lang" />
+
+        <header> <%--header--%>
+            <div class="content-wrapper">
+                <div class="float-left"> <%--LOGO--%>
+                    <asp:Image ID="img_logo" runat="server" ImageUrl="~/App_Themes/Main/Images/logo.jpg"/>
+                </div>
+                <div class="float-left"> 
+                    <asp:Label ID="lbl" runat="server" CssClass="nb">North Bay</asp:Label><br />
+                    <asp:Label ID="lbl2" runat="server" CssClass="rhc">Regional Health Centre</asp:Label>
+                </div> <%--END OF LOGO--%>
+                <div class="float-right">
+                    <section class="toplinks"> <%--links on the top of the page--%>
+                        <asp:HyperLink ID="link_home" runat="server" ImageUrl="~/App_Themes/Main/images/home.jpg" NavigateUrl="~/Default.aspx" CssClass="toplinks" />
+                        <asp:HyperLink ID="link_about" runat="server" ImageUrl="~/App_Themes/Main/images/about.jpg" NavigateUrl="~/Default.aspx" CssClass="toplinks" />
+                        <asp:HyperLink ID="link_contact" runat="server" ImageUrl="~/App_Themes/Main/images/contact.jpg" NavigateUrl="~/Default.aspx" CssClass="toplinks" />
+                        <asp:HyperLink ID="link_careers" runat="server" ImageUrl="~/App_Themes/Main/images/careers.jpg" NavigateUrl="~/Default.aspx" CssClass="toplinks" />
+                    </section>
+                    <section class="float-right"> <%--language links--%>
+                        <asp:HyperLink ID="link_en" runat="server" ImageUrl="~/App_Themes/Main/images/en.jpg" NavigateUrl="~/Default.aspx" />
+                        <asp:HyperLink ID="link_fr" runat="server" ImageUrl="~/App_Themes/Main/images/fr.jpg" NavigateUrl="~/Default.aspx" />
+                    </section>
+                </div>
             </div>
-            <asp:Image ID="img_logo" runat="server" ImageUrl="~/App_Themes/Main/Images/logo.jpg"
-                CssClass="float-left" />
-            <asp:Label ID="lbl" runat="server" CssClass="nb">North Bay</asp:Label><br />
-            <asp:Label ID="lbl2" runat="server" CssClass="rhc">Regional Health Centre</asp:Label>
+            <%--navigation--%>
+            <nav class="content-wrapper">
+                <asp:Menu ID="main_menu" runat="server" Orientation="Horizontal" Width="100%" CssClass="MenuBar" MaximumDynamicDisplayLevels="10" StaticEnableDefaultPopOutImage="true">
+                    <StaticMenuStyle CssClass="StaticMenuItem" VerticalPadding="0" />
+                    <StaticMenuItemStyle CssClass="StaticMenuItemStyle" HorizontalPadding="5px" VerticalPadding="0px" />
+                    <StaticHoverStyle CssClass="StaticHoverStyle" ForeColor="White" />
+                    <StaticSelectedStyle CssClass="StaticSelectedStyle" />
+                    <DynamicMenuItemStyle CssClass="DynamicMenuItemStyle" />
+                    <DynamicHoverStyle CssClass="DynamicHoverStyle" ForeColor="White" />
+                </asp:Menu>
+            </nav>
+            <%--end of navigation--%>
+        </header> <%-- end of header--%>
+
+        <%--body--%>
+        <%--to add new content section: 
+            use class:main-content inside section tag
+        to add new sidebar:
+            use class:sidebar inside section tag--%>
+
+        <div id="main_body">
+            <section class="navi float-left"> <%--sitemap path--%>
+                <asp:Label ID="lbl_path" runat="server" Text="> sitemap path" />
+            </section>
+            <section class="search float-right"> <%--search box--%>
+                <asp:TextBox ID="txt_search" runat="server" />
+                <asp:Button ID="btn_search" runat="server" Text="Search" />
+            </section>
+            <section class="main-content"><%--hold place for main content--%>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+            <section class="sidebar"> <%--hold place for the top sidebar--%>
+                <asp:ContentPlaceHolder ID="cph2" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+            <section class="main-content"> <%--secondary content--%>
+                <asp:ContentPlaceHolder ID="cph3" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
+            <section class="sidebar news"> <%--secondary sidebar--%>
+                <asp:ContentPlaceHolder ID="cph4" runat="server">
+                </asp:ContentPlaceHolder>
+            </section>
         </div>
-    </div>
-    <%-- END OF HEADER--%>
-    <div id="navigation">
-        <asp:Menu ID="main_menu" runat="server" Orientation="Horizontal" BackColor="#99ccff"
-            DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="13px" ForeColor="#ffffff"
-            StaticSubMenuIndent="10px">
-            <DynamicHoverStyle BackColor="#99ccff" ForeColor="White" />
-            <DynamicMenuItemStyle HorizontalPadding="5px" />
-            <DynamicMenuStyle BackColor="#99ccff" />
-            <DynamicSelectedStyle BackColor="#99ccff" />
-            <Items>
-                <asp:MenuItem Text="Patients & Visitors" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Programs & Services" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Foundation" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Research" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Mental Health" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="News & Media" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Volunteering" NavigateUrl="~/Default.aspx" />
-                <asp:MenuItem Text="Accountability" NavigateUrl="~/Default.aspx" />
-            </Items>
-            <StaticHoverStyle BackColor="#99ccff" ForeColor="yellow" />
-            <StaticMenuItemStyle HorizontalPadding="15px" />
-            <StaticSelectedStyle BackColor="#99ccff" />
-        </asp:Menu>
-    </div>
-    <div id="content">
-        <%--CONTENT--%>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
-    <%--END OF CONTENT--%>
-    <%--FOOTER--%>
-    <div id="footer">
-        <div id="footer-wrapper">
-            <div class="footer-menu-left">
-                <asp:Menu ID="menu_footer" runat="server" Orientation="Vertical" ForeColor="Black">
-                    <Items>
-                        <asp:MenuItem Text="Home" Value="Home" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="About Us" Value="About Us" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Patients / Visitors" Value="Patients / Visitors" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Programs & Services" Value="Programs & Services" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Foundation" Value="Foundation" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Research" Value="Research" NavigateUrl="~/Default.aspx" />
-                    </Items>
-                </asp:Menu>
-            </div>
-            <div class="footer-menu-left">
-                <asp:Menu ID="menu_footer2" runat="server" Orientation="Vertical" ForeColor="yellow">
-                    <Items>
-                        <asp:MenuItem Text="Careers" Value="Careers" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Mental Health" Value="Mental Health" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="News & Media" Value="News & Media" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Volunteering" Value="Volunteering" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Accountability" Value="Accountability" NavigateUrl="~/Default.aspx" />
-                        <asp:MenuItem Text="Contact Us" Value="Contact Us" NavigateUrl="~/Default.aspx" />
-                    </Items>
-                </asp:Menu>
-            </div>
-            <div class="footer-menu-left">
-                <asp:Menu ID="social" runat="server" Orientation="Horizontal" CssClass="social">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/Images/rss.jpg" />
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/Images/fb.jpg" />
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/Images/twit.jpg" />
-                        <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/Images/lin.jpg" />
-                    </Items>
-                    <StaticMenuItemStyle HorizontalPadding="12px" />
-                </asp:Menu>
-            </div>
-            <div class="footer-menu">
-                <asp:Label ID="copy" runat="server">Copyright &copy; North Bay Regional Health Centre</asp:Label><br />
-                <br />
-                <asp:HyperLink ID="privacy" runat="server" Text="Privacy Policy" NavigateUrl="~/Default.aspx"
-                    Font-Underline="false" ForeColor="Black" />
-                <asp:Label ID="separator" runat="server" Text="|" Font-Bold="true" ForeColor="White" />
-                <asp:HyperLink ID="terms" runat="server" Text="Terms of Use" NavigateUrl="~/Default.aspx"
-                    Font-Underline="false" ForeColor="Black" />
-                <asp:Label ID="separator2" runat="server" Text="|" Font-Bold="true" ForeColor="White" />
-                <asp:HyperLink ID="disclaimer" runat="server" Text="Disclaimer" NavigateUrl="~/Default.aspx"
-                    Font-Underline="false" ForeColor="Black" /><br />
-                <div style="text-align: center">
-                    <asp:Image ID="ont" runat="server" ImageUrl="~/App_Themes/Main/Images/ontario.jpg" />
+        <%--end of body--%>
+
+        <%--footer--%>
+        <footer> 
+            <div class="content-wrapper">
+                <div class="links">
+                    <asp:Menu ID="footerMenu" runat="server" Orientation="Vertical" ForeColor="Black" CssClass="footerMenu" StaticSubMenuIndent="0px" SkipLinkText="">
+                        <Items>
+                            <asp:MenuItem Text="Home"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="About Us"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Patients / Visitors"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Programs & Services"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Foundation"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Research"  NavigateUrl="~/Default.aspx" />
+                        </Items>
+                        <StaticHoverStyle ForeColor="yellow" />
+                    </asp:Menu>
+                </div>
+                <div class="links">
+                    <asp:Menu ID="footerMenu2" runat="server" Orientation="Vertical" ForeColor="Black" StaticSubMenuIndent="0px" CssClass="footerMenu" SkipLinkText="" >
+                        <Items>
+                            <asp:MenuItem Text="Careers"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Mental Health" NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="News & Media" NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Volunteering"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Accountability"  NavigateUrl="~/Default.aspx" />
+                            <asp:MenuItem Text="Contact Us" NavigateUrl="~/Default.aspx" />
+                        </Items>
+                        <StaticHoverStyle ForeColor="yellow" />
+                         <StaticMenuStyle VerticalPadding="0" />
+                    </asp:Menu>
+                </div>
+                <div class="float-left social">
+                    <asp:Menu ID="social" runat="server" Orientation="Horizontal" CssClass="social" StaticSubMenuIndent="0px">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/images/rss.jpg" />
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/images/fb.jpg" />
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/images/twit.jpg" />
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" ImageUrl="~/App_Themes/Main/images/lin.jpg" />
+                        </Items>
+                        <StaticMenuItemStyle HorizontalPadding="12px" />
+                    </asp:Menu>
+                </div>
+                <div class="privacy">
+                    <asp:Label ID="copy" runat="server" CssClass="copy">Copyright &copy; North Bay Regional Health Centre</asp:Label><br />
+                    <asp:HyperLink ID="privacy" runat="server" Text="Privacy Policy" NavigateUrl="~/Default.aspx" Font-Underline="false" ForeColor="Black" />
+                    <asp:Label ID="separator" runat="server" Text="|" Font-Bold="true" ForeColor="White" />
+                    <asp:HyperLink ID="terms" runat="server" Text="Terms of Use" NavigateUrl="~/Default.aspx" Font-Underline="false" ForeColor="Black" />
+                    <asp:Label ID="separator2" runat="server" Text="|" Font-Bold="true" ForeColor="White" />
+                    <asp:HyperLink ID="disclaimer" runat="server" Text="Disclaimer" NavigateUrl="~/Default.aspx" Font-Underline="false" ForeColor="Black" /><br />
+                    <asp:Image ID="ont" runat="server" ImageUrl="~/App_Themes/Main/images/ontario.jpg" />
                     <br />
                 </div>
             </div>
-        </div>
-        <%--END OF FOOTER--%>
-    </div>
+        </footer>
+        <%--end of footer--%>
     </form>
 </body>
 </html>

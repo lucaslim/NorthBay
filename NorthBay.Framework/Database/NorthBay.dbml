@@ -212,4 +212,17 @@
       <Association Name="User_RoomBillingInvoice" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Menu" Member="Menus">
+    <Type Name="Menu">
+      <Column Name="MenuItemId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ParentMenuItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisplaySequence" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_Menu" Member="Menus" ThisKey="MenuItemId" OtherKey="ParentMenuItemId" Type="Menu" />
+      <Association Name="Menu_Menu" Member="Menu1" ThisKey="ParentMenuItemId" OtherKey="MenuItemId" Type="Menu" IsForeignKey="true" />
+    </Type>
+  </Table>
 </Database>

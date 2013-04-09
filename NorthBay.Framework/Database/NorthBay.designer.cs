@@ -81,6 +81,9 @@ namespace NorthBay.Framework.Database
     partial void InsertRoomBillingInvoice(RoomBillingInvoice instance);
     partial void UpdateRoomBillingInvoice(RoomBillingInvoice instance);
     partial void DeleteRoomBillingInvoice(RoomBillingInvoice instance);
+    partial void InsertMenu(Menu instance);
+    partial void UpdateMenu(Menu instance);
+    partial void DeleteMenu(Menu instance);
     #endregion
 		
 		public NorthBayDataContext() : 
@@ -262,6 +265,14 @@ namespace NorthBay.Framework.Database
 			get
 			{
 				return this.GetTable<RoomBillingInvoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Menu> Menus
+		{
+			get
+			{
+				return this.GetTable<Menu>();
 			}
 		}
 	}
@@ -4413,6 +4424,281 @@ namespace NorthBay.Framework.Database
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Menu")]
+	public partial class Menu : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MenuItemId;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+		private string _Url;
+		
+		private System.Nullable<int> _ParentMenuItemId;
+		
+		private System.Nullable<int> _DisplaySequence;
+		
+		private bool _IsActive;
+		
+		private EntitySet<Menu> _Menus;
+		
+		private EntityRef<Menu> _Menu1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuItemIdChanging(int value);
+    partial void OnMenuItemIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnUrlChanging(string value);
+    partial void OnUrlChanged();
+    partial void OnParentMenuItemIdChanging(System.Nullable<int> value);
+    partial void OnParentMenuItemIdChanged();
+    partial void OnDisplaySequenceChanging(System.Nullable<int> value);
+    partial void OnDisplaySequenceChanged();
+    partial void OnIsActiveChanging(bool value);
+    partial void OnIsActiveChanged();
+    #endregion
+		
+		public Menu()
+		{
+			this._Menus = new EntitySet<Menu>(new Action<Menu>(this.attach_Menus), new Action<Menu>(this.detach_Menus));
+			this._Menu1 = default(EntityRef<Menu>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MenuItemId
+		{
+			get
+			{
+				return this._MenuItemId;
+			}
+			set
+			{
+				if ((this._MenuItemId != value))
+				{
+					this.OnMenuItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemId = value;
+					this.SendPropertyChanged("MenuItemId");
+					this.OnMenuItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(100)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="NVarChar(MAX)")]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this.OnUrlChanging(value);
+					this.SendPropertyChanging();
+					this._Url = value;
+					this.SendPropertyChanged("Url");
+					this.OnUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentMenuItemId", DbType="Int")]
+		public System.Nullable<int> ParentMenuItemId
+		{
+			get
+			{
+				return this._ParentMenuItemId;
+			}
+			set
+			{
+				if ((this._ParentMenuItemId != value))
+				{
+					if (this._Menu1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnParentMenuItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParentMenuItemId = value;
+					this.SendPropertyChanged("ParentMenuItemId");
+					this.OnParentMenuItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplaySequence", DbType="Int")]
+		public System.Nullable<int> DisplaySequence
+		{
+			get
+			{
+				return this._DisplaySequence;
+			}
+			set
+			{
+				if ((this._DisplaySequence != value))
+				{
+					this.OnDisplaySequenceChanging(value);
+					this.SendPropertyChanging();
+					this._DisplaySequence = value;
+					this.SendPropertyChanged("DisplaySequence");
+					this.OnDisplaySequenceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit NOT NULL")]
+		public bool IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Menu_Menu", Storage="_Menus", ThisKey="MenuItemId", OtherKey="ParentMenuItemId")]
+		public EntitySet<Menu> Menus
+		{
+			get
+			{
+				return this._Menus;
+			}
+			set
+			{
+				this._Menus.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Menu_Menu", Storage="_Menu1", ThisKey="ParentMenuItemId", OtherKey="MenuItemId", IsForeignKey=true)]
+		public Menu Menu1
+		{
+			get
+			{
+				return this._Menu1.Entity;
+			}
+			set
+			{
+				Menu previousValue = this._Menu1.Entity;
+				if (((previousValue != value) 
+							|| (this._Menu1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Menu1.Entity = null;
+						previousValue.Menus.Remove(this);
+					}
+					this._Menu1.Entity = value;
+					if ((value != null))
+					{
+						value.Menus.Add(this);
+						this._ParentMenuItemId = value.MenuItemId;
+					}
+					else
+					{
+						this._ParentMenuItemId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Menu1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Menus(Menu entity)
+		{
+			this.SendPropertyChanging();
+			entity.Menu1 = this;
+		}
+		
+		private void detach_Menus(Menu entity)
+		{
+			this.SendPropertyChanging();
+			entity.Menu1 = null;
 		}
 	}
 }

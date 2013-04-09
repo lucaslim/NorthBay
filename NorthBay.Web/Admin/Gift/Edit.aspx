@@ -21,7 +21,7 @@
             <asp:TableRow>
                 <asp:TableCell>
                     Price:<br />
-                    <custom:TextBox runat="server" ID="txt_price" Required="True"></custom:TextBox>
+                    <custom:TextBox runat="server" ID="txt_price" Required="True"  ValidType="Decimals"></custom:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>

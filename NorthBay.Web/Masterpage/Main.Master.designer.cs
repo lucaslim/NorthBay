@@ -13,6 +13,15 @@ namespace NorthBay.Web.Masterpage {
     public partial class Main {
         
         /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,31 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// img_logo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Image img_logo;
+        
+        /// <summary>
+        /// lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
+        
+        /// <summary>
+        /// lbl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl2;
         
         /// <summary>
         /// link_home control.
@@ -67,15 +94,6 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.WebControls.HyperLink link_careers;
         
         /// <summary>
-        /// link_fr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink link_fr;
-        
-        /// <summary>
         /// link_en control.
         /// </summary>
         /// <remarks>
@@ -85,31 +103,13 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.WebControls.HyperLink link_en;
         
         /// <summary>
-        /// img_logo control.
+        /// link_fr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image img_logo;
-        
-        /// <summary>
-        /// lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
-        
-        /// <summary>
-        /// lbl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl2;
+        protected global::System.Web.UI.WebControls.HyperLink link_fr;
         
         /// <summary>
         /// main_menu control.
@@ -121,6 +121,33 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.WebControls.Menu main_menu;
         
         /// <summary>
+        /// lbl_path control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_path;
+        
+        /// <summary>
+        /// txt_search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_search;
+        
+        /// <summary>
+        /// btn_search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_search;
+        
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>
@@ -130,22 +157,49 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
         
         /// <summary>
-        /// menu_footer control.
+        /// cph2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menu_footer;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph2;
         
         /// <summary>
-        /// menu_footer2 control.
+        /// cph3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu menu_footer2;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph3;
+        
+        /// <summary>
+        /// cph4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph4;
+        
+        /// <summary>
+        /// footerMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu footerMenu;
+        
+        /// <summary>
+        /// footerMenu2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu footerMenu2;
         
         /// <summary>
         /// social control.

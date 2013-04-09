@@ -64,14 +64,18 @@
     <Content Include="App_Themes\Main\Images\about.jpg" />
     <Content Include="App_Themes\Main\Images\careers.jpg" />
     <Content Include="App_Themes\Main\Images\contact.jpg" />
+    <Content Include="App_Themes\Main\Images\donate.jpg" />
     <Content Include="App_Themes\Main\Images\en.jpg" />
     <Content Include="App_Themes\Main\Images\fb.jpg" />
+    <Content Include="App_Themes\Main\Images\foundation.jpg" />
     <Content Include="App_Themes\Main\Images\fr.jpg" />
     <Content Include="App_Themes\Main\Images\home.jpg" />
     <Content Include="App_Themes\Main\Images\lin.jpg" />
     <Content Include="App_Themes\Main\Images\logo.jpg" />
+    <Content Include="App_Themes\Main\Images\main.jpg" />
     <Content Include="App_Themes\Main\Images\ontario.jpg" />
     <Content Include="App_Themes\Main\Images\rss.jpg" />
+    <Content Include="App_Themes\Main\Images\separator.jpg" />
     <Content Include="App_Themes\Main\Images\twit.jpg" />
     <Content Include="App_Themes\Main\style.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
@@ -86,6 +90,7 @@
     <Content Include="obj\Script\jqueryui.js" />
     <Content Include="obj\Script\global.js" />
     <Content Include="Volunteer\Default.aspx" />
+    <Content Include="Volunteer\Opportunities.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -234,6 +239,13 @@
     <Compile Include="Volunteer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Volunteer\Opportunities.aspx.cs">
+      <DependentUpon>Opportunities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Volunteer\Opportunities.aspx.designer.cs">
+      <DependentUpon>Opportunities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm2.aspx.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +280,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masterpage\Main.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Themes\Main\Images\Thumbs.db" />
+    <Content Include="App_Themes\Main\SkinFile.skin" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

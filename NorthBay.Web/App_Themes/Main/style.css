@@ -1,123 +1,467 @@
-﻿* {
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+{
+    display: block;
+}
+body
+{
+    line-height: 1;
+}
+ol, ul
+{
+    list-style: none;
+}
+blockquote, q
+{
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after
+{
+    content: '';
+    content: none;
+}
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*END OF CSS RESET*/
+
+html
+{
+    background-color: #fff;
     margin: 0;
     padding: 0;
 }
 
-body 
+body
 {
-    font-family: Arial;
-    font-size: 13px;
-     margin: 0 auto;
+    background-color: #fff;
+    color: #333;
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
 }
 
-#header, #footer { background-color: #3399ff; }
+.float-left
+{
+    float: left;
+}
 
-#header-wrapper, #footer-wrapper {
-    border: 1px solid #808080;
+.float-right
+{
+    float: right;
+}
+
+.content-wrapper
+{
     margin: 0 auto;
-    width: 1000px;
+    max-width: 1000px;
+    padding: 0;
 }
 
-#header-wrapper { height: 110px; }
-
-#top-links {
-    height: 94px;
-    margin: 10px 0 0 0;
+/*Header Section*/
+.toplinks
+{
+    margin-bottom: 20px;
+    text-decoration: none;
 }
 
-.nb {
-    color: #fff;
+header
+{
+    margin: 0 auto;
+    background-color: #3399ff;
+    height: 115px;
+}
+
+header .content-wrapper
+{
+    padding-top: 5px;
+}
+
+.nb
+{
     font: 42px normal;
     font-family: 'Segoe UI';
+    color: #fff;
     text-transform: uppercase;
 }
 
-.rhc {
-    color: #ff0;
+.rhc
+{
     font: 18px normal;
     font-family: 'Segoe UI';
-    margin-bottom: 30px;
+    color: #ff0;
     text-transform: uppercase;
 }
+/*END OF HEADER SECTION*/
 
-.lang {
-    float: right;
-    margin-top: 10px;
-    padding: 5px;
-    text-decoration: none;
-}
-
-.toplinks {
-    padding: 5px;
-    text-decoration: none;
-}
-
-#navigation {
+/*NAVIGATION*/
+.menu
+{
     background-color: #99ccff;
-    border: 1px dotted black;
+    font-size: 13px;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    width: 986px;
+    padding: 0 0 0 14px;
+    margin: 0 auto;
+    height: 30px;
+}
+
+nav
+{
+    display: block;
+}
+
+.menu ul li
+{
+    padding: 5px 0;
+}
+
+.MenuBar
+{
+    margin: 0;
+    background-color: #99ccff;
+    margin-top: -2px;
+    height: 30px;
+    padding: 10px 0 0 0;
+    width: 1000px;
+}
+.StaticMenuItem
+{
+    font-size: 13px;
+    font-family: "Segoe UI" , Sans-Serif;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+.StaticMenuItemStyle
+{
+    color: #000;
+}
+
+
+.StaticHoverStyle
+{
+    color: #fff;
+}
+
+.StaticSelectedStyle
+{
+    color: #fff;
+}
+
+.DynamicMenuItemStyle
+{
+    background-color: #99ccff;
+    font-size: 14px;
+    font-family: "Segoe UI" , Sans-Serif;
+    margin: auto;
+    text-align: left;
+    color: #000;
+    padding: 8px 5px;
+}
+
+.DynamicHoverStyle
+{
+    color: #fff;
+}
+
+/*END OF NAVIGATION*/
+
+
+/*BODY*/
+#main_body
+{
+    background-color: #efeeef;
     clear: both;
-    margin: 0 auto;
     width: 1000px;
+    margin: 0 auto;
+}
+
+.main-content
+{
+    clear: both;
+    width: 98%; /*620px*/
+    float: left;
+    padding: 5px;
+    margin: 5px 0 10px 0; /*border:1px solid blue;*/
+}
+
+.sidebar
+{
+    width: 350px;
+    float: left;
+    margin: 5px 0 0 25px; /*border:1px solid green;*/
+}
+
+.sidebar-content
+{
+    height: 85px;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Segoe UI' , sans-serif;
+    margin-bottom: 4px;
+    padding: 2px;
+}
+
+.first
+{
+    background-color: #660099;
+}
+
+.second
+{
+    background-color: #cc3300;
+}
+
+.third
+{
+    background-color: #00c;
 }
 
 
-#content {
-    background-color: #fff;
-    border: 1px dashed #f00;
-    margin: 0 auto;
-    width: 1000px;
+.sidebar-img
+{
+    margin-right: 5px;
+    float: left;
 }
 
+.search, .navi
+{
+    margin: 5px;
+}
+.news
+{
+    margin-bottom: 10px;
+}
 
-#menu_footer, #menu_footer2 { line-height: 140%; }
+hr
+{
+    border: 0px;
+    border-top: 1px dashed #808080;
+    width: 250px;
+}
+#quicklinks
+{
+    padding-right: 10px;
+}
 
-#footer { /*height: 120px;*/ }
-
-.float-left { float: left; }
-
-.float-right { float: right; }
-
-.footer-menu-left { float: left; }
-
-.footer-menu { text-decoration: none; }
-
-.footer-menu, .footer-menu-left {
-    font: 14px normal verdana;
-    margin: 0 8px;
+.navi a
+{
     text-decoration: none;
 }
+.clear
+{
+    clear: both;
+}
 
-.social {
-    margin: 50px 120px 0 120px;
+/*Quicklinks style*/
+.image-wrapper
+{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 190px;
+    height: 150px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.transbox
+{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.quick-link
+{
+    margin: 0; /*padding: 0 50px;*/
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    text-decoration: none;
+}
+.right-margin
+{
+    margin-right: 22px;
+    margin-left: 3px;
+}
+.left-margin
+{
+    margin-left: 22px;
+}
+
+/*END OF BODY*/
+
+
+/*FOOTER*/
+footer
+{
+    clear: both;
+    background-color: #3399ff;
+    height: 145px;
+}
+
+.level1
+{
+    clear: both;
+    margin: 0;
+}
+
+#footerMenu
+{
+    clear: both;
+}
+
+footer .links
+{
+    float: left;
+    padding-right: 12px;
+    margin-top: 5px; /*margin: -16px auto 0 auto;*/
+}
+
+.social
+{
+    margin: 20px 50px 0 50px;
     padding: 5px;
 }
 
-#billing_container {
+.privacy
+{
+    text-align: center;
+    color: #000;
+    line-height: 28px;
+}
+/*END OF FOOTER*/
+
+
+#billing_container
+{
     padding: 20px;
 }
 
-.billing {
+.billing
+{
     width: 100%;
     border-collapse: collapse;
 }
 
-.billing th, .billing td {
+.billing th, .billing td
+{
     border: 1px solid black;
 }
 
-.billing label {
+.billing label
+{
     font-weight: bold;
 }
 
-#billing_content th {
+#billing_content th
+{
     text-align: left;
 }
 
-.billing td, .billing th {
+.billing td, .billing th
+{
     padding: 3px;
 }
 
-#billing_content #subtotal,#billing_content #tax,#billing_content #total {
+#billing_content #subtotal, #billing_content #tax, #billing_content #total
+{
     text-align: right;
     font-weight: bold;
+}
+
+#main_content
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px dotted green;
+}
+
+#main_content #main_header
+{
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    padding-bottom: 20px;
+}
+
+#main_content #main_sub_header
+{
+    font-size: 14px;
+    font-weight: bold;
+    color: orange;
+    padding-bottom: 15px;
+}
+#main_content #main_body
+{
+    background: none;
+    width: 100%;
+}
+
+#main_content #main_body p
+{
+    padding-bottom: 10px;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.login_inputs
+{
+    padding-bottom: 10px;
+}
+
+.volunteer_list_container 
+{
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.volunteer_list {
+    width: 300px;
+}
+
+
+.volunteer_list td, .volunteer_list th
+{
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+.volunteer_list th
+{
+    font-weight: bold;
+    background: #99ccff;
+    border-bottom: 3px do black;
 }

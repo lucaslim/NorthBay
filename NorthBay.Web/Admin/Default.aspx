@@ -1,15 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NorthBay.Web.Admin.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs" Inherits="NorthBay.Web.Admin.Default" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:Button runat="server" ID="btn_logout" Text="Log Out" OnClick="ButtonClick" />
-    </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Button runat="server" ID="btn_logout" Text="Log Out" OnClick="ButtonClick" />
+</asp:Content>

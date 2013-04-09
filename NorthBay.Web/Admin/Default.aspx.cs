@@ -11,11 +11,13 @@ namespace NorthBay.Web.Admin
 
         }
 
+
+
         protected void ButtonClick(object sender, EventArgs e)
         {
             UserClass objUser = new UserClass();
 
-            if(objUser.Logout())
+            if (objUser.Logout())
                 PageHelper.Redirect("~/");
         }
     }
