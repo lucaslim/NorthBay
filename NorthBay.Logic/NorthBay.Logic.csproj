@@ -55,6 +55,7 @@
     <Compile Include="Room\EquipmentClass.cs" />
     <Compile Include="Room\RoomBillingClass.cs" />
     <Compile Include="Room\RoomBillingEquipmentClass.cs" />
+    <Compile Include="Room\RoomBillingInvoiceClass.cs" />
     <Compile Include="Room\RoomClass.cs" />
     <Compile Include="User\UserBillingAddressClass.cs" />
     <Compile Include="User\UserBillingAddressViewClass.cs" />

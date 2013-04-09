@@ -1,7 +1,12 @@
-﻿using System.Data.Linq;
+﻿using System;
+using System.Data.Linq;
 using System.Linq;
+using System.Text;
 using System.Transactions;
 using NorthBay.Framework.Database;
+using NorthBay.Logic.User;
+using NorthBay.Utility;
+using NorthBay.Utility.Configuration;
 
 namespace NorthBay.Logic.Room
 {
@@ -29,7 +34,7 @@ namespace NorthBay.Logic.Room
                     //Add new Data
                     if (!objRoomBillingEquipment.InsertAll(roomBillingEquipment))
                         return false;
-                    
+
                     transactionScope.Complete();
 
                     return true;
@@ -44,7 +49,9 @@ namespace NorthBay.Logic.Room
             {
                 DataLoadOptions options = new DataLoadOptions();
                 options.LoadWith<RoomBilling>(x => x.RoomBillingEquipments);
+                options.LoadWith<RoomBillingEquipment>(x => x.Equipment);
                 options.LoadWith<RoomBilling>(x => x.User);
+                options.LoadWith<RoomBilling>(x => x.Room);
 
                 context.LoadOptions = options;
 
@@ -74,6 +81,95 @@ namespace NorthBay.Logic.Room
 
                 return roomBilling.RoomBillingId;
             }
+        }
+
+        public bool CheckOutRoom(int id, int addressId, out int checkOutId)
+        {
+            checkOutId = 0;
+
+            var roomBilling = SelectByRoomId(id);
+            var billingAddress = new UserBillingAddressClass().Select(addressId);
+
+
+
+            var subTotal = CalculateSubTotal(roomBilling);
+
+            var roomBillingInvoice = new RoomBillingInvoice
+                                         {
+                                             Name = roomBilling.User.Name,
+                                             BillingAddress = GetFormattedBillingAddress(billingAddress),
+                                             BillingContent = GetFormattedBillingContent(roomBilling),
+                                             BillingDate = DateTime.Now,
+                                             SubTotal = subTotal,
+                                             Tax = WebConfigApplicationSettings.Tax,
+                                             Total = subTotal + (subTotal * WebConfigApplicationSettings.Tax),
+                                             UserId = roomBilling.UserId
+                                         };
+
+            return new RoomBillingInvoiceClass().Insert(roomBillingInvoice);
+        }
+
+        private decimal? CalculateSubTotal(RoomBilling roomBilling)
+        {
+            var roomPrice = roomBilling.Room.Price;
+            if (roomPrice == null)
+                return 0;
+
+            //Add Room Price
+            decimal price = (decimal)roomPrice;
+
+            //Add additional Equipment Price
+            foreach (var billingEquipment in roomBilling.RoomBillingEquipments)
+            {
+                var equipmentPrice = billingEquipment.Equipment.Price;
+
+                if (equipmentPrice != null)
+                    price += (decimal)equipmentPrice;
+            }
+
+            return price;
+        }
+
+        private string GetFormattedBillingContent(RoomBilling roomBilling)
+        {
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("<tr>");
+            stringBuilder.Append("<th>Description</th><th>Quantity</th><th>Price</th>");
+            stringBuilder.Append("</tr>");
+            foreach (RoomBillingEquipment equipment in roomBilling.RoomBillingEquipments)
+            {
+                stringBuilder.Append("<tr>");
+                stringBuilder.Append("<td>" + equipment.Equipment.Description + "</td><td>" + equipment.Quantity + "</td><td>" + GetEquipmentPrice(equipment.Equipment.Price, equipment.Quantity) + "</td>");
+                stringBuilder.Append("</tr>");
+            }
+
+
+
+            return stringBuilder.ToString();
+        }
+
+        private string GetEquipmentPrice(decimal? price, int? quantity)
+        {
+            if (price == null || quantity == null)
+                return "-";
+
+            return string.Format("${0}", (price * TextHelper.ToDecimal(quantity)));
+        }
+
+        private static string GetFormattedBillingAddress(UserBillingAddress billingAddress)
+        {
+            var stringBuilder = new StringBuilder(string.Format("{0}<br />", billingAddress.FullName));
+
+            stringBuilder.AppendFormat("{0}<br />", billingAddress.AddressLine1);
+
+            if (!string.IsNullOrEmpty(billingAddress.AddressLine2))
+                stringBuilder.AppendFormat("{0}<br />", billingAddress.AddressLine2);
+
+            stringBuilder.AppendFormat("{0}, {1} {2}<br/>", billingAddress.City, billingAddress.State, billingAddress.PostalCode);
+            stringBuilder.AppendFormat("{0}", billingAddress.Country.Name);
+
+            return stringBuilder.ToString();
         }
     }
 }

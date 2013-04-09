@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Transactions;
 using System.Web.UI.WebControls;
 using NorthBay.Framework.Database;
+using NorthBay.Logic.Country;
 using NorthBay.Logic.Room;
 using NorthBay.Logic.User;
 using NorthBay.Utility;
@@ -15,6 +17,7 @@ namespace NorthBay.Web.Admin.Room
         private readonly RoomClass _objRoom = new RoomClass();
         private readonly EquipmentClass _objEquipment = new EquipmentClass();
         private readonly UserClass _objUser = new UserClass();
+        private readonly UserBillingAddressClass _objUserBillingAddress = new UserBillingAddressClass();
         private readonly RoomBillingClass _objRoomBilling = new RoomBillingClass();
         private readonly RoomBillingEquipmentClass _objRoomBillingEquipment = new RoomBillingEquipmentClass();
 
@@ -156,9 +159,112 @@ namespace NorthBay.Web.Admin.Room
 
                 case "checkout":
                     {
+                        var userId = TextHelper.ToInteger(ddl_patients.SelectedValue);
 
+                        LoadUserAddresses(userId);
+
+                        pnl_address.Visible = true;
+
+                        up_address.Update();
+
+                        ////Get room billing Id
+                        //var roomBillingId = _objRoomBilling.GetIdByRoomId(Id);
+
+                        ////return if room billing id does not exist
+                        //if (roomBillingId <= 0)
+                        //    return;
+
+                        //if(_objRoomBilling.CheckOutRoom(Id))
+                        //{
+                        //    Response.Redirect("~/Admin/Room");
+                        //}
                     }
                     break;
+
+                case "newbill":
+                    {
+                        using (var transactionScope = new TransactionScope())
+                        {
+                            var userId = TextHelper.ToInteger(ddl_patients.SelectedValue);
+
+                            if (userId <= 0)
+                                return;
+
+                            var userBillingAddress = new UserBillingAddress
+                            {
+                                FullName = txt_fullname.Text,
+                                AddressLine1 = txt_address1.Text,
+                                AddressLine2 = txt_address2.Text,
+                                City = txt_city.Text,
+                                State = txt_state.Text,
+                                CountryId = TextHelper.ToInteger(ddl_country.SelectedValue),
+                                PostalCode = txt_postalcode.Text,
+                                PhoneNumber = txt_phone.Text,
+                                UserId = (int)userId //Get from session
+                            };
+
+                            int addressId;
+
+                            if (!_objUserBillingAddress.Insert(userBillingAddress, out addressId))
+                                return;
+
+                            //Get room billing Id
+                            var roomBillingId = _objRoomBilling.GetIdByRoomId(Id);
+
+                            //return if room billing id does not exist
+                            if (roomBillingId <= 0)
+                                return;
+
+                            int checkOutId;
+
+                            if (!_objRoomBilling.CheckOutRoom(Id, addressId, out checkOutId))
+                                return;
+
+                            transactionScope.Complete();
+
+                            Response.Redirect(string.Format("ViewBill.aspx?id={0}", checkOutId));
+                        }
+                       
+                    }
+                    break;
+
+                case "existingbill":
+                    {
+                        var addressId = TextHelper.ToInteger(button.CommandArgument);
+
+                        if (addressId == null)
+                            return;
+
+                        int checkOutId;
+
+                        if (!_objRoomBilling.CheckOutRoom(Id, (int)addressId, out checkOutId))
+                            return;
+
+                        Response.Redirect(string.Format("ViewBill.aspx?id={0}", checkOutId));
+                    }
+                    break;
+            }
+        }
+
+        private void LoadUserAddresses(int? userId)
+        {
+            if (userId == null)
+                return;
+
+            //Fill Drop down list with country
+            SetCountry();
+
+            var list = new UserBillingAddressViewClass().SelectByUserId((int)userId);
+
+            if (list.Count == 0)
+            {
+                lbl_output.Text = "There are currently no billing address attached to this user account.";
+                vgp_address.Visible = true;
+            }
+            else
+            {
+                dl_address.DataSource = list;
+                dl_address.DataBind();
             }
         }
 
@@ -182,8 +288,8 @@ namespace NorthBay.Web.Admin.Room
                     return false;
 
                 transactionScope.Complete();
-            
-                return true; 
+
+                return true;
             }
         }
 
@@ -233,6 +339,16 @@ namespace NorthBay.Web.Admin.Room
             var quantity = TextHelper.ToInteger(textbox.Text);
 
             return quantity == null || quantity <= 0 ? 0 : (int)quantity;
+        }
+
+
+
+        private void SetCountry()
+        {
+            ddl_country.DataSource = new CountryClass().SelectAll();
+            ddl_country.DataTextField = "PrintableName";
+            ddl_country.DataValueField = "CountryId";
+            ddl_country.DataBind();
         }
     }
 }

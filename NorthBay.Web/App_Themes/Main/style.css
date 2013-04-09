@@ -3,7 +3,12 @@
     padding: 0;
 }
 
-body { margin: 0 auto; }
+body 
+{
+    font-family: Arial;
+    font-size: 13px;
+     margin: 0 auto;
+}
 
 #header, #footer { background-color: #3399ff; }
 
@@ -85,4 +90,34 @@ body { margin: 0 auto; }
 .social {
     margin: 50px 120px 0 120px;
     padding: 5px;
+}
+
+#billing_container {
+    padding: 20px;
+}
+
+.billing {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.billing th, .billing td {
+    border: 1px solid black;
+}
+
+.billing label {
+    font-weight: bold;
+}
+
+#billing_content th {
+    text-align: left;
+}
+
+.billing td, .billing th {
+    padding: 3px;
+}
+
+#billing_content #subtotal,#billing_content #tax,#billing_content #total {
+    text-align: right;
+    font-weight: bold;
 }

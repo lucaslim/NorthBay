@@ -53,6 +53,7 @@
     <Content Include="Admin\Gift\Default.aspx" />
     <Content Include="Admin\Gift\Edit.aspx" />
     <Content Include="Admin\Room\Assign.aspx" />
+    <Content Include="Admin\Room\ViewBill.aspx" />
     <Content Include="Admin\Room\Default.aspx" />
     <Content Include="Admin\Volunteer\Add.aspx" />
     <Content Include="Admin\Volunteer\Default.aspx" />
@@ -81,9 +82,9 @@
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="Script\jquery.js" />
-    <Content Include="Script\jqueryui.js" />
-    <Content Include="Script\global.js" />
+    <Content Include="obj\Script\jquery.js" />
+    <Content Include="obj\Script\jqueryui.js" />
+    <Content Include="obj\Script\global.js" />
     <Content Include="Volunteer\Default.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -94,6 +95,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Default.aspx.cs">
@@ -130,6 +132,13 @@
     </Compile>
     <Compile Include="Admin\Room\Assign.aspx.designer.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Room\ViewBill.aspx.cs">
+      <DependentUpon>ViewBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Room\ViewBill.aspx.designer.cs">
+      <DependentUpon>ViewBill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Room\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -224,6 +233,13 @@
     </Compile>
     <Compile Include="Volunteer\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

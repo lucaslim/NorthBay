@@ -33,6 +33,22 @@ namespace NorthBay.Framework.Validation
             //Set ValidationHelper Type
             switch (validationType)
             {
+                case ValidationType.Numbers:
+                    regularExpression = RegularExpression.NUMBERS;
+                    errorMessage = "Value must only contain numbers";
+                    break;
+                case ValidationType.AlphaNumeric:
+                    regularExpression = RegularExpression.ALPHANUMERIC;
+                    errorMessage = "Value must only contain character and alphabets";
+                    break;
+                case ValidationType.Characters:
+                    regularExpression = RegularExpression.CHARACTERS;
+                    errorMessage = "Value must only contain characters";
+                    break;
+                case ValidationType.Decimals:
+                    regularExpression = RegularExpression.DECIMAL;
+                    errorMessage = "Value is not the right format";
+                    break;
                 case ValidationType.Name:
                     regularExpression = RegularExpression.NAME;
                     errorMessage = "Name is not valid";

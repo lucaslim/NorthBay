@@ -46,6 +46,7 @@
       <Association Name="User_UserBillingAddress" Member="UserBillingAddresses" ThisKey="UserId" OtherKey="UserId" Type="UserBillingAddress" />
       <Association Name="User_Order" Member="Orders" ThisKey="UserId" OtherKey="UserId" Type="Order" />
       <Association Name="User_RoomBilling" Member="RoomBillings" ThisKey="UserId" OtherKey="UserId" Type="RoomBilling" />
+      <Association Name="User_RoomBillingInvoice" Member="RoomBillingInvoices" ThisKey="UserId" OtherKey="UserId" Type="RoomBillingInvoice" />
       <Association Name="UserRole_User" Member="UserRole" ThisKey="UserRoleId" OtherKey="UserRoleId" Type="UserRole" IsForeignKey="true" />
     </Type>
   </Table>
@@ -195,6 +196,20 @@
       <Column Name="EquipmentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Equipment_RoomBillingEquipment" Member="Equipment" ThisKey="EquipmentId" OtherKey="EquipmentId" Type="Equipment" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="RoomBilling_RoomBillingEquipment" Member="RoomBilling" ThisKey="RoomBillingId" OtherKey="RoomBillingId" Type="RoomBilling" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomBillingInvoice" Member="RoomBillingInvoices">
+    <Type Name="RoomBillingInvoice">
+      <Column Name="RoomBillingInvoiceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BillingAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BillingContent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SubTotal" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BillingDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_RoomBillingInvoice" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

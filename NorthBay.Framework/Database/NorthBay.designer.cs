@@ -78,6 +78,9 @@ namespace NorthBay.Framework.Database
     partial void InsertRoomBillingEquipment(RoomBillingEquipment instance);
     partial void UpdateRoomBillingEquipment(RoomBillingEquipment instance);
     partial void DeleteRoomBillingEquipment(RoomBillingEquipment instance);
+    partial void InsertRoomBillingInvoice(RoomBillingInvoice instance);
+    partial void UpdateRoomBillingInvoice(RoomBillingInvoice instance);
+    partial void DeleteRoomBillingInvoice(RoomBillingInvoice instance);
     #endregion
 		
 		public NorthBayDataContext() : 
@@ -251,6 +254,14 @@ namespace NorthBay.Framework.Database
 			get
 			{
 				return this.GetTable<RoomBillingEquipment>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RoomBillingInvoice> RoomBillingInvoices
+		{
+			get
+			{
+				return this.GetTable<RoomBillingInvoice>();
 			}
 		}
 	}
@@ -915,6 +926,8 @@ namespace NorthBay.Framework.Database
 		
 		private EntitySet<RoomBilling> _RoomBillings;
 		
+		private EntitySet<RoomBillingInvoice> _RoomBillingInvoices;
+		
 		private EntityRef<UserRole> _UserRole;
 		
     #region Extensibility Method Definitions
@@ -942,6 +955,7 @@ namespace NorthBay.Framework.Database
 			this._UserBillingAddresses = new EntitySet<UserBillingAddress>(new Action<UserBillingAddress>(this.attach_UserBillingAddresses), new Action<UserBillingAddress>(this.detach_UserBillingAddresses));
 			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			this._RoomBillings = new EntitySet<RoomBilling>(new Action<RoomBilling>(this.attach_RoomBillings), new Action<RoomBilling>(this.detach_RoomBillings));
+			this._RoomBillingInvoices = new EntitySet<RoomBillingInvoice>(new Action<RoomBillingInvoice>(this.attach_RoomBillingInvoices), new Action<RoomBillingInvoice>(this.detach_RoomBillingInvoices));
 			this._UserRole = default(EntityRef<UserRole>);
 			OnCreated();
 		}
@@ -1129,6 +1143,19 @@ namespace NorthBay.Framework.Database
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_RoomBillingInvoice", Storage="_RoomBillingInvoices", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<RoomBillingInvoice> RoomBillingInvoices
+		{
+			get
+			{
+				return this._RoomBillingInvoices;
+			}
+			set
+			{
+				this._RoomBillingInvoices.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserRole_User", Storage="_UserRole", ThisKey="UserRoleId", OtherKey="UserRoleId", IsForeignKey=true)]
 		public UserRole UserRole
 		{
@@ -1214,6 +1241,18 @@ namespace NorthBay.Framework.Database
 		}
 		
 		private void detach_RoomBillings(RoomBilling entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_RoomBillingInvoices(RoomBillingInvoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_RoomBillingInvoices(RoomBillingInvoice entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -4057,6 +4096,301 @@ namespace NorthBay.Framework.Database
 						this._RoomBillingId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("RoomBilling");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomBillingInvoice")]
+	public partial class RoomBillingInvoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RoomBillingInvoiceId;
+		
+		private string _Name;
+		
+		private string _BillingAddress;
+		
+		private string _BillingContent;
+		
+		private System.Nullable<decimal> _SubTotal;
+		
+		private System.Nullable<decimal> _Tax;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private System.Nullable<int> _UserId;
+		
+		private System.Nullable<System.DateTime> _BillingDate;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoomBillingInvoiceIdChanging(int value);
+    partial void OnRoomBillingInvoiceIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnBillingAddressChanging(string value);
+    partial void OnBillingAddressChanged();
+    partial void OnBillingContentChanging(string value);
+    partial void OnBillingContentChanged();
+    partial void OnSubTotalChanging(System.Nullable<decimal> value);
+    partial void OnSubTotalChanged();
+    partial void OnTaxChanging(System.Nullable<decimal> value);
+    partial void OnTaxChanged();
+    partial void OnTotalChanging(System.Nullable<decimal> value);
+    partial void OnTotalChanged();
+    partial void OnUserIdChanging(System.Nullable<int> value);
+    partial void OnUserIdChanged();
+    partial void OnBillingDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnBillingDateChanged();
+    #endregion
+		
+		public RoomBillingInvoice()
+		{
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomBillingInvoiceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RoomBillingInvoiceId
+		{
+			get
+			{
+				return this._RoomBillingInvoiceId;
+			}
+			set
+			{
+				if ((this._RoomBillingInvoiceId != value))
+				{
+					this.OnRoomBillingInvoiceIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoomBillingInvoiceId = value;
+					this.SendPropertyChanged("RoomBillingInvoiceId");
+					this.OnRoomBillingInvoiceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingAddress", DbType="NVarChar(MAX)")]
+		public string BillingAddress
+		{
+			get
+			{
+				return this._BillingAddress;
+			}
+			set
+			{
+				if ((this._BillingAddress != value))
+				{
+					this.OnBillingAddressChanging(value);
+					this.SendPropertyChanging();
+					this._BillingAddress = value;
+					this.SendPropertyChanged("BillingAddress");
+					this.OnBillingAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingContent", DbType="NVarChar(MAX)")]
+		public string BillingContent
+		{
+			get
+			{
+				return this._BillingContent;
+			}
+			set
+			{
+				if ((this._BillingContent != value))
+				{
+					this.OnBillingContentChanging(value);
+					this.SendPropertyChanging();
+					this._BillingContent = value;
+					this.SendPropertyChanged("BillingContent");
+					this.OnBillingContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubTotal", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> SubTotal
+		{
+			get
+			{
+				return this._SubTotal;
+			}
+			set
+			{
+				if ((this._SubTotal != value))
+				{
+					this.OnSubTotalChanging(value);
+					this.SendPropertyChanging();
+					this._SubTotal = value;
+					this.SendPropertyChanged("SubTotal");
+					this.OnSubTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tax", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Tax
+		{
+			get
+			{
+				return this._Tax;
+			}
+			set
+			{
+				if ((this._Tax != value))
+				{
+					this.OnTaxChanging(value);
+					this.SendPropertyChanging();
+					this._Tax = value;
+					this.SendPropertyChanged("Tax");
+					this.OnTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BillingDate
+		{
+			get
+			{
+				return this._BillingDate;
+			}
+			set
+			{
+				if ((this._BillingDate != value))
+				{
+					this.OnBillingDateChanging(value);
+					this.SendPropertyChanging();
+					this._BillingDate = value;
+					this.SendPropertyChanged("BillingDate");
+					this.OnBillingDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_RoomBillingInvoice", Storage="_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.RoomBillingInvoices.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.RoomBillingInvoices.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
