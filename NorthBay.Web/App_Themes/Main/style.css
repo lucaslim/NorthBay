@@ -380,11 +380,13 @@ footer .links
 .billing label
 {
     font-weight: bold;
+    padding-bottom: 3px;
 }
 
 #billing_content th
 {
     text-align: left;
+    font-weight: bold;
 }
 
 .billing td, .billing th
@@ -402,7 +404,6 @@ footer .links
 {
     width: 100%;
     padding: 10px;
-    border: 1px dotted green;
 }
 
 #main_content #main_header
@@ -436,32 +437,82 @@ footer .links
     font-weight: bold;
 }
 
-.login_inputs
+.input_label
 {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
-.volunteer_list_container 
+.input_control
 {
-    padding-right: 15px;
+    padding-bottom: 8px;
+}
+
+.volunteer_list_container
+{
     padding-bottom: 15px;
+    padding-right: 15px;
 }
 
-.volunteer_list {
+.volunteer_list
+{
     width: 300px;
 }
 
-
 .volunteer_list td, .volunteer_list th
 {
-    border: 1px solid black;
-    text-align: center;
+    border: 1px solid #000;
     padding: 10px;
+    text-align: center;
 }
 
-.volunteer_list th
+.gridview_control
 {
-    font-weight: bold;
-    background: #99ccff;
-    border-bottom: 3px do black;
+    width: 100%;
+}
+
+.gridview_control td, .gridview_control th
+{
+    border: 1px solid #000;
+    padding: 10px 5px;
+}
+
+.gridview_control table td
+{
+    border: none;
+}
+
+.volunteer_list th, .gridview_control th
+{
+    background-color: #99ccff;
+    border-bottom: 3px double #000;
+    font-weight: 700;
+}
+
+.gridview_control th a:link, .gridview_control th a:visited, .gridview_control th a:active
+{
+    color: #333;
+    text-decoration: none;
+}
+
+.gridview_control th a:hover
+{
+    text-decoration: underline;
+}
+
+.billing_address td
+{
+    padding-bottom: 4px;
+}
+
+.billing_address_container
+{
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.line_long {
+    width: 100%;
+    background-color: #333;
+    border-style: solid;
+    border: 1px solid #333;
 }

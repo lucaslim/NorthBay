@@ -78,8 +78,7 @@ namespace NorthBay.Web.Admin.Volunteer
             }
 
             //Calling Sort All Function
-            gridView.DataSource = _objVolunteerView.SortAll(SortExpression, SortDirection);
-            gridView.DataBind();
+            GridView_DataBind();
         }
 
 

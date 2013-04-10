@@ -76,15 +76,6 @@ namespace NorthBay.Web.Admin.Room {
         protected global::System.Web.UI.WebControls.Button btn_checkout;
         
         /// <summary>
-        /// up_address control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel up_address;
-        
-        /// <summary>
         /// pnl_address control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace NorthBay.Web.Admin.Room {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnl_address;
+        
+        /// <summary>
+        /// up_address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel up_address;
         
         /// <summary>
         /// dl_address control.
@@ -119,15 +119,6 @@ namespace NorthBay.Web.Admin.Room {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::NorthBay.Controls.ValidationGroupPanel vgp_address;
-        
-        /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
         /// txt_fullname control.
@@ -209,5 +200,14 @@ namespace NorthBay.Web.Admin.Room {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_new_bill;
+        
+        /// <summary>
+        /// btn_cancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_cancel;
     }
 }

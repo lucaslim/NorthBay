@@ -6,11 +6,25 @@ namespace NorthBay.Web.Admin.Room
 {
     public partial class ViewBill : Basepage
     {
+
+        private static int Id
+        {
+            get
+            {
+                var @id = TextHelper.ToInteger(QueryHelper.GetQueryString("id"));
+
+                if (@id == null)
+                    return -1;
+
+                return (int)@id;
+            }
+        }
+
         private readonly RoomBillingInvoiceClass _objRoomBillingInvoice = new RoomBillingInvoiceClass();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var roomBillingInvoice = _objRoomBillingInvoice.Select(1);
+            var roomBillingInvoice = _objRoomBillingInvoice.Select(Id);
 
             //Set billing address
             lit_address.Text = roomBillingInvoice.BillingAddress;

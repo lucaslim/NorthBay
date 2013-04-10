@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Transactions;
@@ -161,23 +160,24 @@ namespace NorthBay.Web.Admin.Room
                     {
                         var userId = TextHelper.ToInteger(ddl_patients.SelectedValue);
 
+                        //Load user billing address
                         LoadUserAddresses(userId);
+
+                        //Disable additional equipments
+                        SetAdditionalEquipmentTextbox(false);
+
+                        //Disable Checkout button
+                        btn_checkout.Enabled = false;
+
+                        //Disable Update Button
+                        btn_update.Enabled = false;
+
+                        //Disable dropdownlist
+                        ddl_patients.Enabled = false;
 
                         pnl_address.Visible = true;
 
                         up_address.Update();
-
-                        ////Get room billing Id
-                        //var roomBillingId = _objRoomBilling.GetIdByRoomId(Id);
-
-                        ////return if room billing id does not exist
-                        //if (roomBillingId <= 0)
-                        //    return;
-
-                        //if(_objRoomBilling.CheckOutRoom(Id))
-                        //{
-                        //    Response.Redirect("~/Admin/Room");
-                        //}
                     }
                     break;
 
@@ -187,7 +187,7 @@ namespace NorthBay.Web.Admin.Room
                         {
                             var userId = TextHelper.ToInteger(ddl_patients.SelectedValue);
 
-                            if (userId <= 0)
+                            if (userId == null || userId <= 0)
                                 return;
 
                             var userBillingAddress = new UserBillingAddress
@@ -200,7 +200,7 @@ namespace NorthBay.Web.Admin.Room
                                 CountryId = TextHelper.ToInteger(ddl_country.SelectedValue),
                                 PostalCode = txt_postalcode.Text,
                                 PhoneNumber = txt_phone.Text,
-                                UserId = (int)userId //Get from session
+                                UserId = (int)userId
                             };
 
                             int addressId;
@@ -224,7 +224,7 @@ namespace NorthBay.Web.Admin.Room
 
                             Response.Redirect(string.Format("ViewBill.aspx?id={0}", checkOutId));
                         }
-                       
+
                     }
                     break;
 
@@ -243,6 +243,36 @@ namespace NorthBay.Web.Admin.Room
                         Response.Redirect(string.Format("ViewBill.aspx?id={0}", checkOutId));
                     }
                     break;
+
+                case "cancel":
+
+                        //Disable additional equipments
+                        SetAdditionalEquipmentTextbox(true);
+
+                        //Disable Checkout button
+                        btn_checkout.Enabled = true;
+
+                        //Disable Update Button
+                        btn_update.Enabled = true;
+
+                        //Disable dropdownlist
+                        ddl_patients.Enabled = true;
+
+                        pnl_address.Visible = false;
+
+                        up_address.Update();
+                    break;
+            }
+        }
+
+        private void SetAdditionalEquipmentTextbox(bool isEnabled)
+        {
+            foreach (var textbox in
+                    (from RepeaterItem item in
+                         rpt_equipments.Items
+                     select item.FindControl("txt_quantity")).OfType<TextBox>())
+            {
+                textbox.Enabled = isEnabled;
             }
         }
 

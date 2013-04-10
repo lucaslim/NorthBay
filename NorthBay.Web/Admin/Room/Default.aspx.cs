@@ -10,6 +10,33 @@ namespace NorthBay.Web.Admin.Room
         private readonly RoomClass _objRoom = new RoomClass();
         private readonly RoomBillingClass _objRoomBilling = new RoomBillingClass();
 
+        /// <summary>
+        /// Using viewstate to store the sort direction
+        /// </summary>
+        private SortDirection SortDirection
+        {
+            get
+            {
+                if (ViewState["SortDirection"] == null)
+                    ViewState["SortDirection"] = SortDirection.Ascending;
+
+                return (SortDirection)ViewState["SortDirection"];
+            }
+            set { ViewState["SortDirection"] = value; }
+        }
+
+        /// <summary>
+        /// Using Viewstate to store the sort expression
+        /// </summary>
+        private string SortExpression
+        {
+            get
+            {
+                return ViewState["SortExpression"] as string ?? "Building";
+            }
+            set { ViewState["SortExpression"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //Load javascript just for this page
@@ -24,13 +51,40 @@ namespace NorthBay.Web.Admin.Room
 
         private void GridView_DataBind()
         {
-            gridView.DataSource = _objRoom.SelectAll();
+            gridView.DataSource = _objRoom.SortAll(SortExpression, SortDirection);
             gridView.DataBind();
+        }
+
+        protected void GridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SortExpression))
+                SortExpression = e.SortExpression;
+            else
+            {
+                //If sorting the same column
+                if (SortExpression == e.SortExpression)
+                {
+                    //Set Sort Direction
+                    SortDirection = SortDirection == SortDirection.Ascending
+                                        ? SortDirection.Descending
+                                        : SortDirection.Ascending;
+                }
+                else
+                {
+                    SortExpression = e.SortExpression;
+                    SortDirection = e.SortDirection;
+                }
+            }
+
+            //Calling Sort All Function
+            GridView_DataBind();
         }
 
         protected void GridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            gridView.PageIndex = e.NewPageIndex;
 
+            GridView_DataBind();
         }
 
         protected void Button_Click(object sender, EventArgs e)
@@ -60,11 +114,6 @@ namespace NorthBay.Web.Admin.Room
                     }
                     break;
             }
-        }
-
-        protected void GridView_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
         }
 
         protected void GridView_RowCreated(object sender, GridViewRowEventArgs e)

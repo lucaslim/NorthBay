@@ -1,74 +1,82 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true"
     CodeBehind="Assign.aspx.cs" Inherits="NorthBay.Web.Admin.Room.Assign" %>
 
+<%@ Import Namespace="NorthBay.Utility" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Table runat="server">
-        <asp:TableRow>
-            <asp:TableCell>
-                Room:
-                <asp:Label runat="server" ID="lbl_room"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
-                Building:
-                <asp:Label runat="server" ID="lbl_building"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
-                Level:
-                <asp:Label runat="server" ID="lbl_level"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
-                <h3>
-                    Additional Equipments:</h3>
-                <br />
-                <asp:Repeater runat="server" ID="rpt_equipments">
-                    <HeaderTemplate>
-                        <table>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tr>
-                            <td>
-                                <%# Eval("Description") %><asp:HiddenField runat="server" ID="hf_id" Value='<%# Eval("EquipmentId") %>' />
-                            </td>
-                            <td>
-                                <custom:TextBox runat="server" ID="txt_quantity"></custom:TextBox>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                    <FooterTemplate>
-                        </table>
-                    </FooterTemplate>
-                </asp:Repeater>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
-                Assign to:
-                <custom:DropDownList runat="server" ID="ddl_patients" />
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Button runat="server" ID="btn_update" Text="Update" CommandName="update" OnClick="Button_Click" />
+    <div id="main_content">
+        <div id="main_header">
+            Room Availability
+        </div>
+        <div id="main_body">
+            <custom:ValidationGroupPanel runat="server" ValidationGroup="room">
+                <div class="input_label bold">
+                    Room:
+                </div>
+                <div class="input_control">
+                    <asp:Label runat="server" ID="lbl_room"></asp:Label>
+                </div>
+                <div class="input_label bold">
+                    Building:
+                </div>
+                <div class="input_control">
+                    <asp:Label runat="server" ID="lbl_building"></asp:Label>
+                </div>
+                <div class="input_label bold">
+                    Level:
+                </div>
+                <div class="input_control">
+                    <asp:Label runat="server" ID="lbl_level"></asp:Label>
+                </div>
+                <div class="input_label bold">
+                    Additional Equipments:
+                </div>
+                <div class="input_control">
+                    <asp:Repeater runat="server" ID="rpt_equipments">
+                        <HeaderTemplate>
+                            <table>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <tr>
+                                <td style="padding-right: 10px;">
+                                    <%# Eval("Description") %><asp:HiddenField runat="server" ID="hf_id" Value='<%# Eval("EquipmentId") %>' />
+                                </td>
+                                <td>
+                                    :
+                                    <custom:TextBox runat="server" ID="txt_quantity" Width="15px" ValidType="Numbers"
+                                        ValidationGroup="room"></custom:TextBox>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="input_label bold">
+                    Assign to:
+                </div>
+                <div class="input_control">
+                    <custom:DropDownList runat="server" ID="ddl_patients" />
+                </div>
+                <asp:Button runat="server" ID="btn_update" Text="Update" CommandName="update" OnClick="Button_Click"
+                    CausesValidation="True" ValidationGroup="room" />
                 &nbsp;
                 <asp:Button runat="server" ID="btn_checkout" Text="Check-Out" CommandName="checkout"
-                    OnClick="Button_Click" Visible="False" />
+                    CausesValidation="True" ValidationGroup="room" OnClick="Button_Click" Visible="False" />
                 &nbsp;
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell>
+            </custom:ValidationGroupPanel>
+        </div>
+        <div class="main-content">
+            <asp:Panel runat="server" ID="pnl_address" Visible="False">
                 <asp:UpdatePanel runat="server" ID="up_address" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Panel runat="server" ID="pnl_address" Visible="False">
-                            <asp:DataList runat="server" ID="dl_address" RepeatDirection="Horizontal" RepeatColumns="3">
-                                <ItemTemplate>
-                                    <table>
+                        <asp:DataList runat="server" ID="dl_address" RepeatDirection="Horizontal" RepeatColumns="3">
+                            <HeaderTemplate>
+                                <hr class="line_long" />
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <div class="billing_address_container">
+                                    <table class="billing_address">
                                         <tr>
                                             <td>
                                                 <%# Eval("FullName") %>
@@ -79,9 +87,9 @@
                                                 <%# Eval("AddressLine1") %>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr runat="server" visible='<%# !string.IsNullOrEmpty(TextHelper.ToString(Eval("AddressLine2"))) %>'>
                                             <td>
-                                                <%# Eval("AddressLine2") %>
+                                                <%# Eval("AddressLine2")%>
                                             </td>
                                         </tr>
                                         <tr>
@@ -102,74 +110,75 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    <hr />
-                                </FooterTemplate>
-                            </asp:DataList>
-                            <asp:Label runat="server" ID="lbl_output"></asp:Label>
-                            <custom:ValidationGroupPanel runat="server" ID="vgp_address" ValidationGroup="billing">
-                                <asp:Table ID="Table1" runat="server">
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Full Name:<br />
-                                            <custom:TextBox runat="server" ID="txt_fullname" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Address Line 1:<br />
-                                            <custom:TextBox runat="server" ID="txt_address1" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Address Line 2:<br />
-                                            <custom:TextBox runat="server" ID="txt_address2"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            City:<br />
-                                            <custom:TextBox runat="server" ID="txt_city" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            State:<br />
-                                            <custom:TextBox runat="server" ID="txt_state" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Country:<br />
-                                            <custom:DropDownList runat="server" ID="ddl_country" Required="True" />
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Postal Code:<br />
-                                            <custom:TextBox runat="server" ID="txt_postalcode" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            Phone Number:<br />
-                                            <custom:TextBox runat="server" ID="txt_phone" Required="True"></custom:TextBox>
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                    <asp:TableRow>
-                                        <asp:TableCell>
-                                            <asp:Button runat="server" ID="btn_new_bill" Text="Bill to this address" CommandName="NewBill"
-                                                OnClick="Button_Click" OnClientClick="return confirm('Are you sure you want to bill to the above address?');" />
-                                        </asp:TableCell>
-                                    </asp:TableRow>
-                                </asp:Table>
-                            </custom:ValidationGroupPanel>
-                        </asp:Panel>
+                                </div>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <hr class="line_long" />
+                            </FooterTemplate>
+                        </asp:DataList>
+                        <asp:Label runat="server" ID="lbl_output"></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-            </asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
+                <custom:ValidationGroupPanel runat="server" ID="vgp_address" ValidationGroup="billing">
+                    <div class="input_label bold">
+                        Full Name:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_fullname" Required="True" ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        Address Line 1:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_address1" Required="True" ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        Address Line 2:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_address2" ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        City:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_city" Required="True" ValidType="Characters"
+                            ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        State:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_state" Required="True" ValidType="Characters"
+                            ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        Country:
+                    </div>
+                    <div class="input_control">
+                        <custom:DropDownList runat="server" ID="ddl_country" Required="True" ValidationGroup="billing" />
+                    </div>
+                    <div class="input_label bold">
+                        Postal Code:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_postalcode" Required="True" ValidType="PostalCode"
+                            ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <div class="input_label bold">
+                        Phone Number:
+                    </div>
+                    <div class="input_control">
+                        <custom:TextBox runat="server" ID="txt_phone" Required="True" ValidType="Numbers"
+                            ValidationGroup="billing"></custom:TextBox>
+                    </div>
+                    <asp:Button runat="server" ID="btn_new_bill" Text="Bill to this address" CommandName="NewBill"
+                        OnClick="Button_Click" CausesValidation="True" ValidationGroup="billing" />
+                    &nbsp;
+                    <asp:Button runat="server" ID="btn_cancel" CommandName="Cancel" CausesValidation="False"
+                        Text="Cancel" OnClick="Button_Click" />
+                </custom:ValidationGroupPanel>
+            </asp:Panel>
+        </div>
+    </div>
 </asp:Content>

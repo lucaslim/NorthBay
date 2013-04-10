@@ -1,6 +1,4 @@
 ﻿using System;
-using NorthBay.Framework.Database;
-using NorthBay.Logic.Room;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
@@ -9,7 +7,6 @@ namespace NorthBay.Web.Admin.Volunteer
     public partial class Edit : Basepage
     {
         private readonly VolunteerClass _objVolunteer = new VolunteerClass();
-        private readonly RoomBillingClass _objRoomBilling = new RoomBillingClass();
 
         private int Id { get; set; }
 
@@ -36,7 +33,7 @@ namespace NorthBay.Web.Admin.Volunteer
             SetVolunteerData();
         }
 
-        
+
 
         private void SetVolunteerData()
         {
@@ -108,11 +105,7 @@ namespace NorthBay.Web.Admin.Volunteer
                 Active = TextHelper.ToBool(ddl_active.SelectedValue) ?? false
             };
 
-            if (!_objVolunteer.Update(volunteer))
-            {
-                //show error message
-            }
-            else
+            if (_objVolunteer.Update(volunteer))
             {
                 Redirect("~/Admin/Volunteer/");
             }

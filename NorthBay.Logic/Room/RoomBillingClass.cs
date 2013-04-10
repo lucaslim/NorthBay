@@ -85,15 +85,14 @@ namespace NorthBay.Logic.Room
 
         public bool CheckOutRoom(int id, int addressId, out int checkOutId)
         {
-            checkOutId = 0;
-
             var roomBilling = SelectByRoomId(id);
             var billingAddress = new UserBillingAddressClass().Select(addressId);
 
-
+            var billingId = roomBilling.RoomBillingId;
 
             var subTotal = CalculateSubTotal(roomBilling);
 
+            //Set Room Billing Invoice
             var roomBillingInvoice = new RoomBillingInvoice
                                          {
                                              Name = roomBilling.User.Name,
@@ -106,7 +105,14 @@ namespace NorthBay.Logic.Room
                                              UserId = roomBilling.UserId
                                          };
 
-            return new RoomBillingInvoiceClass().Insert(roomBillingInvoice);
+
+            //Remove entry from Room Billing Equipment
+            new RoomBillingEquipmentClass().DeleteByRoomBillingId(billingId);
+
+            //Remove entry from Room Billing
+            Delete(billingId);
+
+            return new RoomBillingInvoiceClass().Insert(roomBillingInvoice, out checkOutId);
         }
 
         private decimal? CalculateSubTotal(RoomBilling roomBilling)

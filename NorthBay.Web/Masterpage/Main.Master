@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
+        <ajax:ToolkitScriptManager runat="server"/>
         <header> <%--header--%>
             <div class="content-wrapper">
                 <div class="float-left"> <%--LOGO--%>
