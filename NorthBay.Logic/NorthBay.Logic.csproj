@@ -33,19 +33,25 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBO.cs" />
+    <Compile Include="Career\ApplicantClass.cs" />
+    <Compile Include="Career\CareerClass.cs" />
+    <Compile Include="Career\SendEmailClass.cs" />
     <Compile Include="Country\CountryClass.cs" />
+    <Compile Include="Event\EventClass.cs" />
     <Compile Include="Gift\OrderClass.cs" />
     <Compile Include="Gift\ProductCategoryTableClass.cs" />
     <Compile Include="Gift\ProductCategoryClass.cs" />
     <Compile Include="Gift\ProductClass.cs" />
     <Compile Include="Gift\CartProduct.cs" />
     <Compile Include="Gift\ShoppingCart.cs" />
+    <Compile Include="Location\LocationClass.cs" />
     <Compile Include="Menu\MenuClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -74,7 +80,6 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NorthBay.Framework\NorthBay.Framework.csproj">
       <Project>{D3C249FE-7093-4A2B-83A3-FEBBF463BD6B}</Project>
@@ -85,6 +90,7 @@
       <Name>NorthBay.Utility</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

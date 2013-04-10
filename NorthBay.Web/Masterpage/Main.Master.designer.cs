@@ -121,15 +121,6 @@ namespace NorthBay.Web.Masterpage {
         protected global::System.Web.UI.WebControls.Menu main_menu;
         
         /// <summary>
-        /// lbl_path control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_path;
-        
-        /// <summary>
         /// txt_search control.
         /// </summary>
         /// <remarks>

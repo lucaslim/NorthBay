@@ -48,10 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Career\Default.aspx" />
     <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Event\Default.aspx" />
     <Content Include="Admin\Gift\Add.aspx" />
     <Content Include="Admin\Gift\Default.aspx" />
     <Content Include="Admin\Gift\Edit.aspx" />
+    <Content Include="Admin\Location\Default.aspx" />
+    <Content Include="Admin\Location\Default2.aspx" />
     <Content Include="Admin\Room\Assign.aspx" />
     <Content Include="Admin\Room\ViewBill.aspx" />
     <Content Include="Admin\Room\Default.aspx" />
@@ -79,16 +83,33 @@
     <Content Include="App_Themes\Main\Images\twit.jpg" />
     <Content Include="App_Themes\Main\style.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="Career\Application.aspx" />
+    <Content Include="Career\Default.aspx" />
+    <Content Include="Career\Details.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Event\Default.aspx" />
+    <Content Include="Event\EventDetails.aspx" />
     <Content Include="Gift\CheckOut.aspx" />
     <Content Include="Gift\Default.aspx" />
     <Content Include="Gift\View.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
+    <Content Include="Images\Products\2.jpg" />
+    <Content Include="Images\Products\26.jpg" />
+    <Content Include="Location\Default.aspx" />
+    <Content Include="Location\Directions.aspx" />
+    <Content Include="Location\MapToLocations.aspx" />
+    <Content Include="Location\Scripts\jquery-1.8.2-vsdoc.js" />
+    <Content Include="Location\Scripts\jquery-1.8.2.js" />
+    <Content Include="Location\Scripts\jquery-1.8.2.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Script\jquery.js" />
     <Content Include="obj\Script\jqueryui.js" />
     <Content Include="obj\Script\global.js" />
+    <Content Include="Script\global.js" />
+    <Content Include="Script\jquery.js" />
+    <Content Include="Script\jqueryui.js" />
+    <Content Include="Script\volunteer.js" />
     <Content Include="Volunteer\Default.aspx" />
     <Content Include="Volunteer\Opportunities.aspx" />
     <Content Include="Web.config">
@@ -102,11 +123,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Career\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Career\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Event\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Event\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Gift\Add.aspx.cs">
@@ -129,6 +164,20 @@
     </Compile>
     <Compile Include="Admin\Gift\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Location\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Location\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Location\Default2.aspx.cs">
+      <DependentUpon>Default2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Location\Default2.aspx.designer.cs">
+      <DependentUpon>Default2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Room\Assign.aspx.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
@@ -175,6 +224,27 @@
     <Compile Include="Basepage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Career\Application.aspx.cs">
+      <DependentUpon>Application.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Career\Application.aspx.designer.cs">
+      <DependentUpon>Application.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Career\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Career\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Career\Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Career\Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -184,6 +254,20 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Event\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Event\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Event\EventDetails.aspx.cs">
+      <DependentUpon>EventDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Event\EventDetails.aspx.designer.cs">
+      <DependentUpon>EventDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gift\CheckOut.aspx.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
@@ -208,6 +292,27 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Location\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Location\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Location\Directions.aspx.cs">
+      <DependentUpon>Directions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Location\Directions.aspx.designer.cs">
+      <DependentUpon>Directions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Location\MapToLocations.aspx.cs">
+      <DependentUpon>MapToLocations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Location\MapToLocations.aspx.designer.cs">
+      <DependentUpon>MapToLocations.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -276,6 +381,10 @@
   <ItemGroup>
     <None Include="App_Themes\Main\Images\Thumbs.db" />
     <Content Include="App_Themes\Main\SkinFile.skin" />
+    <None Include="Career\Resumes\Aboutus_idm.docx" />
+    <None Include="Career\Resumes\desktop.ini" />
+    <None Include="Career\Resumes\MinutesFeb25.pdf" />
+    <None Include="Career\Resumes\test.docx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -2,7 +2,6 @@
 using System.Web.UI.WebControls;
 using NorthBay.Framework.Database;
 using NorthBay.Logic.Gift;
-using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
 
 namespace NorthBay.Web.Admin.Gift

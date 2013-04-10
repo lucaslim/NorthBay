@@ -535,3 +535,122 @@ footer .links
     border: 2px dotted #333;
     padding: 5px;
 }
+
+
+ /*-------------Career---------------------------------------------------------------*/
+/* GridView, DeatailsView CSS - Used in Career Page */
+
+  .view td,.view th
+        {
+            padding:10px;
+        }
+        .detailsview
+        {
+            border:double 4px black;
+        }
+        .header
+        {
+            letter-spacing:8px;
+            font:bold 16px Arial,Sans-Serif;
+            background-color:silver;
+        }
+        .fieldHeader
+        {
+            font-weight:bold;
+        }
+        .alternating
+        {
+            background-color:#eeeeee;
+        }
+        .command
+        {
+            background-color:silver;
+        }
+        .command a
+        {
+            color:black;
+            background-color:#eeeeee;
+            font:14px Arials,Sans-Serif;
+            text-decoration:none;
+            padding:3px;
+            border:solid 1px black;
+        }
+        .command a:hover
+        {
+            background-color:yellow;
+        }
+        .pager td
+        {
+            padding:2px;
+        }
+        
+       
+        
+        #desc1
+        {
+            padding :10px;
+            }
+            
+        #img_job1
+        
+        {
+            float:left;
+            margin-left:100px;
+            padding:10px;
+            
+           
+            }
+            
+         #img_job2
+        {
+            float:left;
+            padding:10px;
+            
+            
+            
+            }
+            
+            #desc2
+        {
+            padding :10px;
+            float:left;
+            }
+            
+            #position
+        {
+            float:left;
+            padding:5px;
+            
+            
+            }
+            
+       
+        
+        #detail
+        {
+            float:left;              
+            }     
+       #img_position
+       {
+           float:left;
+           
+            padding:20px;
+           }
+           
+      .clear
+      {
+          clear:both;
+      }  
+
+/*CSS for validation summary*/      
+      
+
+.validationsummary {   
+    color: red;   
+    padding:10px;
+    padding-left: 80px;
+    min-height:55px;
+    
+} 
+
+/*----Career end----------------------------------------------------------*/w

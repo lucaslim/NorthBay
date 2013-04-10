@@ -54,7 +54,7 @@
 
         <div id="main_body">
             <section class="navi float-left"> <%--sitemap path--%>
-                <asp:Label ID="lbl_path" runat="server" Text="> sitemap path" />
+                <%--<asp:Label ID="lbl_path" runat="server" Text="> sitemap path" />--%>
             </section>
             <section class="search float-right"> <%--search box--%>
                 <asp:TextBox ID="txt_search" runat="server" />
