@@ -1,13 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.master" AutoEventWireup="True"
-    CodeBehind="Login.aspx.cs" Inherits="NorthBay.Web.Login" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="NorthBay.Web.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="main_content">
         <div id="main_header">
             Login
         </div>
         <div id="main_body">
-            <custom:ValidationGroupPanel runat="server" ValidationGroup="Login">
+            <custom:ValidationGroupPanel ID="ValidationGroupPanel1" runat="server" ValidationGroup="Login" DefaultButton="btn_login">
                 <div>
                     <asp:Literal runat="server" ID="lit_error"></asp:Literal>
                 </div>
@@ -27,4 +25,10 @@
             </custom:ValidationGroupPanel>
         </div>
     </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cph2" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cph3" runat="server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cph4" runat="server">
 </asp:Content>

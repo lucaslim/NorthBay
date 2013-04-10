@@ -57,8 +57,8 @@
                 <%--<asp:Label ID="lbl_path" runat="server" Text="> sitemap path" />--%>
             </section>
             <section class="search float-right"> <%--search box--%>
-                <asp:TextBox ID="txt_search" runat="server" />
-                <asp:Button ID="btn_search" runat="server" Text="Search" />
+                <%--<asp:TextBox ID="txt_search" runat="server" />
+                <asp:Button ID="btn_search" runat="server" Text="Search" />--%>
             </section>
             <section class="main-content"><%--hold place for main content--%>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

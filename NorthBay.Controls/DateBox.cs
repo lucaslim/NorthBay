@@ -12,7 +12,6 @@ namespace NorthBay.Controls
     public class DateBox : System.Web.UI.WebControls.TextBox
     {
         private CalendarExtender _calendarExtender;
-        private CompareValidator _compareValidator;
         private Image _image;
         private RequiredFieldValidator _requiredFieldValidator;
 

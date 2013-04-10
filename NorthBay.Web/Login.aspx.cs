@@ -3,12 +3,11 @@ using NorthBay.Logic.User;
 
 namespace NorthBay.Web
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : Basepage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack)
-                return;
+
         }
 
         protected void ButtonClick(object sender, EventArgs e)
