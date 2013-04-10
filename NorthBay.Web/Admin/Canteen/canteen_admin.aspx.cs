@@ -19,11 +19,6 @@ namespace NorthBay.Web.Admin.Canteen
             }
         }
 
-        //    protected void insert_new(object source,EventArgs e)
-        //{
-        //        _strMessage(objitem.Insert(txt_nameI.Text,decimal.Parse(txt_priceI.Text.ToString()),txt_descI.Text),"insert");
-        //        _subRebind();
-        //}
 
         //updating and deleting
         protected void subAdmin(object sender, CommandEventArgs e)
@@ -88,12 +83,15 @@ namespace NorthBay.Web.Admin.Canteen
             ltv_update.DataBind();
         }
 
+        //delete function
         private void _showDelete(int id)
         {
             _PanelControl(pnl_delete);
             ltv_delete.DataSource = objitem.getitembyid(id);
             ltv_delete.DataBind();
         }
+        
+        //panels to  control
 
         private void _PanelControl(Panel pnl)
         {
@@ -114,6 +112,8 @@ namespace NorthBay.Web.Admin.Canteen
             _PanelControl(pnl_all);
 
         }
+
+        //display message of succes and failure
         private void _strMessage(bool flag, string str)
         {
             if (flag)

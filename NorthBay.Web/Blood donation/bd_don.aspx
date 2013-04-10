@@ -3,6 +3,7 @@
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table>
         <tr>
+            <%--getting name from the user and validating it--%>
             <td><asp:Label ID="lbl_name" runat="server" Text="Name :" /></td>
             <td><asp:TextBox ID="txt_name" runat="server" Height="20"/></td>
             <td><asp:RequiredFieldValidator ID="rfv_name" runat="server" Text="* Required" ControlToValidate="txt_name" ValidationGroup="insert" /></td>
@@ -10,6 +11,8 @@
         </tr>
 
         <tr>
+            <%--Here I phone number and email as option but atleast 1 is required in order to be contacted--%>
+            <%--Getting phone number in specific formate ...... even indicating user about the method to enter the phonee number--%> 
             <td><asp:Label ID="lbl_phone" runat="server" Text="Phone #" /><p style="color:Gray; font-size:small;">Format 123-456-7890</p></td>
             <td><asp:TextBox ID="txt_phone" runat="server"  Height="20"/></td>
             <td><asp:RegularExpressionValidator ID="rev_contact" runat="server" ValidationGroup="insert" ValidationExpression="^[0-9]{3}-[0-9]{3}-[0-9]{4}" ErrorMessage="Not a valid Phone #" ControlToValidate="txt_phone" /></td>
@@ -17,11 +20,14 @@
         </tr>
 
         <tr>
+            <%--Accepting email from the user and validating it--%>
+            <%--email or phone is optional --%>
             <td><asp:Label ID="lbl_email" runat="server" Text="Email :" /></td>
             <td><asp:TextBox ID="txt_email" runat="server" Height="20"/></td>
             <td><asp:RegularExpressionValidator ID="rev_email" runat="server" ValidationGroup="insert" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" ErrorMessage="Not a valid email" ControlToValidate="txt_email" /></td>
         </tr>
         <tr>
+        <%--Dropdown least to accept the user blood ggroup--%>
             <td><asp:Label ID="lbl_blood" runat="server" Text="Blood Group :" /></td>
             <td><asp:DropDownList ID="ddl_blood" runat="server" Width="120" Height="20">
                 <asp:ListItem>A+</asp:ListItem>
@@ -36,24 +42,31 @@
                 </asp:DropDownList></td>
         </tr>
         <tr>
+            
             <td><asp:Label ID="lbl_message" runat="server" Text="Message :" /></td>
+
+            <%--Multiline textbox if the user want to display any message--%>
             <td><asp:TextBox ID="txt_message" runat="server" TextMode="MultiLine" /></td>
             <td><asp:RequiredFieldValidator ID="rfv_message" runat="server" ControlToValidate="txt_message" Text="* Required" ValidationGroup="insert"/></td>
         </tr>
         <tr>
             <td></td>
+            <%--Button with on click calls the "insertdonor" --%>
             <td><asp:Button ID="btn_submit" runat="server" ValidationGroup="insert" Text="Submit" OnClick="insertdonor" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_clear" runat="server" Text="clear" /></td>
         </tr>
     </table>
+    <%--Label to display output--%>
     <asp:Label ID="lbloutput" runat="server" Text="" /><br /><br />
     
-    <asp:Label ID="lbl_unsubscribe" runat="server" Text="Already donated for the good cause! Unsubscribe :" />
+    <%--This is the feature to unsuscribe which I was trying to work on--%>
+    <%--<asp:Label ID="lbl_unsubscribe" runat="server" Text="Already donated for the good cause! Unsubscribe :" />
         <asp:TextBox ID="txt_unsubscribe" runat="server" Height="20"/><br />
-        <asp:Button ID="btn_unsubscribe" runat="server" Text="Unsubscribe" />
+        <asp:Button ID="btn_unsubscribe" runat="server" Text="Unsubscribe" />--%>
     
-    
+    <%--Below code is to find the donor according to the blood group--%>
     <h1>Find Donor :</h1>
     <h4 style="color:Gray;">(Select Blood Group)</h4><br />
+    <%--Links to get the appropriate blood group--%>
     <asp:LinkButton ID="lnkAp" runat="server" Text="A" OnClick="getbyAp"/>+ |
     <asp:LinkButton ID="lnkAn" runat="server" Text="A" OnClick="getbyAn"/>- |
     <asp:LinkButton ID="lnkBp" runat="server" Text="B" OnClick="getbyBp"/>+ |
@@ -63,6 +76,7 @@
     <asp:LinkButton ID="lnkABp" runat="server" Text="AB" OnClick="getbyABp"/>+ |
     <asp:LinkButton ID="lnkABn" runat="server" Text="AB" OnClick="getbyABn"/>- |
     <asp:Panel ID="pnl_all" runat="server" GroupingText="All Donors">
+        <%--Button to send an email--%>
         <asp:Button ID="email_btn" runat="server" Text="E-Mail" OnClick="send_email"/>
         <table border="0" width="100%" style="text-align:center">
         <thead style="background-color:Gray">
@@ -76,6 +90,7 @@
             <%--<th>E-Mail </th>--%>
         </tr>
         </thead>
+        <%--Repeater to display the data according to the blood selected--%>
             <asp:Repeater ID="rpt_all" runat="server" OnItemDataBound="idb_email">
                 <ItemTemplate>
                     <tr>

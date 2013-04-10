@@ -13,6 +13,7 @@ namespace NorthBay.Web.Doctor
         add_doctorClass obj = new add_doctorClass();
         protected void Page_Load(object sender, EventArgs e)
         {
+            //binding the gridview control
             grd_all.DataSource = obj.getDoctors();
             grd_all.DataBind();
         }

@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="canteen_admin.aspx.cs" Inherits="NorthBay.Web.Admin.Canteen.canteen_admin" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <%--Listview --%>
         <asp:Label ID="lbl_nameI" runat="server" Text="Item Name :" AssociatedControlID="txt_nameI" />
     <br />
     <asp:TextBox ID="txt_nameI" runat="server" />

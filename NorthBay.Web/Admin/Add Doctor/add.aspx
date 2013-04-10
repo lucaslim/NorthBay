@@ -3,6 +3,8 @@
     <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table border=0 style="text-align:center;">
     <tr><td>
+                <%--adding doctors profile--%>
+                <%--Getting name and validating--%>
                 Name :</td>
                 <td><asp:TextBox runat="server" ID="txt_dr_name" Height="20"/></td>
                 <td><asp:RequiredFieldValidator ID="rfv_name" runat="server" Text="* Required" ValidationGroup="add_doctor" ControlToValidate="txt_dr_name" /></td> 
@@ -10,12 +12,14 @@
                 </tr>
             <tr>
             <td>
+                <%--Accepting phone number--%>
                 Contact # :<p style="color:Gray; font-size:small;">Format 123-456-7890</p></td>
                <td> <asp:TextBox runat="server" ID="txt_contact" Height="20"/></td>
                 <td><asp:RequiredFieldValidator ID="rfv_contact" runat="server" Text="* Required" ValidationGroup="add_doctor" ControlToValidate="txt_contact" /></td>
                 <td><asp:RegularExpressionValidator ID="rev_contact" runat="server" ValidationGroup="add_doctor" ValidationExpression="^[0-9]{3}-[0-9]{3}-[0-9]{4}" ErrorMessage="Not a valid Phone #" ControlToValidate="txt_contact" /></td>
             </tr>    
             <tr><td>
+                <%--Accepting email id--%>
                 Email :</td>
                 <td><asp:TextBox ID="txt_email" runat="server" Height="20"/></td>
                 <td><asp:RequiredFieldValidator ID="rfv_email" runat="server" Text="* Required" ControlToValidate="txt_email" ValidationGroup="add_doctor"/></td>
@@ -50,6 +54,7 @@
                 <td><asp:RequiredFieldValidator ID="rfv_bio" runat="server" Text="* Required" ValidationGroup="add_doctor" ControlToValidate="txt_biography" /></td>
             </tr>
             <tr><td>
+            <%--Image uploader--%>
                 Image :</td>
                  <td><asp:FileUpload ID="upload_image" runat="server" BackColor="#ffffcc"/></td>
                  <td><asp:RequiredFieldValidator ID="rfv_image" runat="server" Text="* Required" ValidationGroup="add_doctor" ControlToValidate="upload_image" /></td>
@@ -57,13 +62,17 @@
             </tr>
             
             <tr><td></td>
+            <%--Button to add it into database--%>
             <td><asp:Button ID="submit" runat="server" Text="Add" OnClick="btn_submit" ValidationGroup="add_doctor"/></td>
             </tr>
             
-    </table>   
+    </table>  
+    <%--label to diaplay message--%> 
         <asp:Label ID="lbl_message1" runat="server"></asp:Label>
     
+    <%--Label to display message for the below panel--%>
     <asp:Label ID="lbl_message" runat="server" Text="" />
+
     <asp:Panel ID="pnl_all" runat="server" GroupingText="All Doctors">
     
         <table>
@@ -78,14 +87,18 @@
                 </tr>
             </thead>
             <tbody>
+            <%--Repeater to perform update and delete--%>
             <asp:Repeater ID="rpt_all" runat="server">
                 <ItemTemplate>
                 <tr>
+                <%--Displaying the image --%>
                 <td><img id="image" runat="server" src='<%#Eval("ProfileImage") %>' width="70" height="70" alt='<%#Eval("DoctorName") %>'/></td>
                 <td><%#Eval("DoctorName") %></td>
                 <td><%#Eval("EmailId") %></td>
                 <td><%#Eval("ContactNo") %></td>
+                <%--button for update--%>
                 <td><asp:LinkButton ID="btn_update" runat="server" Text="Update" CommandName="Update" CommandArgument='<%#Eval("DoctorId") %>' OnCommand="subAdmin" /></td>
+                <%--Button for delete--%>
                 <td><asp:LinkButton ID="btn_delete" runat="server" Text="Delete" CommandArgument='<%#Eval("DoctorId") %>' CommandName="Delete" OnCommand="subAdmin"/></td>
                 </tr>
                 </ItemTemplate>
@@ -94,10 +107,12 @@
         </table>
     
     </asp:Panel>
+    <%--second panel for update--%>
     <asp:Panel ID="pnl_update" runat="server" GroupingText="Update Doctors Profile">
         <table>
             
             <tbody>
+
                 <asp:Repeater ID="rpt_update" runat="server" OnItemCommand="subDel">
                     <ItemTemplate>
                         <tr>
@@ -124,6 +139,7 @@
             </tbody>
         </table>
     </asp:Panel>
+    <%--Delete Panel--%>
     <asp:Panel ID="pnl_delete" runat="server">
         <table>
             <thead>

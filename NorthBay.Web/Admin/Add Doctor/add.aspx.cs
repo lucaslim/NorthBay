@@ -25,30 +25,33 @@ namespace NorthBay.Web.Admin.Add_Doctor
             }
         }
 
-        
+        //Image uploading function
         protected void btn_submit(object sender, EventArgs e)
     {
-        //if (string.IsNullOrEmpty(upload_image.ToString()))
-        //{
-        //    lbl_message1.Text = "Please check the Image !";
-        //    Response.Redirect("~/add.aspx");
-        //}
+        //set the path
         string savepath = "~/Images/profile/";
         
+            //get the filename
         string filename = Path.GetFileName(upload_image.PostedFile.FileName);
-        if (string.IsNullOrEmpty(filename.ToString()))
+        
+            //if the file not uploaded, redirect it
+            if (string.IsNullOrEmpty(filename.ToString()))
         {
             lbl_message1.Text = "Please check the Image !";
             Response.Redirect("~/Admin/Add Doctor/add.aspx");
         }
+
+        //get the filename in lower case
         string filename_lower = filename.ToLower().ToString();
+
+            //Split to store the extension
         string[] exts = filename_lower.Split('.');
 
         string dr_name = txt_dr_name.Text;
         string ext = exts[1].ToString();
         string newname = dr_name+"." + ext;
         int file_append = 0;
-        
+        // check if the name of that perticular file exist. And if exist then add _1,_2 till it is unique
         while (File.Exists(Server.MapPath(savepath + newname)))
         {
             file_append++;
@@ -57,6 +60,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
                newname = dr_name + "." + ext;
         }
 
+            //Insert query to store it in datasbase
         var Doctor_query = new Framework.Database.Doctor
         {
             DoctorName = txt_dr_name.Text,
@@ -70,7 +74,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
             ProfileImage = "~/Images/profile/" + newname
         };
         
-        
+        //check the extension variable for jpg . and if exist the add the image in separate folder and link into the database
         if (ext == "JPG" || ext == "jpg")
         {
             objdoctor.Insert(Doctor_query);
@@ -80,6 +84,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
             _subRebind();
         }
         
+            //if extension is different show the message
         else
         {
             lbl_message1.Text = "Record NOT inserted";
@@ -87,6 +92,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
         
     }
 
+        //Update and delete 
         protected void subAdmin(object sender, CommandEventArgs e)
         {
             switch (e.CommandName)
@@ -103,7 +109,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
 
 
 
-
+        //Update textbox.....
         protected void subDel(object sender,RepeaterCommandEventArgs e)
         {
             switch (e.CommandName)
@@ -148,6 +154,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
             rpt_delete.DataBind();
         }
 
+        //panel control
         private void _panelControl(Panel pnl)
         {
             pnl_all.Visible = false;
@@ -156,6 +163,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
             pnl.Visible = true;
         }
 
+        //binding data with repeater
         private void _subRebind()
         {
             txt_biography.Text = string.Empty;
@@ -171,6 +179,7 @@ namespace NorthBay.Web.Admin.Add_Doctor
             _panelControl(pnl_all);
         }
 
+        //to display message
         private void _strMessage(bool flag, string str)
         {
             if (flag)

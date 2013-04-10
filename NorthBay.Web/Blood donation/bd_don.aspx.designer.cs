@@ -175,33 +175,6 @@ namespace NorthBay.Web.Blood_donation {
         protected global::System.Web.UI.WebControls.Label lbloutput;
         
         /// <summary>
-        /// lbl_unsubscribe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_unsubscribe;
-        
-        /// <summary>
-        /// txt_unsubscribe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_unsubscribe;
-        
-        /// <summary>
-        /// btn_unsubscribe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_unsubscribe;
-        
-        /// <summary>
         /// lnkAp control.
         /// </summary>
         /// <remarks>
