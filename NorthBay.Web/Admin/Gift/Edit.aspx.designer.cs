@@ -22,15 +22,6 @@ namespace NorthBay.Web.Admin.Gift {
         protected global::NorthBay.Controls.ValidationGroupPanel vgp_gift;
         
         /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
         /// txt_title control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace NorthBay.Web.Admin.Gift {
         protected global::NorthBay.Controls.TextBox txt_price;
         
         /// <summary>
+        /// cbl_category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_category;
+        
+        /// <summary>
         /// img_productImage control.
         /// </summary>
         /// <remarks>
@@ -74,15 +74,6 @@ namespace NorthBay.Web.Admin.Gift {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fu_productImage;
-        
-        /// <summary>
-        /// cbl_category control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cbl_category;
         
         /// <summary>
         /// btnUpdate control.

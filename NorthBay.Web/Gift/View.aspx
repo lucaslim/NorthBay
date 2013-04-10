@@ -2,26 +2,30 @@
     CodeBehind="View.aspx.cs" Inherits="NorthBay.Web.Gift.View" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>
-        Shopping Cart</h1>
+    <div id="main_content">
+        <div id="main_header">
+            Shopping Cart
+        </div>
+        <div id="main_body">
+        </div>
+    </div>
     <asp:GridView runat="server" ID="gv_cart" AutoGenerateColumns="False" ShowFooter="True"
-        OnRowDataBound="GvCart_RowDataBound" OnRowUpdating="GvCart_RowUpdating" OnRowCreated="test">
+        OnRowDataBound="GvCart_RowDataBound" OnRowUpdating="GvCart_RowUpdating" CssClass="gridview_control">
         <Columns>
             <asp:TemplateField HeaderText="Items" ItemStyle-Width="10%" FooterStyle-HorizontalAlign="Right">
                 <ItemTemplate>
                     <div>
-                        <img runat="server" id="img_item" src='<%#Eval("Image") %>' height="120" width="120"
-                            alt="" />
+                        <asp:Image runat="server" ID="img_product" ImageUrl='<%#Eval("Image") %>' />
                     </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <div>
+                    <div class="bold">
                         <b>Sub Total: </b>
                     </div>
-                    <div>
+                    <div class="bold">
                         <b>Tax: </b>
                     </div>
-                    <div>
+                    <div class="bold">
                         <b>Total: </b>
                     </div>
                 </FooterTemplate>
@@ -39,7 +43,7 @@
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Price">
+            <asp:TemplateField HeaderText="Price" ItemStyle-VerticalAlign="Top">
                 <ItemTemplate>
                     <div>
                         $<asp:Label runat="server" ID="lbl_price" Text='<%# Eval("Price") %>' />
@@ -62,8 +66,13 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <EmptyDataTemplate>
+            There are no items in the shopping cart
+        </EmptyDataTemplate>
     </asp:GridView>
+    <br />
     <div>
         <asp:Button runat="server" Text="Check Out" PostBackUrl="CheckOut.aspx" />
+        <asp:Button runat="server" Text="Continue Shopping" PostBackUrl="Default.aspx"/>
     </div>
 </asp:Content>

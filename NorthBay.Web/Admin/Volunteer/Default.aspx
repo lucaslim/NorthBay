@@ -8,7 +8,8 @@
         </div>
         <div id="main_body">
             <asp:GridView runat="server" ID="gridView" AllowPaging="True" OnSorting="GridView_Sorting"
-                OnPageIndexChanging="GridView_PageIndexChanging" AllowSorting="True" AutoGenerateColumns="False" CssClass="gridview_control">
+                OnPageIndexChanging="GridView_PageIndexChanging" AllowSorting="True" AutoGenerateColumns="False"
+                CssClass="gridview_control">
                 <Columns>
                     <asp:TemplateField HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                         <HeaderTemplate>
@@ -43,6 +44,8 @@
                 </Columns>
             </asp:GridView>
             <asp:Button runat="server" ID="btn_delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Are you sure you want to delete?');" />
+            &nbsp;
+            <asp:Button runat="server" ID="btn_add" Text="Add" PostBackUrl="Add.aspx" />
         </div>
     </div>
 </asp:Content>

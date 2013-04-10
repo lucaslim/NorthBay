@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI.WebControls;
+using NorthBay.Framework.Database;
 using NorthBay.Logic.Gift;
 using NorthBay.Logic.Volunteer;
 using NorthBay.Utility;
@@ -124,5 +125,47 @@ namespace NorthBay.Web.Admin.Gift
             //Rebind
             GridView_DataBind();
         }
+
+        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var image = e.Row.FindControl("img_product") as Image;
+
+                if (image == null)
+                    return;
+
+                var product = e.Row.DataItem as Product;
+
+                if (product == null)
+                    return;
+
+                int newWidth;
+                int newHeight;
+                GetImageSize(MapPath(product.Image), out newWidth, out newHeight);
+
+                image.Height = Unit.Pixel(newHeight);
+                image.Width = Unit.Pixel(newWidth);
+            }
+        }
+
+        private void GetImageSize(string imagePath, out int newWidth, out int newHeight)
+        {
+            //Set Image Size
+            var image = System.Drawing.Image.FromFile(imagePath);
+
+            const int maximumHeight = 100;
+
+            newHeight = image.Height;
+            newWidth = image.Width;
+
+            if (maximumHeight >= newHeight)
+                return;
+
+            var ratio = newHeight / maximumHeight;
+            newHeight = maximumHeight;
+            newWidth = newWidth / ratio;
+        }
+
     }
 }

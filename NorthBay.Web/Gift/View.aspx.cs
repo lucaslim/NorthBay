@@ -102,38 +102,62 @@ namespace NorthBay.Web.Gift
 
         protected void GvCart_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.Footer)
+            switch (e.Row.RowType)
             {
-                var tableCells = e.Row.Cells;
+                case DataControlRowType.DataRow:
+                    {
+                        var image = e.Row.FindControl("img_product") as Image;
 
-                //Merge rows
-                tableCells[0].ColumnSpan = 2;
-                tableCells[2].ColumnSpan = 2;
-                for (int x = 1; x <= tableCells.Count; x++)
-                {
-                    var cell = tableCells[x];
+                        if (image == null)
+                            return;
 
-                    //Remove cell
-                    tableCells.Remove(cell);
-                }
+                        var product = e.Row.DataItem as Product;
 
-                var lblSubTotal = e.Row.FindControl("lbl_subtotal") as Label;
+                        if (product == null)
+                            return;
 
-                //Set sub total price
-                if (lblSubTotal != null)
-                    lblSubTotal.Text = _objShoppingCart.GetStringTotalPrice();
+                        int newWidth;
+                        int newHeight;
+                        GetImageSize(MapPath(product.Image), out newWidth, out newHeight);
 
-                var lblTax = e.Row.FindControl("lbl_tax") as Label;
+                        image.Height = Unit.Pixel(newHeight);
+                        image.Width = Unit.Pixel(newWidth);
+                    }
+                    break;
+                case DataControlRowType.Footer:
+                    {
+                        var tableCells = e.Row.Cells;
 
-                //Set sub total price
-                if (lblTax != null)
-                    lblTax.Text = _objShoppingCart.GetStringTax();
+                        //Merge rows
+                        tableCells[0].ColumnSpan = 2;
+                        tableCells[2].ColumnSpan = 2;
+                        for (int x = 1; x <= tableCells.Count; x++)
+                        {
+                            var cell = tableCells[x];
 
-                var lblTotal = e.Row.FindControl("lbl_total") as Label;
+                            //Remove cell
+                            tableCells.Remove(cell);
+                        }
 
-                //Set sub total price
-                if (lblTotal != null)
-                    lblTotal.Text = _objShoppingCart.GetStringTotalPriceWithTax();
+                        var lblSubTotal = e.Row.FindControl("lbl_subtotal") as Label;
+
+                        //Set sub total price
+                        if (lblSubTotal != null)
+                            lblSubTotal.Text = _objShoppingCart.GetStringTotalPrice();
+
+                        var lblTax = e.Row.FindControl("lbl_tax") as Label;
+
+                        //Set sub total price
+                        if (lblTax != null)
+                            lblTax.Text = _objShoppingCart.GetStringTax();
+
+                        var lblTotal = e.Row.FindControl("lbl_total") as Label;
+
+                        //Set sub total price
+                        if (lblTotal != null)
+                            lblTotal.Text = _objShoppingCart.GetStringTotalPriceWithTax();
+                    }
+                    break;
             }
         }
 
@@ -148,11 +172,24 @@ namespace NorthBay.Web.Gift
                 GvCart_DataBind();
             }
         }
-
-        protected void test(object sender, GridViewRowEventArgs e)
+                    
+        private void GetImageSize(string imagePath, out int newWidth, out int newHeight)
         {
+            //Set Image Size
+            var image = System.Drawing.Image.FromFile(imagePath);
 
+            const int maximumHeight = 200;
 
+            newHeight = image.Height;
+            newWidth = image.Width;
+
+            if (maximumHeight >= newHeight)
+                return;
+
+            var ratio = newHeight / maximumHeight;
+            newHeight = maximumHeight;
+            newWidth = newWidth / ratio;
         }
+
     }
 }

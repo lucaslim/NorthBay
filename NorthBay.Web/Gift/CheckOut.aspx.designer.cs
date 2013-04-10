@@ -40,15 +40,6 @@ namespace NorthBay.Web.Gift {
         protected global::NorthBay.Controls.ValidationGroupPanel vgp_address;
         
         /// <summary>
-        /// Table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
         /// txt_fullname control.
         /// </summary>
         /// <remarks>
@@ -121,13 +112,13 @@ namespace NorthBay.Web.Gift {
         protected global::NorthBay.Controls.TextBox txt_phone;
         
         /// <summary>
-        /// btn_nextShip control.
+        /// btn_nextship control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_nextShip;
+        protected global::System.Web.UI.WebControls.Button btn_nextship;
         
         /// <summary>
         /// gv_cart control.

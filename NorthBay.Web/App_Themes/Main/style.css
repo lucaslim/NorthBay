@@ -467,7 +467,14 @@ footer .links
 
 .gridview_control
 {
+    clear: both;
     width: 100%;
+}
+
+.gridview_control td img {
+    margin: 0;
+    padding: 0;
+    float: none;
 }
 
 .gridview_control td, .gridview_control th
@@ -515,4 +522,16 @@ footer .links
     background-color: #333;
     border-style: solid;
     border: 1px solid #333;
+}
+
+#shopping_cart_header {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    padding-bottom: 10px;
+}
+
+#shopping_cart {
+    border: 2px dotted #333;
+    padding: 5px;
 }

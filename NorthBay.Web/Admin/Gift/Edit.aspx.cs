@@ -69,6 +69,32 @@ namespace NorthBay.Web.Admin.Gift
             txt_description.Text = product.Description;
             txt_price.Text = TextHelper.ToString(product.Price);
             img_productImage.ImageUrl = product.Image;
+
+            int newWidth;
+            int newHeight;
+            GetImageSize(MapPath(product.Image), out newWidth, out newHeight);
+
+            img_productImage.Height = Unit.Pixel(newHeight);
+            img_productImage.Width = Unit.Pixel(newWidth);
+
+        }
+
+        private void GetImageSize(string imagePath, out int newWidth, out int newHeight)
+        {
+            //Set Image Size
+            var image = System.Drawing.Image.FromFile(imagePath);
+
+            const int maximumHeight = 200;
+
+            newHeight = image.Height;
+            newWidth = image.Width;
+
+            if (maximumHeight >= newHeight) 
+                return;
+
+            var ratio = newHeight / maximumHeight;
+            newHeight = maximumHeight;
+            newWidth = newWidth / ratio;
         }
 
         private void SetProductCateogryData()

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using NorthBay.Framework.Database;
 using NorthBay.Logic.Gift;
 using NorthBay.Utility;
 
@@ -36,6 +37,45 @@ namespace NorthBay.Web.Gift
 
             GridView_DataBind();
 
+            //Set Shopping Cart
+            SetShoppingCart();
+        }
+
+        private void SetShoppingCart()
+        {
+            if(ShoppingCart.Count <= 0)
+            {
+                lit_output.Text = "There are currently no items in your shopping cart";
+                div_subtotal.Visible = false;
+                div_tax.Visible = false;
+                div_total.Visible = false;
+                btn_clear.Visible = false;
+                btn_view.Visible = false;
+
+                return;
+            }
+
+            var output = string.Empty;
+
+            foreach (var item in ShoppingCart)
+            {
+                output += "<div class=\"input_label bold\">" + item.Title + "</div>";
+                output += "<b>Price: </b>" + item.Price + "<br />";
+                output += "<b>Quantity: </b>" + item.Quantity + "<br /><br />";
+                output += "<hr class=\"line_long\" />";
+            }
+
+            lit_subtotal.Text = _shoppingCart.GetStringTotalPrice();
+            lit_tax.Text = _shoppingCart.GetStringTax();
+            lit_total.Text = _shoppingCart.GetStringTotalPriceWithTax();
+
+            div_subtotal.Visible = true;
+            div_tax.Visible = true;
+            div_total.Visible = true;
+            btn_clear.Visible = true;
+            btn_view.Visible = true;
+
+            lit_output.Text = output;
         }
 
         private void GridView_DataBind()
@@ -122,10 +162,10 @@ namespace NorthBay.Web.Gift
                         }
 
                         //Get Image
-                        control = cell.FindControl("img_item");
-                        if(control is HtmlImage)
+                        control = cell.FindControl("img_product");
+                        if(control is Image)
                         {
-                            image = ((HtmlImage)control).Src;
+                            image = ((Image)control).ImageUrl;
                         }
 
 
@@ -141,23 +181,70 @@ namespace NorthBay.Web.Gift
                         ShoppingCart.Add(product);
                     }
 
-                    string output = string.Empty;
-
-                    foreach (var item in ShoppingCart)
-                    {
-                        output += "Title: " + item.Title + "<br />";
-                        output += "Price: " + item.Price + "<br />";
-                        output += "Quantity: " + item.Quantity  + "<br /><br />";
-                    }
-
-                    output += "Sub-Total: " + _shoppingCart.GetStringTotalPrice() + "<br />";
-                    output += "Tax: " + _shoppingCart.GetStringTax() + "<br />";
-                    output += "Total: " + _shoppingCart.GetStringTotalPriceWithTax() + "<br />";
-
-                    lit_output.Text = output;
+                    SetShoppingCart();
 
                     break;
             }
+        }
+
+        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var image = e.Row.FindControl("img_product") as Image;
+
+                if (image == null)
+                    return;
+
+                var product = e.Row.DataItem as Product;
+
+                if (product == null)
+                    return;
+
+                int newWidth;
+                int newHeight;
+                GetImageSize(MapPath(product.Image), out newWidth, out newHeight);
+
+                image.Height = Unit.Pixel(newHeight);
+                image.Width = Unit.Pixel(newWidth);
+            }
+        }
+
+        private void GetImageSize(string imagePath, out int newWidth, out int newHeight)
+        {
+            //Set Image Size
+            var image = System.Drawing.Image.FromFile(imagePath);
+
+            const int maximumHeight = 200;
+
+            newHeight = image.Height;
+            newWidth = image.Width;
+
+            if (maximumHeight >= newHeight)
+                return;
+
+            var ratio = newHeight / maximumHeight;
+            newHeight = maximumHeight;
+            newWidth = newWidth / ratio;
+        }
+
+        protected void GridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridView.PageIndex = e.NewPageIndex;
+
+            GridView_DataBind();
+        }
+
+        protected void Button_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+
+            if (button == null)
+                return;
+
+            Session["Cart"]  = null;
+
+            Redirect("~/Gift/");
         }
     }
 }
