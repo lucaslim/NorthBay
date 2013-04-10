@@ -13,6 +13,15 @@ namespace NorthBay.Web {
     public partial class Login {
         
         /// <summary>
+        /// lit_error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lit_error;
+        
+        /// <summary>
         /// txt_user control.
         /// </summary>
         /// <remarks>

@@ -10,10 +10,12 @@ namespace NorthBay.Logic.User
 {
     public class UserClass : BaseBo<Framework.Database.User>
     {
-        public bool AuthenticateUser(string email, string password)
+        public bool AuthenticateUser(string email, string password, out string redirectUrl)
         {
             using (var context = Db.DataContext())
             {
+                redirectUrl = string.Empty;
+                
                 //Authenticate User, hashing password with MD5
                 var query = context.Users.Where(x => x.Email.Equals(email) && x.Password.Equals(SecurityHelper.Hash(password)));
 
@@ -24,7 +26,7 @@ namespace NorthBay.Logic.User
                 var user = query.ToList()[0];
 
                 //Create User Session
-                UserSession.Create(user);
+                UserSession.Create(user, out redirectUrl);
 
                 return true;
             }
@@ -69,7 +71,7 @@ namespace NorthBay.Logic.User
 
         public List<Framework.Database.User> SelectAllPatients()
         {
-            using(var context = Db.DataContext())
+            using (var context = Db.DataContext())
             {
                 return context.Users.Where(x => x.UserRole.UserRoleId == 3).ToList();
             }

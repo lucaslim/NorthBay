@@ -12,8 +12,10 @@ namespace NorthBay.Framework.Authentication
             get { return HttpContext.Current.User.Identity.IsAuthenticated; }
         }
 
-        public static void Create(User model)
+        public static void Create(User model, out string redirectUrl)
         {
+            redirectUrl = string.Empty;
+
             //Set authorization cookie
             FormsAuthentication.SetAuthCookie(TextHelper.ToString(model.UserId), false);
 
@@ -23,13 +25,13 @@ namespace NorthBay.Framework.Authentication
             if (!UserCookie.Create(model))
                 return;
 
-            var redirectUrl = returnUrl;
+            redirectUrl = returnUrl;
 
             if (string.IsNullOrEmpty(redirectUrl))
             {
                 switch (model.UserRoleId)
                 {
-                        //Administrator
+                    //Administrator
                     case 1:
                         redirectUrl = "~/Admin/";
                         break;
@@ -39,9 +41,6 @@ namespace NorthBay.Framework.Authentication
                         break;
                 }
             }
-
-            //Redirect
-            PageHelper.Redirect(redirectUrl);
         }
 
         public static FormsAuthenticationTicket GetTicket()

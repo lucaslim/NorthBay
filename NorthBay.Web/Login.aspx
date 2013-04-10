@@ -8,19 +8,22 @@
         </div>
         <div id="main_body">
             <custom:ValidationGroupPanel runat="server" ValidationGroup="Login">
-                <div class="login_inputs">
-                    <div class="bold">
-                        Username:
-                    </div>
+                <div>
+                    <asp:Literal runat="server" ID="lit_error"></asp:Literal>
+                </div>
+                <div class="input_label bold">
+                    Username:
+                </div>
+                <div class="input_control">
                     <custom:TextBox runat="server" ID="txt_user" Required="True" />
                 </div>
-                <div class="login_inputs">
-                    <div class="bold">
-                        Password:
-                    </div>
+                <div class="input_label bold">
+                    Password:
+                </div>
+                <div class="input_control">
                     <custom:TextBox runat="server" ID="txt_password" TextMode="Password" Required="True" />
                 </div>
-                <asp:Button runat="server" ID="btn_login" Text="Login" OnClick="ButtonClick" />
+                <asp:Button runat="server" ID="btn_login" Text="Login" />
             </custom:ValidationGroupPanel>
         </div>
     </div>

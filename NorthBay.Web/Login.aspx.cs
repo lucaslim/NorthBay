@@ -15,8 +15,15 @@ namespace NorthBay.Web
         {
             var objUser = new UserClass();
 
+            //Username: lucas@nuxbox.me
+            //Password: 123
+            string redirectUrl;
+
             //Authenticate User
-            objUser.AuthenticateUser(txt_user.Text, txt_password.Text);
+            if (!objUser.AuthenticateUser(txt_user.Text, txt_password.Text, out redirectUrl))
+            {
+                lit_error.Text = "<div style=\"font-size:11px; font-style: italic; color: red; padding-bottom:5px;\">The email or password you've entered does not belong to any account.</div>";
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
     <asp:Wizard runat="server" ID="wiz_cart" BackColor="#E6E2D8" BorderColor="#999999"
         BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em"
         DisplaySideBar="False" ActiveStepIndex="0" OnFinishButtonClick="WizCart_FinishButtonClick"
-        OnActiveStepChanged="WizCart_ActiveStepChanged" OnPreviousButtonClick="WizCart_PreviousButtonClick">
+        OnActiveStepChanged="WizCart_ActiveStepChanged" OnPreviousButtonClick="WizCart_PreviousButtonClick" Width="100%">
         <HeaderStyle BackColor="#666666" BorderStyle="Solid" Font-Bold="True" Font-Size="0.9em"
             ForeColor="White" HorizontalAlign="Center" BorderColor="#E6E2D8" BorderWidth="2px" />
         <NavigationButtonStyle BackColor="White" BorderColor="#C5BBAF" BorderStyle="Solid"
@@ -15,7 +15,7 @@
         <SideBarStyle BackColor="#1C5E55" Font-Size="0.9em" VerticalAlign="Top" />
         <StepStyle BorderWidth="2px" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderStyle="Solid" />
         <HeaderTemplate>
-            <asp:DataList ID="dl_header" runat="server" RepeatDirection="Horizontal">
+            <asp:DataList ID="dl_header" runat="server" RepeatDirection="Horizontal" CssClass="checkout_header">
                 <ItemTemplate>
                     <%# DataBinder.Eval(Container.DataItem, "Title") + "  " %>
                 </ItemTemplate>

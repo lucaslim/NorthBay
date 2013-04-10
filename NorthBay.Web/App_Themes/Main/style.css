@@ -536,6 +536,9 @@ footer .links
     padding: 5px;
 }
 
+.checkout_header td {
+    padding: 7px;
+}
 
  /*-------------Career---------------------------------------------------------------*/
 /* GridView, DeatailsView CSS - Used in Career Page */
