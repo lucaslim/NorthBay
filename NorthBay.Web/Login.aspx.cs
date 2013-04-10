@@ -24,6 +24,10 @@ namespace NorthBay.Web
             {
                 lit_error.Text = "<div style=\"font-size:11px; font-style: italic; color: red; padding-bottom:5px;\">The email or password you've entered does not belong to any account.</div>";
             }
+            else
+            {
+                Response.Redirect(redirectUrl);
+            }
         }
     }
 }

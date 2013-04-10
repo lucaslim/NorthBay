@@ -23,7 +23,7 @@
                 <div class="input_control">
                     <custom:TextBox runat="server" ID="txt_password" TextMode="Password" Required="True" />
                 </div>
-                <asp:Button runat="server" ID="btn_login" Text="Login" />
+                <asp:Button runat="server" ID="btn_login" Text="Login" OnClick="ButtonClick" />
             </custom:ValidationGroupPanel>
         </div>
     </div>
