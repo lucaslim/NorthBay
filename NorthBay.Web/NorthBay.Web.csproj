@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Add Doctor\add.aspx" />
+    <Content Include="Admin\Canteen\canteen_admin.aspx" />
     <Content Include="Admin\Career\Default.aspx" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\Event\Default.aspx" />
@@ -83,9 +85,13 @@
     <Content Include="App_Themes\Main\Images\twit.jpg" />
     <Content Include="App_Themes\Main\style.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="Blood donation\bd_don.aspx" />
+    <Content Include="Blood donation\sending_email.aspx" />
+    <Content Include="Canteen\canteen_home.aspx" />
     <Content Include="Career\Application.aspx" />
     <Content Include="Career\Default.aspx" />
     <Content Include="Career\Details.aspx" />
+    <Content Include="Doctor\profile.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Event\Default.aspx" />
     <Content Include="Event\EventDetails.aspx" />
@@ -123,6 +129,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Add Doctor\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Add Doctor\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Canteen\canteen_admin.aspx.cs">
+      <DependentUpon>canteen_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Canteen\canteen_admin.aspx.designer.cs">
+      <DependentUpon>canteen_admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Career\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,6 +244,27 @@
     <Compile Include="Basepage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Blood donation\bd_don.aspx.cs">
+      <DependentUpon>bd_don.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blood donation\bd_don.aspx.designer.cs">
+      <DependentUpon>bd_don.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blood donation\sending_email.aspx.cs">
+      <DependentUpon>sending_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blood donation\sending_email.aspx.designer.cs">
+      <DependentUpon>sending_email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Canteen\canteen_home.aspx.cs">
+      <DependentUpon>canteen_home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Canteen\canteen_home.aspx.designer.cs">
+      <DependentUpon>canteen_home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Career\Application.aspx.cs">
       <DependentUpon>Application.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +288,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctor\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
