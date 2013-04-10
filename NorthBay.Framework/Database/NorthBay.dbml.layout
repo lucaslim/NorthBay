@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 15.75" name="NorthBay">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 19.625" name="NorthBay">
   <DataContextMoniker Name="/NorthBayDataContext" />
   <nestedChildShapes>
     <classShape Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" absoluteBounds="0.75, 4.125, 2, 1.7708968098958327">
@@ -65,7 +65,7 @@
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.59375 : 5.56899251302083); (4.59375 : 5.98000325520833); (6.5 : 5.98000325520833)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.59375 : 5.56899251302083); (4.59375 : 5.98000325520833); (6.5 : 5.98000325520833)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/VolunteerCategory/VolunteerCategory_Volunteer" />
       <nodes>
         <classShapeMoniker Id="763a678e-ac77-41f8-96f6-a08838af460d" />
@@ -116,7 +116,7 @@
         <elementListCompartment Id="33440b01-10fc-44ce-a5eb-1de203c641b1" absoluteBounds="10.015, 6.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.75 : 5.89589680989583); (1.75 : 6.52428524902344); (9.15666666666667 : 6.52428524902344 : JumpStart); (9.32333333333333 : 6.52428524902344 : JumpEnd); (10 : 6.52428524902344)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 5.89589680989583); (1.75 : 6.52428524902344); (9.15666666666667 : 6.52428524902344 : JumpStart); (9.32333333333333 : 6.52428524902344 : JumpEnd); (10 : 6.52428524902344)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/Product/Product_OrderItem" />
       <nodes>
         <classShapeMoniker Id="f77b1eb6-96a1-4bba-b48d-aa0c784b06f6" />
@@ -221,7 +221,7 @@
         <elementListCompartment Id="2ffe4fc9-7b60-44f6-a913-e7c7213f460a" absoluteBounds="6.765, 2.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.5 : 7.875); (4.5 : 7.635); (8.76041666666667 : 7.635 : JumpStart); (8.92708333333333 : 7.635 : JumpEnd); (9.24 : 7.635); (9.24 : 4.19395232291667); (8.75 : 4.19395232291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.5 : 7.875); (4.5 : 7.635); (9.24 : 7.635); (9.24 : 4.19395232291667); (8.75 : 4.19395232291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthBayDataContext/User/User_RoomBillingInvoice" />
       <nodes>
         <classShapeMoniker Id="8d262cef-62cf-4cdf-b4cb-08c8a9d47427" />
@@ -270,6 +270,24 @@
       <DataClassMoniker Name="/NorthBayDataContext/Location" />
       <nestedChildShapes>
         <elementListCompartment Id="dfab1b2f-1cb8-49dc-a2c2-71db6af3fbb5" absoluteBounds="5.515, 3.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9a63f7fe-5cc3-49cd-a009-9cfd1e746e9e" absoluteBounds="7.25, 16.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NorthBayDataContext/blood_donor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8305db09-64ef-403f-9c6b-9261b99b1993" absoluteBounds="7.265, 17.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e1148ea-4376-42f2-876b-4b15e8428cbe" absoluteBounds="4.75, 16.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/NorthBayDataContext/Doctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="59162286-95a7-4b74-8898-d5af4c27475c" absoluteBounds="4.765, 17.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="64f46c8a-bc58-4f2b-a670-9bda3ef0f77b" absoluteBounds="3.5, 17.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/NorthBayDataContext/restaurant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3a740a3-bd8a-449e-8a8d-21c0c77e110a" absoluteBounds="3.515, 18.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
