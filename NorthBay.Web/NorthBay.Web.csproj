@@ -90,6 +90,16 @@
     <Content Include="App_Themes\Main\Images\twit.jpg" />
     <Content Include="App_Themes\Main\style.css" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\NorthBay.Controls.dll" />
+    <Content Include="bin\NorthBay.Controls.pdb" />
+    <Content Include="bin\NorthBay.Framework.dll" />
+    <Content Include="bin\NorthBay.Framework.pdb" />
+    <Content Include="bin\NorthBay.Logic.dll" />
+    <Content Include="bin\NorthBay.Logic.pdb" />
+    <Content Include="bin\NorthBay.Utility.dll" />
+    <Content Include="bin\NorthBay.Utility.pdb" />
+    <Content Include="bin\NorthBay.Web.dll" />
+    <Content Include="bin\NorthBay.Web.pdb" />
     <Content Include="Blood donation\bd_don.aspx" />
     <Content Include="Blood donation\sending_email.aspx" />
     <Content Include="Canteen\canteen_home.aspx" />
