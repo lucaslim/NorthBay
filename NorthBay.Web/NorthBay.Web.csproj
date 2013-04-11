@@ -100,6 +100,7 @@
     <Content Include="Gift\View.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
+    <Content Include="ImageGallery\Default.aspx" />
     <Content Include="Images\Products\2.jpg" />
     <Content Include="Images\Products\26.jpg" />
     <Content Include="Location\Default.aspx" />
@@ -112,7 +113,8 @@
     <Content Include="obj\Script\jquery.js" />
     <Content Include="obj\Script\jqueryui.js" />
     <Content Include="obj\Script\global.js" />
-    <Content Include="Room\Default.aspx" />
+    <Content Include="Pharmacy\Default.aspx" />
+    <Content Include="Publication\Default.aspx" />
     <Content Include="Script\global.js" />
     <Content Include="Script\jquery.js" />
     <Content Include="Script\jqueryui.js" />
@@ -342,6 +344,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImageGallery\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImageGallery\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Location\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,12 +393,19 @@
     <Compile Include="Masterpage\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room\Default.aspx.cs">
+    <Compile Include="Pharmacy\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Room\Default.aspx.designer.cs">
+    <Compile Include="Pharmacy\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Publication\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Volunteer\Default.aspx.cs">

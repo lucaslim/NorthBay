@@ -11,9 +11,9 @@
 
         imgLoader.style.display = "block";
         img.onload = function () {
-            alert("imageOnload "+img.src);
+            //alert("imageOnload "+img.src);
             imgFull.src = img.src;
-            alert(imgFull.src);    
+            //alert(imgFull.src);    
             imgFull.style.display = "block";
             imgLoader.style.display = "none";
         };
