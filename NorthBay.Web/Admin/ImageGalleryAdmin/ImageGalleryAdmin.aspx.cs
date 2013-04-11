@@ -16,7 +16,7 @@ namespace NorthBay.Web.Admin.ImageGalleryAdmin
         int flag = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            upDir = Path.Combine(Request.PhysicalApplicationPath, "images");
+            upDir = Path.Combine(Request.PhysicalApplicationPath, "Images/ImageGallery");
 
             if (!Page.IsPostBack)
             {
@@ -35,7 +35,7 @@ namespace NorthBay.Web.Admin.ImageGalleryAdmin
                     {
                         ImageGalleryClass objGallery = new ImageGalleryClass();
 
-                        string serverPath = "~/images/".ToString();
+                        string serverPath = "~/Images/ImageGallery/".ToString();
 
                         string serverFileName = Path.GetFileName(Uploader.PostedFile.FileName);
                         string imageFile = serverPath + serverFileName.ToString();

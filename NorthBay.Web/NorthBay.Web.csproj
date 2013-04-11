@@ -56,8 +56,13 @@
     <Content Include="Admin\Gift\Add.aspx" />
     <Content Include="Admin\Gift\Default.aspx" />
     <Content Include="Admin\Gift\Edit.aspx" />
+    <Content Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx" />
     <Content Include="Admin\Location\Default.aspx" />
     <Content Include="Admin\Location\Default2.aspx" />
+    <Content Include="Admin\Pharmacy\AddMedicine.aspx" />
+    <Content Include="Admin\Publication\AddPublication.aspx" />
+    <Content Include="Admin\Publication\Default.aspx" />
+    <Content Include="Admin\Publication\EditPublication.aspx" />
     <Content Include="Admin\Room\Assign.aspx" />
     <Content Include="Admin\Room\ViewBill.aspx" />
     <Content Include="Admin\Room\Default.aspx" />
@@ -101,6 +106,10 @@
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
     <Content Include="ImageGallery\Default.aspx" />
+    <Content Include="Images\ImageGallery\Chrysanthemum.jpg" />
+    <Content Include="Images\ImageGallery\Hydrangeas.jpg" />
+    <Content Include="Images\ImageGallery\Lighthouse.jpg" />
+    <Content Include="Images\ImageGallery\loader.gif" />
     <Content Include="Images\Products\2.jpg" />
     <Content Include="Images\Products\26.jpg" />
     <Content Include="Location\Default.aspx" />
@@ -188,6 +197,13 @@
     <Compile Include="Admin\Gift\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx.cs">
+      <DependentUpon>ImageGalleryAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx.designer.cs">
+      <DependentUpon>ImageGalleryAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Location\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,6 +217,34 @@
     </Compile>
     <Compile Include="Admin\Location\Default2.aspx.designer.cs">
       <DependentUpon>Default2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pharmacy\AddMedicine.aspx.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pharmacy\AddMedicine.aspx.designer.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\AddPublication.aspx.cs">
+      <DependentUpon>AddPublication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\AddPublication.aspx.designer.cs">
+      <DependentUpon>AddPublication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\EditPublication.aspx.cs">
+      <DependentUpon>EditPublication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\EditPublication.aspx.designer.cs">
+      <DependentUpon>EditPublication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Room\Assign.aspx.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
