@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NorthBay.Web.Admin.Publication.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h2>Delete Publication</h2>
     <asp:GridView runat="server" ID="gridView" AllowPaging="true" OnSorting="GridView_Sorting" OnPageIndexChanging="GridView_PageIndexChanging" AllowSorting="true" AutoGenerateColumns="false">
         <Columns>
             <asp:TemplateField>

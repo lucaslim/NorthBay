@@ -14,6 +14,7 @@ namespace NorthBay.Web.Admin.Pharmacy
         private static int id = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //to add script to global js file
             JScript.AddScript("");
             Css.AddCss("");
             lblError.Text = "";
@@ -29,7 +30,7 @@ namespace NorthBay.Web.Admin.Pharmacy
             SetMedicineCategoryData();
         }
 
-
+        // populate dropdown list for category of medicine
         private void SetMedicineCategoryData()
         {
             var objMedicineCategory = new MedicineCategory();
@@ -49,7 +50,7 @@ namespace NorthBay.Web.Admin.Pharmacy
             gridView.DataBind();
         }
 
-
+        // function to insert medicine
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             var medicine = new Framework.Database.Medicine
@@ -90,6 +91,8 @@ namespace NorthBay.Web.Admin.Pharmacy
         {
             id = Convert.ToInt32(gridView.SelectedValue.ToString());
         }
+
+        // delete medicine record
         protected void GridViewResult_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             MedicineDB db = new MedicineDB();
@@ -97,6 +100,8 @@ namespace NorthBay.Web.Admin.Pharmacy
             db.DeleteMedById(id);
             Response.Redirect("AddMedicine.aspx");  
         }
+
+        //update medicine record
         protected void GridViewResult_RowEditing(object sender, GridViewEditEventArgs e)
         {
             btnAdd.Visible = false;

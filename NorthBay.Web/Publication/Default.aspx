@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NorthBay.Web.Publication.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--<asp:GridView ID="gridView" runat="server" AutoGenerateSelectButton="true" 
-        SelectedRowStyle-BackColor="Black" SelectedRowStyle-ForeColor="Blue"  AllowPaging="True" 
-        AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="PublicationId"> --%>
-       
+<h2>Publication and Mail Page</h2>       
         <asp:GridView ID="gridView" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="PublicationId">
         <Columns>

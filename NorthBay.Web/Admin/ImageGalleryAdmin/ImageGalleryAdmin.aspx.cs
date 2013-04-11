@@ -22,7 +22,6 @@ namespace NorthBay.Web.Admin.ImageGalleryAdmin
             {
                 _subRebind();
 
-
             }
         }
 
@@ -33,6 +32,7 @@ namespace NorthBay.Web.Admin.ImageGalleryAdmin
                 case "Insert":
                     if (flag != 1)
                     {
+                        //Creating object of LINQ Class
                         ImageGalleryClass objGallery = new ImageGalleryClass();
 
                         string serverPath = "~/Images/ImageGallery/".ToString();
@@ -136,9 +136,9 @@ namespace NorthBay.Web.Admin.ImageGalleryAdmin
             string ImgID = ((Label)grid_img.Rows[e.RowIndex].FindControl("lblImageID")).Text;
             int _imgID = int.Parse(ImgID);
 
-            //string Src = ((TextBox)grid_img.Rows[e.RowIndex].FindControl("txtimageFile")).Text;
+            
             string Name = ((TextBox)grid_img.Rows[e.RowIndex].FindControl("txtFileName")).Text;
-            //objImgGall.commitUpdate(_imgID, Src, Name);
+            
             objImgGall.commitUpdate(_imgID, Name);
             grid_img.DataSource = objImgGall.GetGalleryByID(_imgID);
             grid_img.DataBind();

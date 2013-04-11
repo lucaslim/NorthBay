@@ -1,12 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="ImageGalleryAdmin.aspx.cs" Inherits="NorthBay.Web.Admin.ImageGalleryAdmin.ImageGalleryAdmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<h2>Image Gallery Admin Page</h2>    
+<%-- Grid view to display image data--%>
     <asp:GridView ID="grid_img" runat="server" AutoGenerateColumns="false"
         HeaderStyle-BackColor="lightblue" ShowFooter="true" OnRowEditing="EditImage" OnRowUpdating="UpdateImage"
         OnRowCancelingEdit="CancelEdit" PageSize="10">
         <Columns>
             <asp:TemplateField ItemStyle-Width="30px" HeaderText="ID">
                 <ItemTemplate>
-                    <asp:Label ID="lblImageID" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
+                    <asp:Label ID="lblImageID" runat="server" Text='<%#Eval("Id")%>'></asp:Label>
                 </ItemTemplate>
                 <FooterTemplate>
                     <asp:HiddenField ID="hdfID" Value='<%#Eval("Id") %>' runat="server" />
@@ -37,6 +39,7 @@
         </Columns>
         <AlternatingRowStyle BackColor="LightGray" />
     </asp:GridView>
+    <%-- File Upload Control--%>
     <asp:FileUpload ID="Uploader" runat="server" Height="25px" />
     <br />
     <asp:Label ID="lblFileName" runat="server" Text="What do you want to name your file as?" />

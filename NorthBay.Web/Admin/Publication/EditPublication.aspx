@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="EditPublication.aspx.cs" Inherits="NorthBay.Web.Admin.Publication.EditPublication" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h2>Edit Publication</h2>
     <custom:ValidationGroupPanel ID="ValidationGroupPanel1" runat="server" ValidationGroup="AddPublication">
         <asp:Table ID="Table1" runat="server">
             <asp:TableRow>

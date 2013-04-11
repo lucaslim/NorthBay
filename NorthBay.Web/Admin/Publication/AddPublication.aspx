@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPublication.aspx.cs" Inherits="NorthBay.Web.Admin.Publication.Add" MasterPageFile="~/Masterpage/Main.Master"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <h2>Add New Publication</h2>
+    <%-- collect input to add publication --%>
             <div>
                 <custom:ValidationGroupPanel ID="ValidationGroupPanel1" runat="server" ValidationGroup="AddPublication">
                     <asp:Table ID="Table1" runat="server">
