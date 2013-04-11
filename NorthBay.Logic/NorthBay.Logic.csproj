@@ -39,7 +39,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_doctor\add_doctorClass.cs" />
     <Compile Include="BaseBO.cs" />
+    <Compile Include="Blood_donor\blood_donorClass.cs" />
     <Compile Include="Career\ApplicantClass.cs" />
     <Compile Include="Career\CareerClass.cs" />
     <Compile Include="Career\SendEmailClass.cs" />
@@ -59,6 +61,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Restaurant\itemsClass.cs" />
     <Compile Include="Room\EquipmentClass.cs" />
     <Compile Include="Room\RoomBillingClass.cs" />
     <Compile Include="Room\RoomBillingEquipmentClass.cs" />

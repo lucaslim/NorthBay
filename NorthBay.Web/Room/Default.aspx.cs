@@ -12,6 +12,7 @@ namespace NorthBay.Web.Room
             if (Page.IsPostBack)
                 return;
 
+            //Get Average Room Price
             lit_average.Text = string.Format("${0}", _objRoom.GetAverageRoomPrice());
 
             rpt_rooms.DataSource = _objRoom.SelectRoomsByBuilding();
