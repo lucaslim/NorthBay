@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Theme="Main" Inherits="NorthBay.Web.ImageGallery.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<h2>Image Gallery Page</h2>
 <script type="text/javascript">
     function LoadDiv(url) {
         var img = new Image();
@@ -11,9 +12,9 @@
 
         imgLoader.style.display = "block";
         img.onload = function () {
-            alert("imageOnload "+img.src);
+            //alert("imageOnload "+img.src);
             imgFull.src = img.src;
-            alert(imgFull.src);    
+            //alert(imgFull.src);    
             imgFull.style.display = "block";
             imgLoader.style.display = "none";
         };

@@ -56,8 +56,13 @@
     <Content Include="Admin\Gift\Add.aspx" />
     <Content Include="Admin\Gift\Default.aspx" />
     <Content Include="Admin\Gift\Edit.aspx" />
+    <Content Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx" />
     <Content Include="Admin\Location\Default.aspx" />
     <Content Include="Admin\Location\Default2.aspx" />
+    <Content Include="Admin\Pharmacy\AddMedicine.aspx" />
+    <Content Include="Admin\Publication\AddPublication.aspx" />
+    <Content Include="Admin\Publication\Default.aspx" />
+    <Content Include="Admin\Publication\EditPublication.aspx" />
     <Content Include="Admin\Room\Assign.aspx" />
     <Content Include="Admin\Room\ViewBill.aspx" />
     <Content Include="Admin\Room\Default.aspx" />
@@ -100,6 +105,11 @@
     <Content Include="Gift\View.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.aspx" />
+    <Content Include="ImageGallery\Default.aspx" />
+    <Content Include="Images\ImageGallery\Chrysanthemum.jpg" />
+    <Content Include="Images\ImageGallery\Hydrangeas.jpg" />
+    <Content Include="Images\ImageGallery\Lighthouse.jpg" />
+    <Content Include="Images\ImageGallery\loader.gif" />
     <Content Include="Images\Products\2.jpg" />
     <Content Include="Images\Products\26.jpg" />
     <Content Include="Location\Default.aspx" />
@@ -112,7 +122,8 @@
     <Content Include="obj\Script\jquery.js" />
     <Content Include="obj\Script\jqueryui.js" />
     <Content Include="obj\Script\global.js" />
-    <Content Include="Room\Default.aspx" />
+    <Content Include="Pharmacy\Default.aspx" />
+    <Content Include="Publication\Default.aspx" />
     <Content Include="Script\global.js" />
     <Content Include="Script\jquery.js" />
     <Content Include="Script\jqueryui.js" />
@@ -186,6 +197,13 @@
     <Compile Include="Admin\Gift\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx.cs">
+      <DependentUpon>ImageGalleryAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ImageGalleryAdmin\ImageGalleryAdmin.aspx.designer.cs">
+      <DependentUpon>ImageGalleryAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Location\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,6 +217,34 @@
     </Compile>
     <Compile Include="Admin\Location\Default2.aspx.designer.cs">
       <DependentUpon>Default2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pharmacy\AddMedicine.aspx.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pharmacy\AddMedicine.aspx.designer.cs">
+      <DependentUpon>AddMedicine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\AddPublication.aspx.cs">
+      <DependentUpon>AddPublication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\AddPublication.aspx.designer.cs">
+      <DependentUpon>AddPublication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Publication\EditPublication.aspx.cs">
+      <DependentUpon>EditPublication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publication\EditPublication.aspx.designer.cs">
+      <DependentUpon>EditPublication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Room\Assign.aspx.cs">
       <DependentUpon>Assign.aspx</DependentUpon>
@@ -342,6 +388,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImageGallery\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImageGallery\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Location\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,12 +437,19 @@
     <Compile Include="Masterpage\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room\Default.aspx.cs">
+    <Compile Include="Pharmacy\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Room\Default.aspx.designer.cs">
+    <Compile Include="Pharmacy\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publication\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Publication\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Volunteer\Default.aspx.cs">

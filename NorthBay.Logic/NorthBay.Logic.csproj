@@ -53,14 +53,21 @@
     <Compile Include="Gift\ProductClass.cs" />
     <Compile Include="Gift\CartProduct.cs" />
     <Compile Include="Gift\ShoppingCart.cs" />
+    <Compile Include="ImageGallery\ImageGalleryClass.cs" />
     <Compile Include="Location\LocationClass.cs" />
     <Compile Include="Menu\MenuClass.cs" />
+    <Compile Include="Pharmacy\Medicine.cs" />
+    <Compile Include="Pharmacy\MedicineCategory.cs" />
+    <Compile Include="Pharmacy\MedicineDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Publication\PublicationCategoryClass.cs" />
+    <Compile Include="Publication\PublicationClass.cs" />
+    <Compile Include="Publication\PublicationViewClass.cs" />
     <Compile Include="Restaurant\itemsClass.cs" />
     <Compile Include="Room\EquipmentClass.cs" />
     <Compile Include="Room\RoomBillingClass.cs" />
