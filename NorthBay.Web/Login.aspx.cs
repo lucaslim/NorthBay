@@ -14,7 +14,7 @@ namespace NorthBay.Web
         {
             var objUser = new UserClass();
 
-            //Username: lucas@nuxbox.me
+            //Username: northbay
             //Password: 123
             string redirectUrl;
 
